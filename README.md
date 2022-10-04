@@ -617,6 +617,11 @@ Eudamed kennt einen sogannten Eudamed-Playground (https://webgate.training.ec.eu
 Hier gibts aktuelle Infos zum Playground: https://webgate.training.ec.europa.eu/eudamed-play/secure#/release-notes. Unter Hilfe gibt es auch jede Menge tiefergehende Dokus und XML-Schemen.
 
 # Sonstiges
+## Videos zur Eudamed
+Vereinzelt findet man hier Videos mit Infos:
+https://www.youtube.com/c/EasyMedicalDevice (hat öfters Richard Houlihan einen mit der EUDAMED näher befassten in den Interviews).
+https://www.youtube.com/user/JohnerInstitut
+
 ## Die Hersteller 
 Die Hersteller werden als Economic Operators bezeichnet. Die hinterlegten Daten eines solchen Economic Operators, hier im Fall Ammann Girrbach, findet man unter https://ec.europa.eu/tools/eudamed/#/screen/search-eo/6bb2017f-b4df-452f-9799-798f063f535d.
 
