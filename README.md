@@ -611,6 +611,11 @@ Als Ergebnis bekommt man, mit etwas Glück (denn es klappt momentan nicht immer!
 
 Im obigen JSON-Objekt findet man dann unter Content diesen Eintrag: "uuid" : "c7418f9f-3f31-4329-b2c1-956377dbe23b". Hier ist also die UUID welche wir für die Abfrage aller Details brauchen. Damit kann man also die Anfrage mittels dieser URL https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/c7418f9f-3f31-4329-b2c1-956377dbe23b?languageIso2Code=de wie oben bereits gezeigt starten.
 
+# Spielversion (Playground)
+Eudamed kennt einen sogannten Eudamed-Playground (https://webgate.training.ec.europa.eu/eudamed-play/landing-page#/).
+![image](https://user-images.githubusercontent.com/16536936/193817737-75b64348-5a0e-46ea-8d9e-0d0b8d912fdb.png)
+Hier gibts aktuelle Infos zum Playground: https://webgate.training.ec.europa.eu/eudamed-play/secure#/release-notes. Unter Hilfe gibt es auch jede Menge tiefergehende Dokus und XML-Schemen.
+
 # Sonstiges
 ## Die Hersteller 
 Die Hersteller werden als Economic Operators bezeichnet. Die hinterlegten Daten eines solchen Economic Operators, hier im Fall Ammann Girrbach, findet man unter https://ec.europa.eu/tools/eudamed/#/screen/search-eo/6bb2017f-b4df-452f-9799-798f063f535d.
