@@ -8,7 +8,10 @@ Die Homepage der EUDAMED ist unter https://ec.europa.eu/tools/eudamed zu finden.
 Unterstützung gibt es unter der E-Mail-Adresse SANTE-EUDAMED-SUPPORT@ec.europa.eu.
 
 # Aktuelle Infos
-Aktuelle Informationen die EUDAMED betreffend findet man hier: https://ec.europa.eu/tools/eudamed/#/screen/news.
+Aktuelle Informationen die EUDAMED betreffend findet man hier: https://ec.europa.eu/tools/eudamed/#/screen/news. Verschiedene Dokumente zur Durchführung gibt es hier: https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec6. Auf der Seite des UDI-Helpdesks https://eu-udi.zendesk.com/hc/en-150 lassen sich auch viele Informationen finden.
+
+# Timeline
+Hier findet man die aktuelle Timeline bis wann welches Modul verfügbar sein soll: https://health.ec.europa.eu/system/files/2022-07/md_eudamed_timeline_en.pdf. 2026 könnte es nach heutigem Stand dann mal was werden...
 
 # API
 Es gibt auch eine (inoffizielle?) API, welche das direkte Abgreifen von Informationen per JSON-Objekten erlaubt. So erhält man z. B. mittels https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/c7418f9f-3f31-4329-b2c1-956377dbe23b?languageIso2Code=de die Daten zur UDI-DI E4947660611.
