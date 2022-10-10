@@ -84,6 +84,23 @@ Function Get-EudamedEmdn {
     ConvertFrom-Json $r.Content
 }
 
+Function Get-EudamedEmdnSearch {
+    [CmdletBinding()]
+    Param(
+        [Object]$emdn,
+        [String]$text
+    )
+    
+    foreach ($entry in $emdn) {
+        If ($entry.text -match $text) {
+            $entry
+        }
+        If ($entry.children.Count -gt 0) {
+            Get-EudamedEmdnSearch $entry.children -text $text
+        }
+    }
+}
+
 Function Get-EudamedDevicesOfCND {
     [CmdletBinding()]
     Param(
@@ -135,5 +152,9 @@ $teeth.Length
 $dent = Get-EudamedDevicesOfCND -CndCode Q010699
 $dent.Length
 
+# alle CNDs mit Dental ermitteln:
+$emdn = Get-EudamedEmdn
+$ms = Get-EudamedEmdnSearch -emdn $emdn -text dental
+$ms.Length
 
 "Ende erreicht"
