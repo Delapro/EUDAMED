@@ -139,6 +139,7 @@ $emdn[13].children[0].children
 # Q010601 umfasst: Legierungen
 # Q010699 umfasst: Dentine, Liner
 # Q01020601 umfasst: Zähne
+# P01020101 umfasst: Implantate
 
 # Legierungen ermitteln
 $alloy = Get-EudamedDevicesOfCND -CndCode Q010601
@@ -151,6 +152,10 @@ $teeth.Length
 # Dentin usw. ermitteln
 $dent = Get-EudamedDevicesOfCND -CndCode Q010699
 $dent.Length
+
+# Implantate ermitteln
+$implants = Get-EudamedDevicesOfCND -CndCode P01020101
+$implants.Length
 
 # alle CNDs mit Dental ermitteln:
 $emdn = Get-EudamedEmdn
