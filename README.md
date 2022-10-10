@@ -628,6 +628,171 @@ https://www.youtube.com/user/JohnerInstitut
 ## Die Hersteller 
 Die Hersteller werden als Economic Operators bezeichnet. Die hinterlegten Daten eines solchen Economic Operators, hier im Fall Ammann Girrbach, findet man unter https://ec.europa.eu/tools/eudamed/#/screen/search-eo/6bb2017f-b4df-452f-9799-798f063f535d.
 
+Die API-Variante geht so https://ec.europa.eu/tools/eudamed/api/actors/6bb2017f-b4df-452f-9799-798f063f535d/publicInformation?languageIso2Code=en und ergibt:
+
+```JSON
+{
+  "importers" : null,
+  "nonEuManufacturers" : null,
+  "actorDataPublicView" : {
+    "ulid" : "01EREQS76M5772JQP3ZP5ZXGAV",
+    "uuid" : "6bb2017f-b4df-452f-9799-798f063f535d",
+    "type" : {
+      "code" : "refdata.actor-type.manufacturer",
+      "srnCode" : "MF",
+      "category" : "ECONOMIC_ENTITY"
+    },
+    "country" : {
+      "name" : "Austria",
+      "type" : "EU_MEMBER_STATE",
+      "iso2Code" : "AT",
+      "nonEUMemberState" : false
+    },
+    "name" : {
+      "texts" : [ {
+        "language" : {
+          "isoCode" : "de",
+          "name" : "German"
+        },
+        "text" : "Amann Girrbach AG",
+        "allLanguagesApplicable" : null
+      } ]
+    },
+    "abbreviatedName" : null,
+    "europeanVatNumberApplicable" : true,
+    "europeanVatNumber" : "ATU56880888",
+    "eudamedIdentifier" : "AT-MF-000000252",
+    "tradeRegister" : null,
+    "eori" : null,
+    "organizationIdentificationDocuments" : [ ],
+    "authorisedRepresentatives" : null,
+    "competentAuthorityResponsibility" : null,
+    "telephone" : "+43 552362333200",
+    "electronicMail" : "austria@amanngirrbach.com",
+    "website" : "https://www.amanngirrbach.com/en/home/",
+    "actorAddress" : {
+      "streetName" : "Herrschaftswiesen ",
+      "streetInfoApplicable" : true,
+      "buildingNumber" : "1",
+      "complement" : null,
+      "postbox" : null,
+      "gps" : null,
+      "cityName" : "Koblach",
+      "postalZone" : "6842",
+      "country" : {
+        "name" : "Austria",
+        "type" : "EU_MEMBER_STATE",
+        "iso2Code" : "AT",
+        "nonEUMemberState" : false
+      }
+    },
+    "validatorName" : "Gesundheit Österreich GmbH",
+    "validatorUuid" : "eef6d5a7-0906-438f-8050-4661ca1bbe4f",
+    "validatorType" : {
+      "code" : "refdata.actor-type.competent-authority",
+      "srnCode" : "CA",
+      "category" : "SUPERVISING_ENTITY"
+    },
+    "validatorSrn" : "AT-CA-067",
+    "validatorAddress" : {
+      "streetName" : "Stubenring",
+      "streetInfoApplicable" : true,
+      "buildingNumber" : "6",
+      "complement" : null,
+      "postbox" : null,
+      "gps" : null,
+      "cityName" : "Vienna",
+      "postalZone" : "1010",
+      "country" : {
+        "name" : "Austria",
+        "type" : "EU_MEMBER_STATE",
+        "iso2Code" : "AT",
+        "nonEUMemberState" : false
+      }
+    },
+    "validatorEmail" : "eudamed@goeg.at",
+    "validatorTelephone" : "+43 1 515 61-0",
+    "regulatoryComplianceResponsibles" : [ {
+      "firstName" : "Mario ",
+      "familyName" : "Fröhle",
+      "electronicMail" : "mario.froehle@amanngirrbach.com",
+      "telephone" : "+43 5523 62333456",
+      "position" : "MDR Article 15 a)",
+      "geographicalAddress" : {
+        "streetName" : "Herrschaftswiesen ",
+        "streetInfoApplicable" : true,
+        "buildingNumber" : "1",
+        "complement" : null,
+        "postbox" : null,
+        "gps" : null,
+        "cityName" : "Koblach",
+        "postalZone" : "6842",
+        "country" : {
+          "name" : "Austria",
+          "type" : "EU_MEMBER_STATE",
+          "iso2Code" : "AT",
+          "nonEUMemberState" : false
+        }
+      }
+    }, {
+      "firstName" : "Falko ",
+      "familyName" : "Noack",
+      "electronicMail" : "falko.noack@amanngirrbach.com",
+      "telephone" : "+43 5523 62333320",
+      "position" : "MDR Article 15 c) & e)",
+      "geographicalAddress" : {
+        "streetName" : "Herrschaftswiesen ",
+        "streetInfoApplicable" : true,
+        "buildingNumber" : "1",
+        "complement" : null,
+        "postbox" : null,
+        "gps" : null,
+        "cityName" : "Koblach",
+        "postalZone" : "6842",
+        "country" : {
+          "name" : "Austria",
+          "type" : "EU_MEMBER_STATE",
+          "iso2Code" : "AT",
+          "nonEUMemberState" : false
+        }
+      }
+    }, {
+      "firstName" : "Debora",
+      "familyName" : "Engel",
+      "electronicMail" : "debora.engel@amanngirrbach.com",
+      "telephone" : "+49 7231 957260",
+      "position" : "MDR Article 15 b) & d)",
+      "geographicalAddress" : {
+        "streetName" : "Herrschaftswiesen ",
+        "streetInfoApplicable" : true,
+        "buildingNumber" : "1",
+        "complement" : null,
+        "postbox" : null,
+        "gps" : null,
+        "cityName" : "Koblach",
+        "postalZone" : "6842",
+        "country" : {
+          "name" : "Austria",
+          "type" : "EU_MEMBER_STATE",
+          "iso2Code" : "AT",
+          "nonEUMemberState" : false
+        }
+      }
+    } ],
+    "legislationLinks" : null,
+    "latestSubsidiary" : null,
+    "certificates" : null,
+    "latestVersion" : true,
+    "versionNumber" : 1,
+    "versionState" : {
+      "code" : "refdata.eudamed-entity-version-status.registered"
+    },
+    "lastUpdateDate" : "2020-12-15T10:31:03.233",
+    "lastUpdatedByUser" : "nwindifr"
+  }
+}
+```
+
 ## Auflistung aller Devices von Ammann Girrbach
 Auflistung aller Devices von Ammann Girrbach, welche in der EUDAMED hinterlegt sind: https://ec.europa.eu/tools/eudamed/#/screen/search-device?srn=AT-MF-000000252&uuid=6bb2017f-b4df-452f-9799-798f063f535d.
 
