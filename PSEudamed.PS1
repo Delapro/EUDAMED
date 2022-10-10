@@ -93,7 +93,7 @@ Function Get-EudamedEmdnSearch {
     
     foreach ($entry in $emdn) {
         If ($entry.text -match $text) {
-            $entry
+            [PSCustomObject]@{CndCode=($entry.id -replace 'node_',''); Text=$entry.text -replace "$($entry.id -replace 'node_','') - ", ''}
         }
         If ($entry.children.Count -gt 0) {
             Get-EudamedEmdnSearch $entry.children -text $text
