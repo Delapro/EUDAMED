@@ -1667,3 +1667,15 @@ Oder per API https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?page=0&pag
   "numberOfElements" : 25
 }
 ```
+
+## Ausgabe der Version der EUDAMED
+
+Mittels dieser Abfrage kann man den Versionsstand der EUDAMED abfragen: https://ec.europa.eu/tools/eudamed/api/applicationInfo?languageIso2Code=undefined.
+
+```JSON
+{
+  "buildVersion" : "2.8.0",
+  "lastBuildDate" : "2022-07-18 12:16",
+  "activeProfile" : "[prod]"
+}
+```
