@@ -69,11 +69,11 @@ Function Get-EudamedDeviceDetail {
 # ermittelt alle Economic Operators, dauert...
 $AlleEOs = "https://ec.europa.eu/tools/eudamed/api/eos?rnd=1665398393978&sort=srn%2CASC&sort=versionNumber%2CDESC&languageIso2Code=de"
 $EOdata=Get-EudamedPagedData $AlleEOs
-$EOdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistration)}}, electronicMail, telephone, rolename| sort Registrierdatum | select -Last 30 |ft
+$EOdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistration)}}, electronicMail, telephone, rolename| sort-Object Registrierdatum | select -Last 30 |ft
 
 # ermittelt die EOs nur aus Österreich
 $EOATdata = Get-EudamedPagedDataCountry -Url $AlleEOs -Country 'AT'
-$EOATdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistration)}}, electronicMail, telephone, rolename| sort Registrierdatum | select -Last 30 |ft
+$EOATdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistration)}}, electronicMail, telephone, rolename| sort-Object Registrierdatum | select -Last 30 |ft
 
 # Detaildaten eines Economic Operators ausgeben anhand dessen Uuid
 $am=Get-EudamedEODetail -Uuid 6bb2017f-b4df-452f-9799-798f063f535d
@@ -84,3 +84,5 @@ $AGDevices=Get-EudamedDevicesOfEO -Srn $am.actorDataPublicView.eudamedIdentifier
 
 # Die UDI-DI eines Devices ermitteln
 (Get-EudamedDeviceDetail -uuid $AGDevices[0].uuid).primaryDi.code
+
+"Ende erreicht"
