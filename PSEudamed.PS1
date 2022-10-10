@@ -77,6 +77,17 @@ Function Get-EudamedEmdn {
     ConvertFrom-Json $r.Content
 }
 
+Function Get-EudamedDevicesOfCND {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory)]
+        [String]$CndCode
+    )
+    
+    $url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?iso2Code=en&cndCode=$CndCode&deviceStatusCode=refdata.device-model-status.on-the-market&languageIso2Code=de"
+    Get-EudamedPagedData -Url $Url
+}
+
 # ermittelt alle Economic Operators, dauert...
 $AlleEOs = "https://ec.europa.eu/tools/eudamed/api/eos?rnd=1665398393978&sort=srn%2CASC&sort=versionNumber%2CDESC&languageIso2Code=de"
 $EOdata=Get-EudamedPagedData $AlleEOs
@@ -104,5 +115,18 @@ $emdn[13].children[0].children
 # Q010601 umfasst: Legierungen
 # Q010699 umfasst: Dentine, Liner
 # Q01020601 umfasst: Zähne
+
+# Legierungen ermitteln
+$alloy = Get-EudamedDevicesOfCND -CndCode Q010601
+$alloy.Length
+
+# Zähne ermitteln
+$teeth = Get-EudamedDevicesOfCND -CndCode Q01020601
+$teeth.Length
+
+# Dentin usw. ermitteln
+$dent = Get-EudamedDevicesOfCND -CndCode Q010699
+$dent.Length
+
 
 "Ende erreicht"
