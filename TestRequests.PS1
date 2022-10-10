@@ -1,7 +1,7 @@
 $url = 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/c7418f9f-3f31-4329-b2c1-956377dbe23b?languageIso2Code=de'
 "Los gehts mit $url"
 $start = Get-Date
-$r = Invoke-WebRequest -UseBasicParsing -Uri $Url -ErrorAction SilentlyContinue
+$r = Invoke-WebRequest -UseBasicParsing -Uri $Url -ErrorAction SilentlyContinue -Verbose
 $ende = Get-Date
 
 "Dauer: $(($ende-$start).TotalSeconds)"
@@ -17,7 +17,7 @@ If ($r.StatusCode -eq 500) {
 $url = 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?primaryDi=E4947660611'
 "Los gehts mit $url"
 $start = Get-Date
-$r = Invoke-WebRequest -UseBasicParsing -Uri $Url -ErrorAction SilentlyContinue
+$r = Invoke-WebRequest -UseBasicParsing -Uri $Url -TimeoutSec 200 -ErrorAction SilentlyContinue -Verbose
 $ende = Get-Date
 
 "Dauer: $(($ende-$start).TotalSeconds)"
