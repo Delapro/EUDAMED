@@ -13,6 +13,11 @@ Function Get-EudamedPagedData {
     while (-Not $last) {
         $r=Invoke-WebRequest "$Url&page=$page&pageSize=$size&size=$size"
         $j=Convertfrom-json $r.content
+        If ($j.number -eq 0) {
+            Write-Verbose "TotalPages: $($j.totalPages)"
+            Write-Verbose "TotalElements: $($j.totalElements)"
+        }
+        Write-Verbose "Page: $($j.number)"
         $last=$j.last
         $page++
         $j.content
