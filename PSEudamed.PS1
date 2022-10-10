@@ -66,6 +66,17 @@ Function Get-EudamedDeviceDetail {
     ConvertFrom-Json $r.Content
 }
 
+Function Get-EudamedEmdn {
+    [CmdletBinding()]
+    Param(
+    )
+    
+    $Url = "https://webgate.ec.europa.eu/dyna2/emdn/api/nomenclature?id=%23"
+    Write-Verbose "Url: $Url"
+    $r=Invoke-WebRequest $Url
+    ConvertFrom-Json $r.Content
+}
+
 # ermittelt alle Economic Operators, dauert...
 $AlleEOs = "https://ec.europa.eu/tools/eudamed/api/eos?rnd=1665398393978&sort=srn%2CASC&sort=versionNumber%2CDESC&languageIso2Code=de"
 $EOdata=Get-EudamedPagedData $AlleEOs
@@ -84,5 +95,9 @@ $AGDevices=Get-EudamedDevicesOfEO -Srn $am.actorDataPublicView.eudamedIdentifier
 
 # Die UDI-DI eines Devices ermitteln
 (Get-EudamedDeviceDetail -uuid $AGDevices[0].uuid).primaryDi.code
+
+# Dental (Q) Devices ermitteln:
+$emdn = Get-EudamedEmdn
+$emdn[13].children[0].children
 
 "Ende erreicht"
