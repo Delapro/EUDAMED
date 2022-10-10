@@ -8,6 +8,7 @@ Function Get-EudamedPagedData {
     )
 
     $page=0
+    $pages=1
     $size=300  # scheinbar gehen nicht mehr als 300 maximal
     $last=$false
     while (-Not $last) {
@@ -16,8 +17,9 @@ Function Get-EudamedPagedData {
         If ($j.number -eq 0) {
             Write-Verbose "TotalPages: $($j.totalPages)"
             Write-Verbose "TotalElements: $($j.totalElements)"
+            $Pages = $j.totalPages
         }
-        Write-Verbose "Page: $($j.number)"
+        Write-Verbose "Page: $($j.number+1)/$Pages"
         $last=$j.last
         $page++
         $j.content
