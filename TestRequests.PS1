@@ -1,23 +1,29 @@
 $url = 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/c7418f9f-3f31-4329-b2c1-956377dbe23b?languageIso2Code=de'
 $start = Get-Date
-$r = Invoke-WebRequest -UseBasicParsing -Uri $Url
+$r = Invoke-WebRequest -UseBasicParsing -Uri $Url -ErrorAction SilentlyContinue
 $ende = Get-Date
 
 "Dauer: $(($ende-$start).TotalSeconds)"
 "Ergebnis: $($r.Status)"
-If ($r.Status -eq 200) {
+If ($r.StatusCode -eq 200) {
   "Ausgabe:"
   $r.Content
+}
+If ($r.StatusCode -eq 500) {
+  "Request timed out"
 }
 
 $url = 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?primaryDi=E4947660611'
 $start = Get-Date
-$r = Invoke-WebRequest -UseBasicParsing -Uri $Url
+$r = Invoke-WebRequest -UseBasicParsing -Uri $Url -ErrorAction SilentlyContinue
 $ende = Get-Date
 
 "Dauer: $(($ende-$start).TotalSeconds)"
 "Ergebnis: $($r.Status)"
-If ($r.Status -eq 200) {
+If ($r.StatusCode -eq 200) {
   "Ausgabe:"
   $r.Content
+}
+If ($r.StatusCode -eq 500) {
+  "Request timed out"
 }
