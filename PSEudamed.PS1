@@ -100,4 +100,9 @@ $AGDevices=Get-EudamedDevicesOfEO -Srn $am.actorDataPublicView.eudamedIdentifier
 $emdn = Get-EudamedEmdn
 $emdn[13].children[0].children
 
+# Beispiel CNDs:
+# Q010601 umfasst: Legierungen
+# Q010699 umfasst: Dentine, Liner
+# Q01020601 umfasst: Zähne
+
 "Ende erreicht"
