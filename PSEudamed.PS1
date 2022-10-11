@@ -126,6 +126,7 @@ Function Get-EudamedDevicesOfCND {
     Get-EudamedPagedData -Url $Url
 }
 
+
 # ermittelt alle Economic Operators, dauert...
 $AlleEOs = "https://ec.europa.eu/tools/eudamed/api/eos?rnd=1665398393978&sort=srn%2CASC&sort=versionNumber%2CDESC&languageIso2Code=de"
 $EOdata=Get-EudamedPagedData $AlleEOs
@@ -155,25 +156,28 @@ $emdn[13].children[0].children
 # Q01020601 umfasst: Zähne
 # P01020101 umfasst: Implantate
 
+$totalDevices = Get-EudamedPagedData -Url 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData' -OnlyTotalElements
+"Devices Gesamtanzahl: $totalDevices"
+
 # Legierungen ermitteln
 $alloy = Get-EudamedDevicesOfCND -CndCode Q010601
-$alloy.Length
+"Legierungen: $($alloy.Length)"
 
 # Zähne ermitteln
 $teeth = Get-EudamedDevicesOfCND -CndCode Q01020601
-$teeth.Length
+"Zähne: $($teeth.Length)"
 
 # Dentin usw. ermitteln
 $dent = Get-EudamedDevicesOfCND -CndCode Q010699
-$dent.Length
+"Dentin usw.: $($dent.Length)"
 
 # Implantate ermitteln
 $implants = Get-EudamedDevicesOfCND -CndCode P01020101
-$implants.Length
+"Implantatteile: $($implants.Length)"
 
 # alle CNDs mit Dental ermitteln:
 $emdn = Get-EudamedEmdn
 $ms = Get-EudamedEmdnSearch -emdn $emdn -text dental
-$ms.Length
+"CNDs mit dental im Namen: $($ms.Length)"
 
 "Ende erreicht"
