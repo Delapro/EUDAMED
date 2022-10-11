@@ -1242,6 +1242,9 @@ Die Hersteller werden als Economic Operators bezeichnet. Die hinterlegten Daten 
 
 Die API-Variante geht so https://ec.europa.eu/tools/eudamed/api/actors/6bb2017f-b4df-452f-9799-798f063f535d/publicInformation?languageIso2Code=en und ergibt:
 
+<details>
+  <summary>Hier gehts zum JSON Ergebnis</summary>
+  
 ```JSON
 {
   "importers" : null,
@@ -1404,11 +1407,16 @@ Die API-Variante geht so https://ec.europa.eu/tools/eudamed/api/actors/6bb2017f-
   }
 }
 ```
+</details>
 
 ### Auflistung aller Devices von Ammann Girrbach
 Auflistung aller Devices von Ammann Girrbach, welche in der EUDAMED hinterlegt sind: https://ec.europa.eu/tools/eudamed/#/screen/search-device?srn=AT-MF-000000252&uuid=6bb2017f-b4df-452f-9799-798f063f535d.
 
 Oder per API https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?page=0&pageSize=25&size=25&sort=primaryDi%2CASC&sort=versionNumber%2CDESC&iso2Code=en&srn=AT-MF-000000252&deviceStatusCode=refdata.device-model-status.on-the-market&languageIso2Code=de' ergibt:
+
+<details>
+  <summary>Hier gehts zum JSON Ergebnis</summary>
+  
 ```JSON
 {
   "content" : [ {
@@ -2279,12 +2287,16 @@ Oder per API https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?page=0&pag
   "numberOfElements" : 25
 }
 ```
-
+</details>
 
 ## Devices
 So erhält man z. B. mittels https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/c7418f9f-3f31-4329-b2c1-956377dbe23b?languageIso2Code=de die Daten zur UDI-DI E4947660611.
 
 Die Antwort zur obigen Anfrage sieht dann so aus:
+
+<details>
+  <summary>Hier gehts zum JSON Ergebnis</summary>
+  
 ```JSON
 {
   "uuid" : "c7418f9f-3f31-4329-b2c1-956377dbe23b",
@@ -2825,11 +2837,15 @@ Die Antwort zur obigen Anfrage sieht dann so aus:
 ```
 > Ein kleiner Ausflug in die Welt der Daten (hat mit der eigentlichen Sache nichts zu tun!): 
 > Die Daten liefern vielfältige Informationen, z. B. welche Länder in der EU sind! Ein tolles Informationsangebot. Sogar, dass die Türkei kein EU Mitglied ist wird da ausgedrückt. Zu jedem Land wird auch der zweistellige ISO-Ländercode verfügbar gemacht. Was man doch mit Datenbanken alles für tolle Dinge machen kann! Übrigens die Türkei wird quasi schon als zur EU gehörig geführt denn sie wird mit "type" : "EU_EXTENDED" aufgelistet. Man beachte auch das Feld "nonEUMemberState" welches bei der Türkei als false geführt wird. Also sehen wir nun die Türkei als EU-Mitgliedsland an. Aber es gibt ja noch einen zweiten interessanten Kandidaten, das Vereinigte Königreich, welches mit dem "type" : "EU_SPECIAL" geführt wird und laut "nonEUMemberState" mit false wahrscheinlich auch immer noch zum Verein gehört.
-
+</details>
 
 Um obige JSON-Daten zu bekommen muss man eine UUID übergeben, allerdings wird die UUID von der EUDAMED vergeben, also wie kommt man an diese UUID? Üblicherweise erhält man von den Barcodes bzw. 2D-Codes auf den Geräten und Materialien eine UDI-DI. Schön wäre es nun also wenn man mittels dieser UDI-DI eine Suche in der EUDAMED starten könnte. Und tatsächlich geht dies über diese URL: https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?primaryDi=E4947660611.
 
 Als Ergebnis bekommt man, mit etwas Glück (denn es klappt momentan nicht immer!), diese Daten:
+
+<details>
+  <summary>Hier gehts zum JSON Ergebnis</summary>
+  
 ```JSON
 {
   "content" : [ {
@@ -2877,6 +2893,7 @@ Als Ergebnis bekommt man, mit etwas Glück (denn es klappt momentan nicht immer!
   "numberOfElements" : 1
 }
 ```
+</details>
 
 Im obigen JSON-Objekt findet man dann unter Content diesen Eintrag: "uuid" : "c7418f9f-3f31-4329-b2c1-956377dbe23b". Hier ist also die UUID welche wir für die Abfrage aller Details brauchen. Damit kann man also die Anfrage mittels dieser URL https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/c7418f9f-3f31-4329-b2c1-956377dbe23b?languageIso2Code=de wie oben bereits gezeigt starten.
 
