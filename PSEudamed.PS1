@@ -4,15 +4,24 @@ Function Get-EudamedPagedData {
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory)]
-        [String]$Url
+        [String]$Url,
+        [switch]$OnlyTotalElements
     )
 
     $page=0
     $pages=1
-    $size=300  # scheinbar gehen nicht mehr als 300 maximal
+    If ($OnlyTotalElements) {
+        $size = 1  # Daten auf ein Minimum reduzieren, kleiner 1 geht scheinbar nicht
+    } else {
+        $size=300  # scheinbar gehen nicht mehr als 300 maximal
+    }
     $last=$false
     while (-Not $last) {
-        $r=Invoke-WebRequest "$Url&page=$page&pageSize=$size&size=$size"
+        If ($Url -match '\?') {
+            $r=Invoke-WebRequest "$Url&page=$page&pageSize=$size&size=$size"
+        } else {
+            $r=Invoke-WebRequest "$($Url)?page=$page&pageSize=$size&size=$size"
+        }
         $j=Convertfrom-json $r.content
         If ($j.number -eq 0) {
             Write-Verbose "TotalPages: $($j.totalPages)"
@@ -22,7 +31,12 @@ Function Get-EudamedPagedData {
         Write-Verbose "Page: $($j.number+1)/$Pages"
         $last=$j.last
         $page++
-        $j.content
+        If ($OnlyTotalElements) {
+            $j.totalElements
+            $last = $true
+        } else {
+            $j.content
+        }
     }
 }
 
