@@ -56,7 +56,8 @@ API-Link: https://ec.europa.eu/tools/eudamed/api/newsItem/historic
 Eine Liste der hinterlegten Actors welche in Deutschland Devices in Umlauf bringen erhält man mit der API https://ec.europa.eu/tools/eudamed/api/eos?page=0&pageSize=25&size=25&rnd=1665398393978&sort=srn%2CASC&sort=versionNumber%2CDESC&countryIso2Code=DE&languageIso2Code=de, als Ergebnis erhält man:
 
 <details>
-  <summary>Click to expand</summary>
+  <summary>Hier gehts zum JSON Ergebnis</summary>
+  
 ```JSON
 {
   "content" : [ {
