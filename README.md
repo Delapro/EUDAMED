@@ -18,6 +18,16 @@ Eudamed kennt einen sogannten Eudamed-Playground (https://webgate.training.ec.eu
 ![image](https://user-images.githubusercontent.com/16536936/193817737-75b64348-5a0e-46ea-8d9e-0d0b8d912fdb.png)
 Hier gibts aktuelle Infos zum Playground: https://webgate.training.ec.europa.eu/eudamed-play/secure#/release-notes. Unter Hilfe gibt es auch jede Menge tiefergehende Dokus und XML-Schemen.
 
+# BfArM Zuständigkeit in Deutschland
+Das Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM) ist in Deutschland für das Hochladen der Daten in die EUDAMED zuständig, 
+https://www.bfarm.de/EN/Medical-devices/Overview/Europe-and-EUDAMED/_node.html. 
+
+> According to § 33 Medical Device Act, the team for the Medical Devices Information System of BfArM provides the required data from the national Medical Devices Information System for the European database. To accomplish this, the former German Institute of Medical Documentation and Information (DIMDI) has developed a software for the XML upload from the national databases. The current German data is transmitted to Eudamed on a weekly basis.
+
+Welche Daten dies nun genau umfasst gilts noch rauszufinden...
+
+Deutsche Fassung zu Eudamed: https://www.bfarm.de/DE/Medizinprodukte/Ueberblick/Europa-und-EUDAMED/_node.html. Die Fassung ist allerdings stark anders ausgeführt wie der obige Link zur englischen Fassung, sollte also mal konkret auf Unterschiede untersucht werden. Vor allem ist nichts mehr vom Hochladen der Datensätze und DIMDI die Rede!
+
 # API
 Es gibt auch eine (inoffizielle?) API, welche das direkte Abgreifen von Informationen per JSON-Objekten erlaubt. 
 
