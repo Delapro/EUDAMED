@@ -2859,11 +2859,34 @@ Als Ergebnis bekommt man, mit etwas Glück (denn es klappt momentan nicht immer!
 
 Im obigen JSON-Objekt findet man dann unter Content diesen Eintrag: "uuid" : "c7418f9f-3f31-4329-b2c1-956377dbe23b". Hier ist also die UUID welche wir für die Abfrage aller Details brauchen. Damit kann man also die Anfrage mittels dieser URL https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/c7418f9f-3f31-4329-b2c1-956377dbe23b?languageIso2Code=de wie oben bereits gezeigt starten.
 
+Übrigens kann man durch diesen einfachen Aufruf auch herausfinden, wieviel Devices in der EUDAMED momentan hinterlegt sind: https://ec.europa.eu/tools/eudamed/api/devices/udiDiData
+
+```JSON
+...
+    "mfOrPrSrn" : null,
+    "applicableLegislation" : null,
+    "sterile" : null,
+    "multiComponent" : null,
+    "deviceCriterion" : null
+  } ],
+  "totalPages" : 6313,
+  "totalElements" : 126250,
+  "last" : false,
+  "size" : 20,
+  "number" : 0,
+  "sort" : null,
+  "first" : true,
+  "numberOfElements" : 20
+}
+```
+
+Es sind also am 11.10.2022 als diese Abfrage durchgeführt wurde 126250 Devices. Etwas wenig wenn man die Anzahl mit der GUDID vergleicht. Aber wir sind ja seit Jahren erst am Anfang :-).
+
 # Sonstiges
 ## Videos zur Eudamed
 Vereinzelt findet man hier Videos mit Infos:
 https://www.youtube.com/c/EasyMedicalDevice (hat öfters Richard Houlihan einen mit der EUDAMED näher befassten in den Interviews).
-https://www.youtube.com/user/JohnerInstitut
+https://www.youtube.com/user/JohnerInstitut.
 
 ## CND, GMDN und UMDNS
 Es tauchen in den Daten z.B. cndNomenclatures auf. Hier die offizielle Seite zu der Nomenklatur: https://webgate.ec.europa.eu/dyna2/emdn/, weitere Infos mit einem Überblick über die Zusammenhänge findet man hier: https://www.johner-institut.de/blog/regulatory-affairs/gmdn-und-umdns-codes/.
