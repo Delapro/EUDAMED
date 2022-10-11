@@ -52,6 +52,50 @@ API-Link: https://ec.europa.eu/tools/eudamed/api/newsItem/historic
 
 Über diesen API-Link gibts detailliertere Versioninformationen: https://ec.europa.eu/tools/eudamed/api/newsItem
 
+<details>
+  <summary>Hier gehts zum JSON Ergebnis</summary>
+  
+```JSON
+[ {
+  "uuid" : "7d353623-cb01-47c2-bec6-be907ca3de6a",
+  "visibleDateFrom" : "2022-07-19",
+  "visibleDateTo" : "2022-10-31",
+  "content" : {
+    "texts" : [ {
+      "language" : {
+        "isoCode" : "en",
+        "name" : "English"
+      },
+      "text" : "<h1>Release note v2.8</h1>\nThis document outlines a brief overview of the main new features in the EUDAMED public site compared to the previous release:<br>\n<li>Search for device types behaves dynamically based on the selected applicable legislation; </li>\n<li>Removed duplicates from the list of Notified Bodies; </li>\n<li>Search by Notified Bodies includes only Notified Bodies designated for MDR/IVDR; </li>\n<li>Fixed the search combination 'All applicable regulation' and 'All risk classes' when searching for devices; </li>\n<li>Fixed the search for 'Trade name' of a device; </li>\n<li>Fixed the view device details page on several fields not being displayed; </li>\n<li>Added the last update date when viewing an actor. </li>",
+      "allLanguagesApplicable" : null
+    } ]
+  },
+  "category" : {
+    "code" : "refdata.news-item-release-note"
+  },
+  "creationDate" : "2022-07-19T14:01:08.809"
+}, {
+  "uuid" : "4bff1e05-03c2-486f-b781-e13d36f37141",
+  "visibleDateFrom" : "2021-06-24",
+  "visibleDateTo" : "2025-06-24",
+  "content" : {
+    "texts" : [ {
+      "language" : {
+        "isoCode" : "en",
+        "name" : "English"
+      },
+      "text" : "If not in EUDAMED, the SSCP shall be made available to the public upon request without undue delay or the manufacturer shall specify where it is made available to the public.\n \nSee MDCG 2021-1 Rev. 1\nhttps://ec.europa.eu/health/sites/default/files/md_sector/docs/2021-1_guidance-administrative-practices_en.pdf\n",
+      "allLanguagesApplicable" : null
+    } ]
+  },
+  "category" : {
+    "code" : "refdata.news-item-info"
+  },
+  "creationDate" : "2021-06-24T10:42:38.756"
+} ]
+```
+</details>
+
 ## Actors
 Eine Liste der hinterlegten Actors welche in Deutschland Devices in Umlauf bringen erhält man mit der API https://ec.europa.eu/tools/eudamed/api/eos?page=0&pageSize=25&size=25&rnd=1665398393978&sort=srn%2CASC&sort=versionNumber%2CDESC&countryIso2Code=DE&languageIso2Code=de, als Ergebnis erhält man:
 
