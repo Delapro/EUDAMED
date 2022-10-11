@@ -55,6 +55,8 @@ API-Link: https://ec.europa.eu/tools/eudamed/api/newsItem/historic
 ## Actors
 Eine Liste der hinterlegten Actors welche in Deutschland Devices in Umlauf bringen erhält man mit der API https://ec.europa.eu/tools/eudamed/api/eos?page=0&pageSize=25&size=25&rnd=1665398393978&sort=srn%2CASC&sort=versionNumber%2CDESC&countryIso2Code=DE&languageIso2Code=de, als Ergebnis erhält man:
 
+<details>
+  <summary>Click to expand</summary>
 ```JSON
 {
   "content" : [ {
@@ -1232,6 +1234,7 @@ Eine Liste der hinterlegten Actors welche in Deutschland Devices in Umlauf bring
   "numberOfElements" : 25
 }
 ```
+</details>
 
 ### Ein einzelner Actor, hier Hersteller Ammann Girrbach
 Die Hersteller werden als Economic Operators bezeichnet. Die hinterlegten Daten eines solchen Economic Operators, hier im Fall Ammann Girrbach, findet man unter https://ec.europa.eu/tools/eudamed/#/screen/search-eo/6bb2017f-b4df-452f-9799-798f063f535d.
