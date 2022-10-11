@@ -2861,8 +2861,8 @@ Im obigen JSON-Objekt findet man dann unter Content diesen Eintrag: "uuid" : "c7
 
 Übrigens kann man durch diesen einfachen Aufruf auch herausfinden, wieviel Devices in der EUDAMED momentan hinterlegt sind: https://ec.europa.eu/tools/eudamed/api/devices/udiDiData
 
-```JSON
-...
+```
+    ...
     "mfOrPrSrn" : null,
     "applicableLegislation" : null,
     "sterile" : null,
