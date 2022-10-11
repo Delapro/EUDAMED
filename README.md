@@ -50,6 +50,8 @@ Mittels dieser Abfrage kann man den Versionsstand der EUDAMED abfragen: https://
 Direkt über diesen Link bekommt man die News zur Eudamed: https://ec.europa.eu/tools/eudamed/#/screen/news
 API-Link: https://ec.europa.eu/tools/eudamed/api/newsItem/historic
 
+Über diesen API-Link gibts detailliertere Versioninformationen: https://ec.europa.eu/tools/eudamed/api/newsItem
+
 ## Actors
 Eine Liste der hinterlegten Actors welche in Deutschland Devices in Umlauf bringen erhält man mit der API https://ec.europa.eu/tools/eudamed/api/eos?page=0&pageSize=25&size=25&rnd=1665398393978&sort=srn%2CASC&sort=versionNumber%2CDESC&countryIso2Code=DE&languageIso2Code=de, als Ergebnis erhält man:
 
