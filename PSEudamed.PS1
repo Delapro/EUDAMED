@@ -1,5 +1,11 @@
 # verschiedene Powershell-Funktionen um die Eudamed abfragen zu können
 
+Function Set-Culture([System.Globalization.CultureInfo] $culture)
+{
+    [System.Threading.Thread]::CurrentThread.CurrentUICulture = $culture
+    [System.Threading.Thread]::CurrentThread.CurrentCulture = $culture
+}
+
 Function Get-EudamedPagedData {
     [CmdletBinding()]
     Param(
@@ -126,6 +132,8 @@ Function Get-EudamedDevicesOfCND {
     Get-EudamedPagedData -Url $Url
 }
 
+# sicherstellen, dass die Datumsausgaben im bekannten Format stattfinden
+Set-Culture('de-DE')
 
 # ermittelt alle Economic Operators, dauert...
 $AlleEOs = "https://ec.europa.eu/tools/eudamed/api/eos?rnd=1665398393978&sort=srn%2CASC&sort=versionNumber%2CDESC&languageIso2Code=de"
