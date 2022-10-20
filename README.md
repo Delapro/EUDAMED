@@ -13,6 +13,8 @@ Aktuelle Informationen die EUDAMED betreffend findet man hier: https://ec.europa
 # Timeline
 Hier findet man die aktuelle Timeline bis wann welches Modul verfügbar sein soll: https://health.ec.europa.eu/system/files/2022-07/md_eudamed_timeline_en.pdf. 2026 könnte es nach heutigem Stand dann mal was werden...
 
+Zu beachten ist auch nach wie vor die lokale Gesetzgebung, siehe dazu ["AT 28.05.2021 B6" im Bundesanzeiger]( https://www.bundesanzeiger.de/pub/publication/IGrRaNuJBWgwK7Giz8Y/content/IGrRaNuJBWgwK7Giz8Y/BAnz%20AT%2028.05.2021%20B6.pdf?inline).
+
 # Spielversion (Playground)
 Eudamed kennt einen sogannten Eudamed-Playground (https://webgate.training.ec.europa.eu/eudamed-play/landing-page#/).
 ![image](https://user-images.githubusercontent.com/16536936/193817737-75b64348-5a0e-46ea-8d9e-0d0b8d912fdb.png)
