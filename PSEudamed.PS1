@@ -132,6 +132,17 @@ Function Get-EudamedDevicesOfCND {
     Get-EudamedPagedData -Url $Url
 }
 
+Function Get-EudamedVersion {
+    [CmdletBinding()]
+    Param(
+    )
+    
+    $url = "https://ec.europa.eu/tools/eudamed/api/applicationInfo"
+    $r=Invoke-WebRequest -Uri $url
+    $r.Content
+    
+}
+
 # sicherstellen, dass die Datumsausgaben im bekannten Format stattfinden
 Set-Culture('de-DE')
 
@@ -187,5 +198,8 @@ $implants = Get-EudamedDevicesOfCND -CndCode P01020101
 $emdn = Get-EudamedEmdn
 $ms = Get-EudamedEmdnSearch -emdn $emdn -text dental
 "CNDs mit dental im Namen: $($ms.Length)"
+
+"Eudamed Versionsinfos:"
+Get-EudamedVersion
 
 "Ende erreicht"
