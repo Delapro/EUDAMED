@@ -2972,5 +2972,5 @@ Vereinzelt findet man hier Videos mit Infos:
 https://www.youtube.com/c/EasyMedicalDevice (hat öfters Richard Houlihan einen mit der EUDAMED näher befassten in den Interviews).
 https://www.youtube.com/user/JohnerInstitut.
 
-## CND, GMDN und UMDNS
-Es tauchen in den Daten z.B. cndNomenclatures auf. Hier die offizielle Seite zu der Nomenklatur: https://webgate.ec.europa.eu/dyna2/emdn/, weitere Infos mit einem Überblick über die Zusammenhänge findet man hier: https://www.johner-institut.de/blog/regulatory-affairs/gmdn-und-umdns-codes/.
+## CND, EMDN, GMDN und UMDNS
+Es tauchen in den Daten z.B. cndNomenclatures auf. Hier die offizielle Seite zu der Nomenklatur: https://webgate.ec.europa.eu/dyna2/emdn/, weitere Infos mit einem Überblick über die Zusammenhänge findet man hier: https://www.johner-institut.de/blog/regulatory-affairs/gmdn-und-umdns-codes/. Der grundsätzliche Aufbau der EMDN wird hier beschrieben: https://health.ec.europa.eu/system/files/2021-06/md_q-a_emdn_en_0.pdf.
