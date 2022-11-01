@@ -1283,8 +1283,8 @@ Eine Liste der hinterlegten Actors welche in Deutschland Devices in Umlauf bring
 ```
 </details>
 
-### Ein einzelner Actor, hier Hersteller Ammann Girrbach
-Die Hersteller werden als Economic Operators bezeichnet. Die hinterlegten Daten eines solchen Economic Operators, hier im Fall Ammann Girrbach, findet man unter https://ec.europa.eu/tools/eudamed/#/screen/search-eo/6bb2017f-b4df-452f-9799-798f063f535d.
+### Ein einzelner Actor, hier Hersteller Amann Girrbach
+Die Hersteller werden als Economic Operators bezeichnet. Die hinterlegten Daten eines solchen Economic Operators, hier im Fall Amann Girrbach, findet man unter https://ec.europa.eu/tools/eudamed/#/screen/search-eo/6bb2017f-b4df-452f-9799-798f063f535d.
 
 Die API-Variante geht so https://ec.europa.eu/tools/eudamed/api/actors/6bb2017f-b4df-452f-9799-798f063f535d/publicInformation?languageIso2Code=en und ergibt:
 
@@ -1455,8 +1455,8 @@ Die API-Variante geht so https://ec.europa.eu/tools/eudamed/api/actors/6bb2017f-
 ```
 </details>
 
-### Auflistung aller Devices von Ammann Girrbach
-Auflistung aller Devices von Ammann Girrbach, welche in der EUDAMED hinterlegt sind: https://ec.europa.eu/tools/eudamed/#/screen/search-device?srn=AT-MF-000000252&uuid=6bb2017f-b4df-452f-9799-798f063f535d.
+### Auflistung aller Devices von Amann Girrbach
+Auflistung aller Devices von Amann Girrbach, welche in der EUDAMED hinterlegt sind: https://ec.europa.eu/tools/eudamed/#/screen/search-device?srn=AT-MF-000000252&uuid=6bb2017f-b4df-452f-9799-798f063f535d.
 
 Oder per API https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?page=0&pageSize=25&size=25&sort=primaryDi%2CASC&sort=versionNumber%2CDESC&iso2Code=en&srn=AT-MF-000000252&deviceStatusCode=refdata.device-model-status.on-the-market&languageIso2Code=de' ergibt:
 
