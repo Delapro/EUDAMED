@@ -62,7 +62,7 @@ Function Get-EudamedPagedDataCountryAndRole {
     Param(
         [Parameter(Mandatory)]
         [String]$Url,
-        [String]$Country='DE'
+        [String]$Country='DE',
         [Parameter(ValidateSet('Manufacturer', 'Authorised-Representative', 'System-Procedure-Pack-Producer', 'Importer'))]
         [String]$Role='Manufacturer'
     )
