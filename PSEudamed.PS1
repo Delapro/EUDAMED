@@ -72,7 +72,7 @@ Function Get-EudamedPagedDataCountryAndRole {
         'Authorised-Representative' {$atc = 'actorTypeCode=refdata.actor-type.authorised-representative'}
         'System-Procedure-Pack-Producer'    {$atc = 'actorTypeCode=refdata.actor-type.system-procedure-pack-producer'}
         'Importer'                  {$atc = 'actorTypeCode=refdata.actor-type.importer'}
-        
+    }
     Get-EudamedPagedData -Url "$Url&atc&countryIso2Code=$Country"
 }
 
