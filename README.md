@@ -7,6 +7,8 @@ Die Homepage der EUDAMED ist unter https://ec.europa.eu/tools/eudamed zu finden.
 # Support
 Unterstützung gibt es unter der E-Mail-Adresse SANTE-EUDAMED-SUPPORT@ec.europa.eu.
 
+Eine Bugtracker-Datenbank oder ähnliches gibt es nach Auskunft am 31.10.2022 nicht.
+
 # Aktuelle Infos
 Aktuelle Informationen die EUDAMED betreffend findet man hier: https://ec.europa.eu/tools/eudamed/#/screen/news. Verschiedene Dokumente zur Durchführung gibt es hier: https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec6. Auf der Seite des UDI-Helpdesks https://eu-udi.zendesk.com/hc/en-150 lassen sich auch viele Informationen finden.
 
