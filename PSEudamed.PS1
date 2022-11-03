@@ -57,6 +57,25 @@ Function Get-EudamedPagedDataCountry {
     Get-EudamedPagedData -Url "$Url&countryIso2Code=$Country"
 }
 
+Function Get-EudamedPagedDataCountryAndRole {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory)]
+        [String]$Url,
+        [String]$Country='DE'
+        [Parameter(ValidateSet('Manufacturer', 'Authorised-Representative', 'System-Procedure-Pack-Producer', 'Importer'))]
+        [String]$Role='Manufacturer'
+    )
+
+    switch ($Role) {
+        'Manufacturer'              {$atc = 'actorTypeCode=refdata.actor-type.manufacturer'}
+        'Authorised-Representative' {$atc = 'actorTypeCode=refdata.actor-type.authorised-representative'}
+        'System-Procedure-Pack-Producer'    {$atc = 'actorTypeCode=refdata.actor-type.system-procedure-pack-producer'}
+        'Importer'                  {$atc = 'actorTypeCode=refdata.actor-type.importer'}
+        
+    Get-EudamedPagedData -Url "$Url&atc&countryIso2Code=$Country"
+}
+
 Function Get-EudamedEODetail {
     [CmdletBinding()]
     Param(
@@ -154,6 +173,11 @@ $EOdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistrat
 # ermittelt die EOs nur aus Österreich
 $EOATdata = Get-EudamedPagedDataCountry -Url $AlleEOs -Country 'AT'
 $EOATdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistration)}}, electronicMail, telephone, rolename| sort-Object Registrierdatum | select -Last 30 |ft
+
+# ermittelt die EOs aus Deutschland allerdings nur Hersteller
+$EODEdata = Get-EudamedPagedDataCountryAndRole  -Url $AlleEOs -Country 'DE' -Role 'Manufacturer'
+$EODEdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistration)}}, electronicMail, telephone, rolename| sort-Object Registrierdatum | select -Last 30 |ft
+"Hersteller aus Deutschland: $($EODEdata.Length)"
 
 # Detaildaten eines Economic Operators ausgeben anhand dessen Uuid
 $am=Get-EudamedEODetail -Uuid 6bb2017f-b4df-452f-9799-798f063f535d
