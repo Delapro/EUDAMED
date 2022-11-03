@@ -225,7 +225,7 @@ $emdn = Get-EudamedEmdn
 $ms = Get-EudamedEmdnSearch -emdn $emdn -text dental
 "CNDs mit dental im Namen: $($ms.Length)"
 
-"Eudamed Versionsinfos:"
+"Eudamed Versioninfos:"
 Get-EudamedVersion
 
 "Ende erreicht"
