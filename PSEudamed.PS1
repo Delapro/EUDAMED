@@ -75,7 +75,7 @@ Function Get-EudamedPagedDataCountryAndRole {
         'System-Procedure-Pack-Producer'    {$atc = 'actorTypeCode=refdata.actor-type.system-procedure-pack-producer'}
         'Importer'                  {$atc = 'actorTypeCode=refdata.actor-type.importer'}
     }
-    Get-EudamedPagedData -Url "$Url&atc&countryIso2Code=$Country"
+    Get-EudamedPagedData -Url "$Url&$atc&countryIso2Code=$Country"
 }
 
 Function Get-EudamedEODetail {
