@@ -24,10 +24,12 @@ Function Get-EudamedPagedData {
     $last=$false
     while (-Not $last) {
         If ($Url -match '\?') {
-            $r=Invoke-WebRequest "$Url&page=$page&pageSize=$size&size=$size"
+            $NewUrl="$Url&page=$page&pageSize=$size&size=$size"
         } else {
-            $r=Invoke-WebRequest "$($Url)?page=$page&pageSize=$size&size=$size"
+            $NewUrl="$($Url)?page=$page&pageSize=$size&size=$size"
         }
+        Write-Verbose "Aufruf: $NewUrl"
+        $r=Invoke-WebRequest $NewUrl
         $j=Convertfrom-json $r.content
         If ($j.number -eq 0) {
             Write-Verbose "TotalPages: $($j.totalPages)"
