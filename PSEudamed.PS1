@@ -91,7 +91,7 @@ Function Get-EudamedEODetail {
         $Url = "https://ec.europa.eu/tools/eudamed/api/actors/$Uuid/publicInformation?languageIso2Code=de"
     } else {
         # ParameterSet Srn
-        $Url = "https://ec.europa.eu/tools/eudamed/api/eos?srn=$srn&languageIso2Code=de"
+        $Url = "https://ec.europa.eu/tools/eudamed/api/eos?srn=$($srn)&languageIso2Code=de"
     }
     $r=Invoke-WebRequest "$Url&page=$page&pageSize=$size&size=$size"
     ConvertFrom-Json $r.Content
