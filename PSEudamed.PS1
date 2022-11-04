@@ -188,6 +188,10 @@ $EODEdata = Get-EudamedPagedDataCountryAndRole  -Url $AlleEOs -Country 'DE' -Rol
 $EODEdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistration)}}, electronicMail, telephone, rolename| sort-Object Registrierdatum | select -Last 30 |ft
 "Hersteller aus Deutschland: $($EODEdata.Length)"
 
+# Detaildaten eines Economic Operators ausgeben anhand Srn
+$am=Get-EudamedEODetail -Srn DE-MF-000030326
+$am.actorDataPublicView
+
 # Detaildaten eines Economic Operators ausgeben anhand dessen Uuid
 $am=Get-EudamedEODetail -Uuid 6bb2017f-b4df-452f-9799-798f063f535d
 $am.actorDataPublicView
