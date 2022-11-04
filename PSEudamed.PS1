@@ -81,11 +81,18 @@ Function Get-EudamedPagedDataCountryAndRole {
 Function Get-EudamedEODetail {
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory,ParameterSetName='Uuid',Position=0)]
         [String]$Uuid
+        [Parameter(Mandatory,ParameterSetName='Srn',Position=0)]
+        [String]$Srn
     )
-    
-    $Url = "https://ec.europa.eu/tools/eudamed/api/actors/$Uuid/publicInformation?languageIso2Code=en"
+
+    If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
+        $Url = "https://ec.europa.eu/tools/eudamed/api/actors/$Uuid/publicInformation?languageIso2Code=de"
+    } else {
+        # ParameterSet Srn
+        $Url = "https://ec.europa.eu/tools/eudamed/api/eos?srn=$srn&languageIso2Code=de"
+    }
     $r=Invoke-WebRequest "$Url&page=$page&pageSize=$size&size=$size"
     ConvertFrom-Json $r.Content
 }
