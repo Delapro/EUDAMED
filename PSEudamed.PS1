@@ -82,7 +82,7 @@ Function Get-EudamedEODetail {
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory,ParameterSetName='Uuid',Position=0)]
-        [String]$Uuid
+        [String]$Uuid,
         [Parameter(Mandatory,ParameterSetName='Srn',Position=0)]
         [String]$Srn
     )
