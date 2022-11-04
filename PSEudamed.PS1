@@ -78,6 +78,8 @@ Function Get-EudamedPagedDataCountryAndRole {
     Get-EudamedPagedData -Url "$Url&$atc&countryIso2Code=$Country"
 }
 
+# Achtung die unterschiedlichen ParameterSets liefern unterschiedliche, nicht kompatible Strukturen zurück
+# Uuid liefert mehr Informationen
 Function Get-EudamedEODetail {
     [CmdletBinding()]
     Param(
@@ -94,7 +96,11 @@ Function Get-EudamedEODetail {
         $Url = "https://ec.europa.eu/tools/eudamed/api/eos?srn=$($srn)&languageIso2Code=de"
     }
     $r=Invoke-WebRequest "$Url&page=$page&pageSize=$size&size=$size"
-    ConvertFrom-Json $r.Content
+    If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
+	    ConvertFrom-Json $r.Content
+	} else {
+	    (ConvertFrom-Json $r.Content).Content  # Irgendwie nochmal geschachtelt, können srn Wildcards enthalten?!?!?
+	}
 }
 
 Function Get-EudamedDevicesOfEO {
