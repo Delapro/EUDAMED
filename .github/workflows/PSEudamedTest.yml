@@ -26,7 +26,8 @@ jobs:
       - uses: actions/checkout@v3
 
       # Skript ausführen
-      - name: PSEudamed.PS1 ausführen
+      - name: PSEudamed.PS1 laden und Abfragen ausführen
         run: |
-          ./PSEudamed.PS1
+          . ./PSEudamed.PS1
+          ./Tests/Abfragen.PS1
         shell: pwsh
