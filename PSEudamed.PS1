@@ -95,7 +95,7 @@ Function Get-EudamedEODetail {
         # ParameterSet Srn
         $Url = "https://ec.europa.eu/tools/eudamed/api/eos?srn=$($srn)&languageIso2Code=de"
     }
-    $r=Invoke-WebRequest "$Url&page=$page&pageSize=$size&size=$size"
+    $r=Invoke-WebRequest "$Url"
     If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
 	    ConvertFrom-Json $r.Content
 	} else {
