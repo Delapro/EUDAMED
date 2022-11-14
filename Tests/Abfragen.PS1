@@ -44,19 +44,19 @@ $totalDevices = Get-EudamedPagedData -Url 'https://ec.europa.eu/tools/eudamed/ap
 
 # Legierungen ermitteln
 $alloy = Get-EudamedDevicesOfCND -CndCode Q010601
-"Legierungen: $($alloy.Length)"
+"Legierungen (Q010601): $($alloy.Length)"
 
 # Zähne ermitteln
 $teeth = Get-EudamedDevicesOfCND -CndCode Q01020601
-"Zähne: $($teeth.Length)"
+"Zähne (Q01020601): $($teeth.Length)"
 
 # Dentin usw. ermitteln
 $dent = Get-EudamedDevicesOfCND -CndCode Q010699
-"Dentin usw.: $($dent.Length)"
+"Dentin usw. (Q010699): $($dent.Length)"
 
 # Implantate ermitteln
 $implants = Get-EudamedDevicesOfCND -CndCode P01020101
-"Implantatteile: $($implants.Length)"
+"Implantatteile (P01020101): $($implants.Length)"
 
 # alle CNDs mit Dental ermitteln:
 $emdn = Get-EudamedEmdn
