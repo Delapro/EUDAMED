@@ -29,6 +29,9 @@ $AGDevices=Get-EudamedDevicesOfEO -Srn $am.actorDataPublicView.eudamedIdentifier
 # Die UDI-DI eines Devices ermitteln
 (Get-EudamedDeviceDetail -uuid $AGDevices[0].uuid).primaryDi.code
 
+# Erkodent-Devices ermitteln:
+Get-EudamedEODetail -Srn DE-MF-000006243|Get-EudamedDevicesOfEO|select uuid, primarydi, tradename
+
 # Dental (Q) Devices ermitteln:
 $emdn = Get-EudamedEmdn
 $emdn[13].children[0].children
