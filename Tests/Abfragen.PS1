@@ -32,6 +32,12 @@ $AGDevices=Get-EudamedDevicesOfEO -Srn $am.actorDataPublicView.eudamedIdentifier
 # Erkodent-Devices ermitteln:
 Get-EudamedEODetail -Srn DE-MF-000006243|Get-EudamedDevicesOfEO|select uuid, primarydi, tradename
 
+# Erkodentbeispiel mit Sprachen und Erläuterungen:
+(Get-EudamedDeviceDetail -Uuid 69d78b02-bcc2-46ab-a560-faec2b248689).tradename.texts
+(Get-EudamedDeviceDetail -Uuid 69d78b02-bcc2-46ab-a560-faec2b248689).additionaldescription.texts
+(Get-EudamedDeviceDetail -Uuid 39cf1a88-5310-48d5-97b6-cf667ca007ee).tradename.texts
+(Get-EudamedDeviceDetail -Uuid 39cf1a88-5310-48d5-97b6-cf667ca007ee).additionaldescription.texts
+
 # Dental (Q) Devices ermitteln:
 $emdn = Get-EudamedEmdn
 $emdn[13].children[0].children
@@ -40,6 +46,7 @@ $emdn[13].children[0].children
 # Q010601 umfasst: Legierungen
 # Q010699 umfasst: Dentine, Liner
 # Q01020601 umfasst: Zähne
+# Q01020199 umfasst: ?
 # P01020101 umfasst: Implantate
 
 $totalDevices = Get-EudamedPagedData -Url 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData' -OnlyTotalElements
