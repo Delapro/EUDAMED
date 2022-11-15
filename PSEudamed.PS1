@@ -106,7 +106,7 @@ Function Get-EudamedEODetail {
 Function Get-EudamedDevicesOfEO {
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [String]$Srn
     )
     
