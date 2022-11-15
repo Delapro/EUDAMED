@@ -110,21 +110,25 @@ Function Get-EudamedDevicesOfEO {
         [String]$Srn
     )
     
-    $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?iso2Code=en&srn=$srn&deviceStatusCode=refdata.device-model-status.on-the-market&languageIso2Code=de"
-    Get-EudamedPagedData -Url $Url
+    Process {
+    	$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?iso2Code=en&srn=$srn&deviceStatusCode=refdata.device-model-status.on-the-market&languageIso2Code=de"
+    	Get-EudamedPagedData -Url $Url
+    }
 }
 
 Function Get-EudamedDeviceDetail {
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [String]$Uuid
     )
     
-    $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/$($Uuid)?languageIso2Code=de"
-    Write-Verbose "Url: $Url"
-    $r=Invoke-WebRequest $Url
-    ConvertFrom-Json $r.Content
+    Process {
+	$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/$($Uuid)?languageIso2Code=de"
+    	Write-Verbose "Url: $Url"
+    	$r=Invoke-WebRequest $Url
+    	ConvertFrom-Json $r.Content
+    }
 }
 
 Function Get-EudamedEmdn {
