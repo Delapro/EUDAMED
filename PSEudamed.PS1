@@ -119,12 +119,19 @@ Function Get-EudamedDevicesOfEO {
 Function Get-EudamedDeviceDetail {
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [String]$Uuid
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName='Uuid',Position=0)]
+        [String]$Uuid,
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName='PrimaryDI',Position=0)]
+        [String]$PrimaryDI
     )
     
     Process {
-	$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/$($Uuid)?languageIso2Code=de"
+    	If ($PSCmdlet.ParameterSetName -eq 'Uuid') {    
+		$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/$($Uuid)?languageIso2Code=de"
+	} else {
+		# primaryDI-Set
+		$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?primaryDi=$($PrimaryDI)&languageIso2Code=de"
+	}
     	Write-Verbose "Url: $Url"
     	$r=Invoke-WebRequest $Url
     	ConvertFrom-Json $r.Content
