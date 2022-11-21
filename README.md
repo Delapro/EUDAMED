@@ -2982,7 +2982,11 @@ Beispiel für ein Zertifikat vom TÜV Rheinland für eine Produktreihe von Erkod
 
 https://www.erkodent.de/wp-content/documents/products/ERKOD_HZ1073124-1_inclProdListApplicMDR.pdf
 
-Eindes der Erkodentprodukte von dem Zertifikat:
+Eines der Erkodentprodukte von dem Zertifikat:
 ```Powershell
 Get-EudamedDeviceDetail -Uuid 4236a036-cd15-4a08-ab6a-bb3beb28df09
 ```
+
+## SOAP-API mit Beschreibung der Eudamed-Struktur
+https://health.ec.europa.eu/system/files/2020-09/md_eudamed_dtx_eo_introduction_en_0.pdf
+Unbedingt auch die technischen Beschreibungen anschauen, wenn diese bei neuen Versionen rauskommen.
