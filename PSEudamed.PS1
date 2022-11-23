@@ -83,7 +83,7 @@ Function Get-EudamedEODevicesByManufacturerName {
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory,ParameterSetName='Manufacturer',Position=0)]
-        [String]$ManufacturerName,
+        [String]$ManufacturerName
     )
 
     $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?manufacturerName=$($ManufacturerName)&languageIso2Code=de"
