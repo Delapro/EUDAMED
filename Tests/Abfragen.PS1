@@ -40,6 +40,7 @@ Get-EudamedEODetail -Srn DE-MF-000006243|Get-EudamedDevicesOfEO|select uuid, pri
 
 $DofEO = Get-EudamedEODevicesByManufacturerName -ManufacturerName Erko
 "Anzahl Devices von Manufacturer 'Erko': $($DofEO.Length)"
+"" # Leerzeile
 
 # Dental (Q) Devices ermitteln:
 $emdn = Get-EudamedEmdn
@@ -76,6 +77,7 @@ $emdn = Get-EudamedEmdn
 $ms = Get-EudamedEmdnSearch -emdn $emdn -text dental
 "CNDs mit dental im Namen: $($ms.Length)"
 
+"" # Leerzeile
 "Eudamed Versioninfos:"
 Get-EudamedVersion
 
