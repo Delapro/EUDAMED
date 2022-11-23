@@ -1,6 +1,12 @@
 # EUDAMED
 Hier werden die Abenteuer mit der EUDAMED also der European Database on Medical Devices dokumentiert.
 
+# Anwendung des Powershellskripts
+```Powershell
+Start-BitsTransfer https://raw.githubusercontent.com/Delapro/EUDAMED/master/PSEudamed.PS1
+. .\PSEudamed.PS1
+```
+
 # Die Homepage
 Die Homepage der EUDAMED ist unter https://ec.europa.eu/tools/eudamed zu finden. Man kann mittels https://ec.europa.eu/tools/eudamed/#/screen/search-device nach UDI-DIs suchen.
 
