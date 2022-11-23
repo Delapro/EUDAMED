@@ -78,6 +78,18 @@ Function Get-EudamedPagedDataCountryAndRole {
     Get-EudamedPagedData -Url "$Url&$atc&countryIso2Code=$Country"
 }
 
+# ermittelt die Devices eines Herstellers nach seinem Namen, wenn der Name auf mehrere Hersteller zutrifft, werden Materialien von verschiedenen Herstellern zurückgegebn
+Function Get-EudamedEODevicesByManufacturerName {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory,ParameterSetName='Manufacturer',Position=0)]
+        [String]$ManufacturerName,
+    )
+
+    $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?manufacturerName=$($ManufacturerName)&languageIso2Code=de"
+    Get-EudamedPagedData -Url $Url
+}
+
 # Achtung die unterschiedlichen ParameterSets liefern unterschiedliche, nicht kompatible Strukturen zurück
 # Uuid liefert mehr Informationen
 Function Get-EudamedEODetail {
