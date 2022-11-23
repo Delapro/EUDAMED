@@ -5,6 +5,7 @@ Hier werden die Abenteuer mit der EUDAMED also der European Database on Medical 
 ```Powershell
 Start-BitsTransfer https://raw.githubusercontent.com/Delapro/EUDAMED/master/PSEudamed.PS1
 . .\PSEudamed.PS1
+Get-EudamedVersion
 ```
 
 # Die Homepage
