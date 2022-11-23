@@ -29,7 +29,7 @@ Function Get-EudamedPagedData {
             $NewUrl="$($Url)?page=$page&pageSize=$size&size=$size"
         }
         Write-Verbose "Aufruf: $NewUrl"
-        $r=Invoke-WebRequest $NewUrl
+        $r=Invoke-WebRequest $NewUrl -UseBasicParsing
         $j=Convertfrom-json $r.content
         If ($j.number -eq 0) {
             Write-Verbose "TotalPages: $($j.totalPages)"
@@ -95,7 +95,7 @@ Function Get-EudamedEODetail {
         # ParameterSet Srn
         $Url = "https://ec.europa.eu/tools/eudamed/api/eos?srn=$($srn)&languageIso2Code=de"
     }
-    $r=Invoke-WebRequest "$Url"
+    $r=Invoke-WebRequest "$Url" -UseBasicParsing
     If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
 	    ConvertFrom-Json $r.Content
 	} else {
@@ -133,7 +133,7 @@ Function Get-EudamedDeviceDetail {
 		$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?primaryDi=$($PrimaryDI)&languageIso2Code=de"
 	}
     	Write-Verbose "Url: $Url"
-    	$r=Invoke-WebRequest $Url
+    	$r=Invoke-WebRequest $Url -UseBasicParsing
     	ConvertFrom-Json $r.Content
     }
 }
@@ -145,7 +145,7 @@ Function Get-EudamedEmdn {
     
     $Url = "https://webgate.ec.europa.eu/dyna2/emdn/api/nomenclature?id=%23"
     Write-Verbose "Url: $Url"
-    $r=Invoke-WebRequest $Url
+    $r=Invoke-WebRequest $Url -UseBasicParsing
     ConvertFrom-Json $r.Content
 }
 
@@ -183,7 +183,7 @@ Function Get-EudamedVersion {
     )
     
     $url = "https://ec.europa.eu/tools/eudamed/api/applicationInfo"
-    $r=Invoke-WebRequest -Uri $url
+    $r=Invoke-WebRequest -Uri $url -UseBasicParsing
     $r.Content
     
 }
