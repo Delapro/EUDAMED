@@ -38,6 +38,9 @@ Get-EudamedEODetail -Srn DE-MF-000006243|Get-EudamedDevicesOfEO|select uuid, pri
 (Get-EudamedDeviceDetail -Uuid 39cf1a88-5310-48d5-97b6-cf667ca007ee).tradename.texts
 (Get-EudamedDeviceDetail -Uuid 39cf1a88-5310-48d5-97b6-cf667ca007ee).additionaldescription.texts
 
+$DofEO = Get-EudamedEODevicesByManufacturerName -ManufacturerName Erko
+"Anzahl Devices von Manufacturer 'Erko': $($DofEO.Length)"
+
 # Dental (Q) Devices ermitteln:
 $emdn = Get-EudamedEmdn
 $emdn[13].children[0].children
