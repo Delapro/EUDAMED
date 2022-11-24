@@ -3030,6 +3030,7 @@ CH-MF-000009933|Institut Straumann AG
 
 Ausprägung eines Konzerns:
 SNR|Typ|Hersteller|Ort
+---|---|----------|---
 DE-IM-000006314|Importer|Ivoclar Vivadent GmbH [DE]|Ellwangen Jagst	Germany	
 LI-AR-000000523|Authorised|Representative	Ivoclar Vivadent AG [DE]|Schaan	Liechtenstein	
 LI-IM-000000524|Importer|Ivoclar Vivadent AG [DE]|Schaan	Liechtenstein	
