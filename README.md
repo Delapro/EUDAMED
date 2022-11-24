@@ -2984,8 +2984,13 @@ https://www.youtube.com/user/JohnerInstitut.
 ## CND, EMDN, GMDN und UMDNS
 Es tauchen in den Daten z.B. cndNomenclatures auf. Hier die offizielle Seite zu der Nomenklatur: https://webgate.ec.europa.eu/dyna2/emdn/, weitere Infos mit einem Überblick über die Zusammenhänge findet man hier: https://www.johner-institut.de/blog/regulatory-affairs/gmdn-und-umdns-codes/. Der grundsätzliche Aufbau der EMDN wird hier beschrieben: https://health.ec.europa.eu/system/files/2021-06/md_q-a_emdn_en_0.pdf.
 
-## Beispiel für ein Zertifikat
+## Beispiele für Zertifikate
+
+### Erkodent mit TÜV Rheinland
 Beispiel für ein Zertifikat vom TÜV Rheinland für eine Produktreihe von Erkodent
+
+SRN: DE-MF-000006243
+Enthält: Q010699 - DENTISTRY DEVICES, FABRICATION MATERIALS - OTHERS
 
 https://www.erkodent.de/wp-content/documents/products/ERKOD_HZ1073124-1_inclProdListApplicMDR.pdf
 
@@ -2993,6 +2998,16 @@ Eines der Erkodentprodukte von dem Zertifikat:
 ```Powershell
 Get-EudamedDeviceDetail -Uuid 4236a036-cd15-4a08-ab6a-bb3beb28df09
 ```
+
+### Amann mit TÜV Süd
+
+SRN: AT-MF-000000252
+
+Enthält: 
+Q010699 - DENTISTRY DEVICES, FABRICATION MATERIALS - OTHERS
+Q010601 - DENTAL ALLOYS
+
+https://www.amanngirrbach.com/fileadmin/_agweb_2013/media/mediathek/Print/Add_documentation/Certificates/EN/ISO_Certificate_MDR.pdf
 
 ## SOAP-API mit Beschreibung der Eudamed-Struktur
 https://health.ec.europa.eu/system/files/2020-09/md_eudamed_dtx_eo_introduction_en_0.pdf
