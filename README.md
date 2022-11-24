@@ -3024,5 +3024,7 @@ DE-MF-000006299|Dentaurum GmbH & Co. KG
 DE-MF-000006300|Dentaurum Implants GmbH
 DE-MF-000012859|3M Deutschland GmbH (Dental)
 DE-MF-000009117|Medentika GmbH
+DE-MF-000006243|Erkodent Erich Kopp GmbH
+AT-MF-000000252|Amann Girrbach AG
 CH-MF-000009933|Institut Straumann AG
 
