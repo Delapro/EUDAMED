@@ -2997,3 +2997,16 @@ Get-EudamedDeviceDetail -Uuid 4236a036-cd15-4a08-ab6a-bb3beb28df09
 ## SOAP-API mit Beschreibung der Eudamed-Struktur
 https://health.ec.europa.eu/system/files/2020-09/md_eudamed_dtx_eo_introduction_en_0.pdf
 Unbedingt auch die technischen Beschreibungen anschauen, wenn diese bei neuen Versionen rauskommen.
+
+## verschiedene Dental-Material-Hersteller
+DE-MF-000007705, KULZER GmbH
+DE-IM-000006314, Ivoclar Vivadent GmbH
+DE-MF-000007706, Dentsply Implants Manufacturing GmbH
+DE-MF-000023384, Heimerle + Meule GmbH
+DE-MF-000006299, Dentaurum GmbH & Co. KG
+DE-MF-000006300, Dentaurum Implants GmbH
+DE-MF-000012859, 3M Deutschland GmbH (Dental)
+DE-MF-000009117, Medentika GmbH
+
+CH-MF-000009933, Institut Straumann AG
+
