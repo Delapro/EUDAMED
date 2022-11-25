@@ -3028,6 +3028,8 @@ DE-MF-000006243|Erkodent Erich Kopp GmbH
 DE-MF-000008124|bredent GmbH & Co. KG
 DE-MF-000006304|C.HAFNER GmbH + Co. KG
 DE-MF-000005026|Argen Dental GmbH
+DE-MF-000012324|Wegold Edelmetalle GmbH
+DE-MF-000007937|DeguDent GmbH
 AT-MF-000000252|Amann Girrbach AG
 CH-MF-000009933|Institut Straumann AG
 
