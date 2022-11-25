@@ -38,13 +38,15 @@ Get-EudamedEODetail -Srn DE-MF-000006243|Get-EudamedDevicesOfEO|select uuid, pri
 (Get-EudamedDeviceDetail -Uuid 39cf1a88-5310-48d5-97b6-cf667ca007ee).tradename.texts
 (Get-EudamedDeviceDetail -Uuid 39cf1a88-5310-48d5-97b6-cf667ca007ee).additionaldescription.texts
 
+"" # Leerzeile
+
 $DofEO = Get-EudamedEODevicesByManufacturerName -ManufacturerName Erko
 "Anzahl Devices von Manufacturer 'Erko': $($DofEO.Length)"
 "" # Leerzeile
 
 $hersteller=@('DE-MF-000007705', 'DE-IM-000006314', 'DE-MF-000007706', 'DE-MF-000023384', 'DE-MF-000006299', 'DE-MF-000006300', 'DE-MF-000012859', 
               'DE-MF-000009117', 'DE-MF-000006243', 'DE-MF-000008124', 'DE-MF-000006304', 'DE-MF-000005026', 'DE-MF-000012324', 'DE-MF-000007937',
-              'AT-MF-000000252', 'CH-MF-000009933')
+              'DE-MF-000025211', 'AT-MF-000000252', 'CH-MF-000009933')
 # Ausgabe der Namen und Anzahl der hinterlegten Materialien              
 $hersteller|% {$mf=Get-EudamedEODetail -Srn $_;$mfd=$mf|Get-EudamedDevicesOfEO; "$_ $($mf.Name): $($mfd.Length)"}
 "" # Leerzeile
