@@ -3027,10 +3027,13 @@ DE-MF-000009117|Medentika GmbH
 DE-MF-000006243|Erkodent Erich Kopp GmbH
 DE-MF-000008124|bredent GmbH & Co. KG
 DE-MF-000006304|C.HAFNER GmbH + Co. KG
+DE-MF-000005026|Argen Dental GmbH
 AT-MF-000000252|Amann Girrbach AG
 CH-MF-000009933|Institut Straumann AG
 
-Ausprägung von Konzernen:
+## Ausprägung von Konzernen:
+
+### International
 SNR|Typ|Hersteller|Ort
 ---|---|----------|---
 DE-IM-000006314|Importer|Ivoclar Vivadent GmbH [DE]|Ellwangen Jagst	Germany	
@@ -3039,6 +3042,7 @@ LI-IM-000000524|Importer|Ivoclar Vivadent AG [DE]|Schaan	Liechtenstein
 LI-MF-000000522|Manufacturer|Ivoclar Vivadent AG [DE]|Schaan	Liechtenstein	
 US-MF-000000688|Manufacturer|Ivoclar Vivadent, Inc. [EN]|Amherst, NY	United States
 
+### National
 SNR|Typ|Hersteller|Ort
 ---|---|----------|---
 DE-IM-000008126|Importer|bredent medical GmbH & Co. KG [DE]|Senden	Germany	
