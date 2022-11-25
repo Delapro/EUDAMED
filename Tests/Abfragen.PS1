@@ -46,6 +46,7 @@ $hersteller=@('DE-MF-000007705', 'DE-IM-000006314', 'DE-MF-000007706', 'DE-MF-00
               'DE-MF-000009117', 'DE-MF-000006243', 'DE-MF-000008124', 'DE-MF-000006304', 'DE-MF-000005026', 'AT-MF-000000252', 'CH-MF-000009933')
 # Ausgabe der Namen und Anzahl der hinterlegten Materialien              
 $hersteller|% {$mf=Get-EudamedEODetail -Srn $_;$mfd=$mf|Get-EudamedDevicesOfEO; "$_ $($mf.Name): $($mfd.Length)"}
+"" # Leerzeile
 
 # Dental (Q) Devices ermitteln:
 $emdn = Get-EudamedEmdn
