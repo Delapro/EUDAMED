@@ -3025,10 +3025,11 @@ DE-MF-000006300|Dentaurum Implants GmbH
 DE-MF-000012859|3M Deutschland GmbH (Dental)
 DE-MF-000009117|Medentika GmbH
 DE-MF-000006243|Erkodent Erich Kopp GmbH
+DE-MF-000008124|bredent GmbH & Co. KG
 AT-MF-000000252|Amann Girrbach AG
 CH-MF-000009933|Institut Straumann AG
 
-Ausprägung eines Konzerns:
+Ausprägung von Konzernen:
 SNR|Typ|Hersteller|Ort
 ---|---|----------|---
 DE-IM-000006314|Importer|Ivoclar Vivadent GmbH [DE]|Ellwangen Jagst	Germany	
@@ -3037,3 +3038,10 @@ LI-IM-000000524|Importer|Ivoclar Vivadent AG [DE]|Schaan	Liechtenstein
 LI-MF-000000522|Manufacturer|Ivoclar Vivadent AG [DE]|Schaan	Liechtenstein	
 US-MF-000000688|Manufacturer|Ivoclar Vivadent, Inc. [EN]|Amherst, NY	United States
 
+SNR|Typ|Hersteller|Ort
+---|---|----------|---
+DE-IM-000008126|Importer|bredent medical GmbH & Co. KG [DE]|Senden	Germany	
+DE-MF-000008124|Manufacturer|bredent GmbH & Co. KG [DE]|Senden	Germany	
+DE-MF-000008125|Manufacturer|bredent medical GmbH & Co. KG [DE]|Senden	Germany	
+DE-PR-000014118|System/Procedure Pack Producer|bredent medical GmbH & Co. KG [DE]|Senden	Germany	
+DE-PR-000014120|System/Procedure Pack Producer|bredent GmbH & Co. KG [DE]|Senden	Germany
