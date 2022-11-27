@@ -60,6 +60,7 @@ $emdn[13].children[0].children
 # Q010699 umfasst: Dentine, Liner
 # Q01020601 umfasst: Zähne
 # Q01020199 umfasst: ?
+# Q01010103 umfasst: Dental composite
 # P01020101 umfasst: Implantate
 
 $totalDevices = Get-EudamedPagedData -Url 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData' -OnlyTotalElements
@@ -76,6 +77,10 @@ $teeth = Get-EudamedDevicesOfCND -CndCode Q01020601
 # Dentin usw. ermitteln
 $dent = Get-EudamedDevicesOfCND -CndCode Q010699
 "Dentin usw. (Q010699): $($dent.Length)"
+
+# Komposite ermitteln
+$composite = Get-EudamedDevicesOfCND -CndCode Q01010103
+"Komposite (Q01010103): $($composite.Length)"
 
 # Implantate ermitteln
 $implants = Get-EudamedDevicesOfCND -CndCode P01020101
