@@ -3031,6 +3031,7 @@ DE-MF-000005026|Argen Dental GmbH
 DE-MF-000012324|Wegold Edelmetalle GmbH
 DE-MF-000007937|DeguDent GmbH
 DE-MF-000025211|KOOS Edelmetalle GmbH
+DE-MF-000005906|VITA Zahnfabrik H.Rauter GmbH & Co.KG
 AT-MF-000000252|Amann Girrbach AG
 CH-MF-000009933|Institut Straumann AG
 
