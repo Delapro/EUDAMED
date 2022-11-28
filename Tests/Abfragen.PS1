@@ -62,6 +62,9 @@ $emdn[13].children[0].children
 # Q01020199 umfasst: ?
 # Q01010103 umfasst: Dental composite
 # P01020101 umfasst: Implantate
+#  ? P010201 Dental Implants and Accessories (BEGO)
+#  ? Q010399 Surgical Dental Devices (BEGO)
+#  ? Q010280 Devices for Prosthetic Dentistry (BEGO)
 
 $totalDevices = Get-EudamedPagedData -Url 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData' -OnlyTotalElements
 "Devices Gesamtanzahl: $totalDevices"
