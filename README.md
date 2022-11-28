@@ -3033,6 +3033,8 @@ DE-MF-000007937|DeguDent GmbH
 DE-MF-000025211|KOOS Edelmetalle GmbH
 DE-MF-000005906|VITA Zahnfabrik H.Rauter GmbH & Co.KG|https://www.vita-zahnfabrik.com/de/MDR-103200,223111.html
 DE-IM-000004952|SHOFU DENTAL GmbH
+DE-MF-000005410|BEGO Implant Systems GmbH & Co. KG
+DE-MF-000005414|BEGO Bremer Goldschlägerei Wilh. Herbst GmbH & Co.KG
 AT-MF-000000252|Amann Girrbach AG
 CH-MF-000009933|Institut Straumann AG
 
