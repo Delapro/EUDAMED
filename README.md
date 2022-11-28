@@ -3015,8 +3015,8 @@ Unbedingt auch die technischen Beschreibungen anschauen, wenn diese bei neuen Ve
 
 ## verschiedene Dental-Material-Hersteller
 SNR|Hersteller|MDR-Informationen
----|----------
-DE-MF-000007705|KULZER GmbH
+---|----------|-
+DE-MF-000007705|KULZER GmbH|
 DE-IM-000006314|Ivoclar Vivadent GmbH
 DE-MF-000007706|Dentsply Implants Manufacturing GmbH
 DE-MF-000023384|Heimerle + Meule GmbH
