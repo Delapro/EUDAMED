@@ -91,7 +91,7 @@ $implants = Get-EudamedDevicesOfCND -CndCode P01020101
 "Implantatteile (P01020101): $($implants.Length)"
 
 # Gesamtzahl obiger Devices
-"Gesamtzahl obiger Devices: $($alloy.Length+$teeth.Length+$dent.Length+$composite.Length+$implants.Length)
+"Gesamtzahl obiger Devices: $($alloy.Length+$teeth.Length+$dent.Length+$composite.Length+$implants.Length)"
 "" # Leerzeile
 
 # alle CNDs mit Dental ermitteln:
