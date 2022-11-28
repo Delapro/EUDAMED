@@ -68,6 +68,7 @@ $emdn[13].children[0].children
 
 $totalDevices = Get-EudamedPagedData -Url 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData' -OnlyTotalElements
 "Devices Gesamtanzahl: $totalDevices"
+"" # Leerzeile
 
 # Legierungen ermitteln
 $alloy = Get-EudamedDevicesOfCND -CndCode Q010601
@@ -88,6 +89,10 @@ $composite = Get-EudamedDevicesOfCND -CndCode Q01010103
 # Implantate ermitteln
 $implants = Get-EudamedDevicesOfCND -CndCode P01020101
 "Implantatteile (P01020101): $($implants.Length)"
+
+# Gesamtzahl obiger Devices
+"Gesamtzahl obiger Devices: $($alloy.Length+$teeth.Length+$dent.Length+$composite.Length+$implants.Length)
+"" # Leerzeile
 
 # alle CNDs mit Dental ermitteln:
 $emdn = Get-EudamedEmdn
