@@ -59,6 +59,17 @@ Function Get-EudamedPagedDataCountry {
     Get-EudamedPagedData -Url "$Url&countryIso2Code=$Country"
 }
 
+Function Get-EudamedCertificates {
+    [CmdletBinding()]
+    Param()
+
+	# mögliche Parameter: entityTypeCode=certificate.certificates
+	$Url = 'https://ec.europa.eu/tools/eudamed/api/certificates/search/?languageIso2Code=de'
+
+    Get-EudamedPagedData -Url "$Url"
+
+}
+
 Function Get-EudamedPagedDataCountryAndRole {
     [CmdletBinding()]
     Param(
