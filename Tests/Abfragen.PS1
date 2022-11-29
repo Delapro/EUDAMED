@@ -46,7 +46,8 @@ $DofEO = Get-EudamedEODevicesByManufacturerName -ManufacturerName Erko
 
 $hersteller=@('DE-MF-000007705', 'DE-IM-000006314', 'DE-MF-000007706', 'DE-MF-000023384', 'DE-MF-000006299', 'DE-MF-000006300', 'DE-MF-000012859', 
               'DE-MF-000009117', 'DE-MF-000006243', 'DE-MF-000008124', 'DE-MF-000006304', 'DE-MF-000005026', 'DE-MF-000012324', 'DE-MF-000007937',
-              'DE-MF-000025211', 'DE-MF-000005906', 'DE-IM-000004952', 'DE-MF-000005410', 'DE-MF-000005414', 'AT-MF-000000252', 'CH-MF-000009933')
+              'DE-MF-000025211', 'DE-MF-000005906', 'DE-IM-000004952', 'DE-MF-000005410', 'DE-MF-000005414', 'AT-MF-000000252', 'CH-MF-000009933',
+              'CH-MF-000015795')
 # Ausgabe der Namen und Anzahl der hinterlegten Materialien              
 $hersteller|% {$mf=Get-EudamedEODetail -Srn $_;$mfd=$mf|Get-EudamedDevicesOfEO; "$_ $($mf.Name): $($mfd.Length)"}
 "" # Leerzeile
@@ -108,8 +109,9 @@ $certs |select uuid, actorsrn, actorname, notifiedbodysrn, certificatenumber, is
 
 # ZertifikatDetails ausgeben
 $begoZert=Get-EudamedCertificateDetail -Uuid 91d6b1ef-2646-4b6d-b85e-48271918754b
+"BEGO-Zertifikat:"
 $begoZert
-$begoZertDok=(Get-EudamedCertificateDetail -Uuid 91d6b1ef-2646-4b6d-b85e-48271918754b).documents
+$begoZertDok=$begoZert.documents  # TODO: Duerr hat mehrere Zertifikate hinterlegt
 # PDF-Datei herunterladen
 Get-EudamedCertificateDownload -Uuid $begoZertDok.uuid -SaveFile -Path $begoZertDok.originalFilename -Verbose
 
