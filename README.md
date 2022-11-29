@@ -3035,9 +3035,11 @@ DE-MF-000005906|VITA Zahnfabrik H.Rauter GmbH & Co.KG|https://www.vita-zahnfabri
 DE-IM-000004952|SHOFU DENTAL GmbH
 DE-MF-000005410|BEGO Implant Systems GmbH & Co. KG| https://www.bego.com/de/aktuelles/bego-news/konformitaetserklaerung-fuer-sonderanfertigungen-nach-medical-device-regulation-mdr/
 DE-MF-000005414|BEGO Bremer Goldschlägerei Wilh. Herbst GmbH & Co.KG|https://www.bego.com/de/aktuelles/bego-news/konformitaetserklaerung-fuer-sonderanfertigungen-nach-medical-device-regulation-mdr/
+DE-MF-000006997|WIELAND Edelmetalle GmbH
 AT-MF-000000252|Amann Girrbach AG
 CH-MF-000009933|Institut Straumann AG
 CH-MF-000015795|Candulor AG
+SE-MF-000000009|Nobel Biocare AB
 
 ## Ausprägung von Konzernen:
 
