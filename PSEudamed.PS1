@@ -70,6 +70,25 @@ Function Get-EudamedCertificates {
 
 }
 
+# Uuid liefert mehr Informationen
+Function Get-EudamedCertificateDetail {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory,ParameterSetName='Uuid',Position=0)]
+        [String]$Uuid
+    )
+
+    If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
+        $Url = "https://ec.europa.eu/tools/eudamed/api/certificates/$Uuid/?languageIso2Code=de"
+    }
+    $r=Invoke-WebRequest "$Url" -UseBasicParsing
+    If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
+	    ConvertFrom-Json $r.Content
+	} else {
+	    # (ConvertFrom-Json $r.Content).Content  # Irgendwie nochmal geschachtelt, können srn Wildcards enthalten?!?!?
+	}
+}
+
 Function Get-EudamedPagedDataCountryAndRole {
     [CmdletBinding()]
     Param(
