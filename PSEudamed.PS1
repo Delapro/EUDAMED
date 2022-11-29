@@ -203,7 +203,7 @@ Function Get-EudamedDeviceDetail {
 		$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/$($Uuid)?languageIso2Code=de"
 	} else {
 		# primaryDI-Set
-		$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?primaryDi=$($PrimaryDI)&languageIso2Code=de"
+		$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?primaryDi=$([System.Web.HttpUtility]::UrlEncode($PrimaryDI))&languageIso2Code=de"
 	}
     	Write-Verbose "Url: $Url"
     	$r=Invoke-WebRequest $Url -UseBasicParsing
