@@ -3037,6 +3037,7 @@ DE-MF-000005410|BEGO Implant Systems GmbH & Co. KG| https://www.bego.com/de/aktu
 DE-MF-000005414|BEGO Bremer Goldschlägerei Wilh. Herbst GmbH & Co.KG|https://www.bego.com/de/aktuelles/bego-news/konformitaetserklaerung-fuer-sonderanfertigungen-nach-medical-device-regulation-mdr/
 AT-MF-000000252|Amann Girrbach AG
 CH-MF-000009933|Institut Straumann AG
+CH-MF-000015795|Candulor AG
 
 ## Ausprägung von Konzernen:
 
