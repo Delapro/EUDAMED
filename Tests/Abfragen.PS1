@@ -107,7 +107,11 @@ $certs = Get-EudamedCertificates
 $certs |select uuid, actorsrn, actorname, notifiedbodysrn, certificatenumber, issuedate, expirydate -First 5
 
 # ZertifikatDetails ausgeben
-Get-EudamedCertificateDetail -Uuid 91d6b1ef-2646-4b6d-b85e-48271918754b
+$begoZert=Get-EudamedCertificateDetail -Uuid 91d6b1ef-2646-4b6d-b85e-48271918754b
+$begoZert
+$begoZertDok=(Get-EudamedCertificateDetail -Uuid 91d6b1ef-2646-4b6d-b85e-48271918754b).documents
+# PDF-Datei herunterladen
+Get-EudamedCertificateDownload -Uuid $begoZertDok.uuid -SaveFile -Path $begoZertDok.originalFilename -Verbose
 
 "" # Leerzeile
 "Eudamed Versioninfos:"
