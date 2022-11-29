@@ -89,6 +89,37 @@ Function Get-EudamedCertificateDetail {
 	}
 }
 
+# Uuid muss eine Document UUID sein (z. B. von CertificateDetail)
+Function Get-EudamedCertificateDownload {
+    [CmdletBinding()]
+    Param(
+        [Parameter(ParameterSetName='Uuid',Position=0,Mandatory)]
+        [String]$Uuid,
+        [Parameter(ParameterSetName='Uuid',Position=1)]
+	[Switch]$SaveFile,
+        [Parameter(ParameterSetName='Uuid',Position=2)]
+	[String]$Path
+    )
+
+    If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
+        $Url = "https://ec.europa.eu/tools/eudamed/api/documents/$Uuid/?languageIso2Code=de"
+    }
+    If ($SaveFile) {
+    	$Parameter = @{OutFile=$Path}
+    } else {
+    	$Parameter = @{}
+    }
+    $r=Invoke-WebRequest "$Url" -UseBasicParsing @Parameter
+    If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
+    		If (-Not ($SaveFile)) {
+	    		$r.Content
+		}
+	} else {
+	    # (ConvertFrom-Json $r.Content).Content  # Irgendwie nochmal geschachtelt, können srn Wildcards enthalten?!?!?
+	}
+}
+
+
 Function Get-EudamedPagedDataCountryAndRole {
     [CmdletBinding()]
     Param(
