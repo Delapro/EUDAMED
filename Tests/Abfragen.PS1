@@ -98,6 +98,16 @@ $implants = Get-EudamedDevicesOfCND -CndCode P01020101
 $emdn = Get-EudamedEmdn
 $ms = Get-EudamedEmdnSearch -emdn $emdn -text dental
 "CNDs mit dental im Namen: $($ms.Length)"
+"" # Leerzeile
+
+# Zertifikate ermitteln
+$certs = Get-EudamedCertificates
+"Zertifikate: $($certs.Length)"
+# ein paar Zertifikate ausgeben
+$certs |select uuid, actorsrn, actorname, notifiedbodysrn, certificatenumber, issuedate, expirydate -First 5
+
+# ZertifikatDetails ausgeben
+Get-EudamedCertificateDetail -Uuid 91d6b1ef-2646-4b6d-b85e-48271918754b
 
 "" # Leerzeile
 "Eudamed Versioninfos:"
