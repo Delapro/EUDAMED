@@ -74,7 +74,7 @@ Function Get-EudamedCertificates {
 Function Get-EudamedCertificateDetail {
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory,ParameterSetName='Uuid',Position=0)]
+        [Parameter(ParameterSetName='Uuid',Position=0,ValueFromPipelineByPropertyName,Mandatory)]
         [String]$Uuid
     )
 
