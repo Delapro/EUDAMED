@@ -56,6 +56,8 @@ Mittels dieser Abfrage kann man den Versionsstand der EUDAMED abfragen: https://
 }
 ```
 
+> Hinweis: Es kann bereits eine neue Datenbank-Version in Verwendung sein, bevor überhaupt Informationen darüber, auch technischer Natur, verfügbar sind!
+
 ## News zur EUDAMED
 
 Direkt über diesen Link bekommt man die News zur Eudamed: https://ec.europa.eu/tools/eudamed/#/screen/news
