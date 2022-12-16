@@ -3042,6 +3042,7 @@ DE-MF-000005414|BEGO Bremer Goldschlägerei Wilh. Herbst GmbH & Co.KG|https://ww
 DE-MF-000006997|WIELAND Edelmetalle GmbH
 DE-MF-000025211|KOOS Edelmetalle GmbH
 DE-MF-000006241|pritidenta GmbH|https://pritidenta.com/mdr/
+DE-MF-000006592|Dental Direkt GmbH|https://www.dentaldirekt.de/de/mdr-info
 AT-MF-000000252|Amann Girrbach AG
 CH-MF-000009933|Institut Straumann AG
 CH-MF-000015795|Candulor AG
