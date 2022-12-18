@@ -3,8 +3,9 @@ Set-Culture('de-DE')
 
 # ermittelt alle Economic Operators, dauert...
 $AlleEOs = "https://ec.europa.eu/tools/eudamed/api/eos?rnd=1665398393978&sort=srn%2CASC&sort=versionNumber%2CDESC&languageIso2Code=de"
-$EOdata=Get-EudamedPagedData $AlleEOs
-$EOdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistration)}}, electronicMail, telephone, rolename| sort-Object Registrierdatum | select -Last 30 |ft
+# alte Variante
+# $EOdata=Get-EudamedPagedData $AlleEOs
+# $EOdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistration)}}, electronicMail, telephone, rolename| sort-Object Registrierdatum | select -Last 30 |ft
 
 "nochmal"
 $EOdata=Get-EudamedEO
