@@ -3047,6 +3047,7 @@ AT-MF-000000252|Amann Girrbach AG
 CH-MF-000009933|Institut Straumann AG
 CH-MF-000015795|Candulor AG
 SE-MF-000000009|Nobel Biocare AB
+IT-MF-000028795|Zirkonzahn
 
 ## Ausprägung von Konzernen:
 
