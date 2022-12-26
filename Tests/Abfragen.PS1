@@ -55,7 +55,7 @@ $hersteller=@('DE-MF-000007705', 'DE-IM-000006314', 'DE-MF-000007706', 'DE-MF-00
               'DE-MF-000019995', 'DE-MF-000009125', 'DE-MF-000004938', 'DE-MF-000019277', 'DE-MF-000006230', 'DE-MF-000006241', 'DE-MF-000006592',
               'DE-MF-000007202', 'DE-MF-000015891', 'DE-MF-000000022',
               'AT-MF-000000252', 'CH-MF-000009933', 'CH-MF-000015795', 'CH-MF-000019683', 'SE-MF-000000009', 'KR-MF-000020635', 'BE-MF-000001608',
-              'IT-MF-000028795'
+              'IT-MF-000028795', 'JP-MF-000024849', 'NL-MF-000019230'
              )
 # Ausgabe der Namen und Anzahl der hinterlegten Materialien              
 $hersteller|% {$mf=Get-EudamedEODetail -Srn $_;$mfd=$mf|Get-EudamedDevicesOfEO; "$_ $($mf.Name): $($mfd.Length)"}
