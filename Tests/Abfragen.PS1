@@ -104,6 +104,24 @@ $implants = Get-EudamedDevicesOfCND -CndCode P01020101
 "Gesamtzahl obiger Devices: $($alloy.Length+$teeth.Length+$dent.Length+$composite.Length+$implants.Length)"
 "" # Leerzeile
 
+"Hersteller von Legierungen:"
+($alloy).manufacturerName | select -unique
+"Anzahl: $((($alloy).manufacturerName | select -unique).Length)"
+"Hersteller von Zähnen:"
+($teeth).manufacturerName | select -unique
+"Anzahl: $((($teeth).manufacturerName | select -unique).Length)"
+"Hersteller von Dentin usw.:"
+($dent).manufacturerName | select -unique
+"Anzahl: $((($dent).manufacturerName | select -unique).Length)"
+"Hersteller von Komposite:"
+($composite).manufacturerName | select -unique
+"Anzahl: $((($composite).manufacturerName | select -unique).Length)"
+"Hersteller von Implantaten:"
+($implants).manufacturerName | select -unique
+"Anzahl: $((($implants).manufacturerName | select -unique).Length)"
+
+"" # Leerzeile
+
 # alle CNDs mit Dental ermitteln:
 $emdn = Get-EudamedEmdn
 $ms = Get-EudamedEmdnSearch -emdn $emdn -text dental
