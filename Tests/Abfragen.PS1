@@ -105,23 +105,23 @@ $implants = Get-EudamedDevicesOfCND -CndCode P01020101
 "" # Leerzeile
 
 "Hersteller von Legierungen:"
-($alloy).manufacturerName | select -unique|select leer,@{N='ManufacturerName';E={$_}}
+($alloy).manufacturerName | select -unique | select leer,@{N='ManufacturerName';E={$_}} | ft
 "Anzahl: $((($alloy).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 "Hersteller von Zähnen:"
-($teeth).manufacturerName | select -unique|select leer,@{N='ManufacturerName';E={$_}}
+($teeth).manufacturerName | select -unique | select leer,@{N='ManufacturerName';E={$_}} | ft
 "Anzahl: $((($teeth).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 "Hersteller von Dentin usw.:"
-($dent).manufacturerName | select -unique|select leer,@{N='ManufacturerName';E={$_}}
+($dent).manufacturerName | select -unique | select leer,@{N='ManufacturerName';E={$_}} | ft
 "Anzahl: $((($dent).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 "Hersteller von Komposite:"
-($composite).manufacturerName | select -unique|select leer,@{N='ManufacturerName';E={$_}}
+($composite).manufacturerName | select -unique | select leer,@{N='ManufacturerName';E={$_}} | ft
 "Anzahl: $((($composite).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 "Hersteller von Implantaten:"
-($implants).manufacturerName | select -unique|select leer,@{N='ManufacturerName';E={$_}}
+($implants).manufacturerName | select -unique | select leer,@{N='ManufacturerName';E={$_}} | ft
 "Anzahl: $((($implants).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 
