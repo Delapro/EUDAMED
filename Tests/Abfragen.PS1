@@ -58,7 +58,7 @@ $hersteller=@('DE-MF-000007705', 'DE-IM-000006314', 'DE-MF-000007706', 'DE-MF-00
               'IT-MF-000028795', 'JP-MF-000024849', 'NL-MF-000019230'
              )
 # Ausgabe der Namen und Anzahl der hinterlegten Materialien              
-$hersteller|% {$mf=Get-EudamedEODetail -Srn $_;$mfd=$mf|Get-EudamedDevicesOfEO; [PSCustomObject]@{Srn=$_;Manufacturer=$mf.Name;Count=$mfd.Length}}|sort-Object Count -Descending|select Srn, Count, Manufacturer
+$hersteller|% {$mf=Get-EudamedEODetail -Srn $_;$mfd=$mf|Get-EudamedDevicesOfEO; [PSCustomObject]@{Srn=$_;Manufacturer=$mf.Name;Count=$mfd.Length}}|sort-Object Count -Descending|select Srn, Count, Manufacturer|ft
 "" # Leerzeile
 
 # Dental (Q) Devices ermitteln:
