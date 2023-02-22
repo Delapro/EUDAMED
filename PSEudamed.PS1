@@ -89,15 +89,17 @@ Function Get-EudamedCertificateDetail {
         [String]$Uuid
     )
 
-    If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
-        $Url = "https://ec.europa.eu/tools/eudamed/api/certificates/$Uuid/?languageIso2Code=de"
+    Process {
+      If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
+          $Url = "https://ec.europa.eu/tools/eudamed/api/certificates/$Uuid/?languageIso2Code=de"
+      }
+      $r=Invoke-WebRequest "$Url" -UseBasicParsing
+      If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
+	      ConvertFrom-Json $r.Content
+      } else {
+	      # (ConvertFrom-Json $r.Content).Content  # Irgendwie nochmal geschachtelt, können srn Wildcards enthalten?!?!?
+      }
     }
-    $r=Invoke-WebRequest "$Url" -UseBasicParsing
-    If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
-	    ConvertFrom-Json $r.Content
-	} else {
-	    # (ConvertFrom-Json $r.Content).Content  # Irgendwie nochmal geschachtelt, können srn Wildcards enthalten?!?!?
-	}
 }
 
 # Uuid muss eine Document UUID sein (z. B. von CertificateDetail)
