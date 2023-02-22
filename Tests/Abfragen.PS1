@@ -77,6 +77,7 @@ $emdn[13].children[0].children
 #  ? P010201 Dental Implants and Accessories (BEGO)
 #  ? Q010399 Surgical Dental Devices (BEGO)
 #  ? Q010280 Devices for Prosthetic Dentistry (BEGO)
+# Q010205 umfasst: vorgeformte Harze und dental Kronen
 
 $totalDevices = Get-EudamedPagedData -Url 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData' -OnlyTotalElements
 "Devices Gesamtanzahl: $totalDevices"
@@ -102,8 +103,12 @@ $composite = Get-EudamedDevicesOfCND -CndCode Q01010103
 $implants = Get-EudamedDevicesOfCND -CndCode P01020101
 "Implantatteile (P01020101): $($implants.Length)"
 
+# Harze ermitteln
+$resin = Get-EudamedDevicesOfCND -CndCode Q010205
+"Harze (Q010205): $($resin.Length)"
+
 # Gesamtzahl obiger Devices
-"Gesamtzahl obiger Devices: $($alloy.Length+$teeth.Length+$dent.Length+$composite.Length+$implants.Length)"
+"Gesamtzahl obiger Devices: $($alloy.Length+$teeth.Length+$dent.Length+$composite.Length+$implants.Length+$resin.Length)"
 "" # Leerzeile
 
 $header=@('leer',@{N='Count';E={(Get-EudamedEODevicesByManufacturerName -ManufacturerName $_).Count}}, @{N='ManufacturerName';E={$_}})
@@ -127,6 +132,10 @@ $header=@('leer',@{N='Count';E={(Get-EudamedEODevicesByManufacturerName -Manufac
 "Hersteller von Implantaten:"
 ($implants).manufacturerName | select -unique | select $header | ft
 "Anzahl: $((($implants).manufacturerName | select -unique).Length)"
+"" # Leerzeile
+"Hersteller von Harzen:"
+($resin).manufacturerName | select -unique | select $header | ft
+"Anzahl: $((($resin).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 
 # alle CNDs mit Dental ermitteln:
