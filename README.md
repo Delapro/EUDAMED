@@ -60,6 +60,8 @@ Mittels dieser Abfrage kann man den Versionsstand der EUDAMED abfragen: https://
 
 Hier gibt es dann technische Infos zu einem etwaigen Update (im Sommer 2022 ca. 2 Wochen nach neuer Version verfügbar): https://health.ec.europa.eu/medical-devices-eudamed_en.
 
+Hier gibt es aktuellere, technische Informationen (Sommer 2023, zu Version 2.11.0): https://webgate.ec.europa.eu/eudamed-help/en/documentation/release-notes.html
+
 ## News zur EUDAMED
 
 Direkt über diesen Link bekommt man die News zur Eudamed: https://ec.europa.eu/tools/eudamed/#/screen/news
