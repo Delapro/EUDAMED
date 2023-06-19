@@ -20,7 +20,7 @@ Eine Bugtracker-Datenbank oder ähnliches gibt es nach Auskunft am 31.10.2022 ni
 Aktuelle Informationen die EUDAMED betreffend findet man hier: https://ec.europa.eu/tools/eudamed/#/screen/news. Verschiedene Dokumente zur Durchführung gibt es hier: https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec6. Auf der Seite des UDI-Helpdesks https://eu-udi.zendesk.com/hc/en-150 lassen sich auch viele Informationen finden.
 
 # Timeline
-Hier findet man die aktuelle Timeline bis wann welches Modul verfügbar sein soll: https://health.ec.europa.eu/system/files/2022-07/md_eudamed_timeline_en.pdf. 2026 könnte es nach heutigem Stand dann mal was werden...
+Hier findet man die aktuelle Timeline bis wann welches Modul verfügbar sein soll: https://health.ec.europa.eu/system/files/2023-01/md_eudamed_timeline_en.pdf. 2026 könnte es nach heutigem Stand dann mal was werden...
 
 Zu beachten ist auch nach wie vor die lokale Gesetzgebung, siehe dazu ["AT 28.05.2021 B6" im Bundesanzeiger]( https://www.bundesanzeiger.de/pub/publication/IGrRaNuJBWgwK7Giz8Y/content/IGrRaNuJBWgwK7Giz8Y/BAnz%20AT%2028.05.2021%20B6.pdf?inline).
 
