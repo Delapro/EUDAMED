@@ -115,7 +115,7 @@ $resin = Get-EudamedDevicesOfCND -CndCode Q010205
 $header=@('leer',@{N='Count';E={(Get-EudamedEODevicesByManufacturerName -ManufacturerName $_).Count}}, @{N='ManufacturerName';E={$_}})
 
 "Hersteller von Legierungen:"
-($alloy).manufacturerName | select -unique | select $header | ft
+($alloy).manufacturerName | select -unique | select $header | sort Count | ft
 "Anzahl: $((($alloy).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 "Hersteller von Zähnen:"
