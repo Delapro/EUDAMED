@@ -115,27 +115,27 @@ $resin = Get-EudamedDevicesOfCND -CndCode Q010205
 $header=@('leer',@{N='Count';E={(Get-EudamedEODevicesByManufacturerName -ManufacturerName $_).Count}}, @{N='ManufacturerName';E={$_}})
 
 "Hersteller von Legierungen:"
-($alloy).manufacturerName | select -unique | select $header | sort-Object Count -Descending| ft
+($alloy).manufacturerName | select -unique | select $header | sort-Object Count -Descending | ft
 "Anzahl: $((($alloy).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 "Hersteller von Zähnen:"
-($teeth).manufacturerName | select -unique | select $header | ft
+($teeth).manufacturerName | select -unique | select $header | sort-Object Count -Descending | ft
 "Anzahl: $((($teeth).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 "Hersteller von Dentin usw.:"
-($dent).manufacturerName | select -unique | select $header | ft
+($dent).manufacturerName | select -unique | select $header | sort-Object Count -Descending | ft
 "Anzahl: $((($dent).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 "Hersteller von Komposite:"
-($composite).manufacturerName | select -unique | select $header | ft
+($composite).manufacturerName | select -unique | select $header | sort-Object Count -Descending | ft
 "Anzahl: $((($composite).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 "Hersteller von Implantaten:"
-($implants).manufacturerName | select -unique | select $header | ft
+($implants).manufacturerName | select -unique | select $header | sort-Object Count -Descending | ft
 "Anzahl: $((($implants).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 "Hersteller von Harzen:"
-($resin).manufacturerName | select -unique | select $header | ft
+($resin).manufacturerName | select -unique | select $header | sort-Object Count -Descending | ft
 "Anzahl: $((($resin).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 
