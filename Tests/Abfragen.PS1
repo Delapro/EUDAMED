@@ -8,7 +8,7 @@ $AlleEOs = "https://ec.europa.eu/tools/eudamed/api/eos?rnd=1665398393978&sort=sr
 # $EOdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistration)}}, electronicMail, telephone, rolename| sort-Object Registrierdatum | select -Last 30 |ft
 
 "nochmal"
-$EOdata=Get-EudamedEO
+$EOdata=Get-EudamedEO -Verbose
 $EOdata|select srn, name, @{N='Registrierdatum'; E={Get-Date ($_.dateOfRegistration)}}, electronicMail, telephone, rolename| sort-Object Registrierdatum | select -Last 30 |ft
 
 # ermittelt die EOs nur aus Österreich
