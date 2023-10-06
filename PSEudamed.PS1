@@ -16,6 +16,7 @@ Function Get-EudamedPagedData {
 
     $page=0
     $pages=1
+    $waitAfterPages=100
     If ($OnlyTotalElements) {
         $size = 1  # Daten auf ein Minimum reduzieren, kleiner 1 geht scheinbar nicht
     } else {
@@ -39,6 +40,9 @@ Function Get-EudamedPagedData {
         Write-Verbose "Page: $($j.number+1)/$Pages"
         $last=$j.last
         $page++
+	If (($WaitAfterPages -gt 0) -and ($page%$WaitAfterPages -eq 0) {
+		Start-Sleep -Seconds 1
+	}
         If ($OnlyTotalElements) {
             $j.totalElements
             $last = $true
