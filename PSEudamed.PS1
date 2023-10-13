@@ -92,10 +92,18 @@ Function Get-EudamedNotifiedBodies {
 
 Function Get-EudamedCertificates {
     [CmdletBinding()]
-    Param()
+    Param(
+        [Parameter(ParameterSetName='NotifiedBodySrn',Position=0,ValueFromPipelineByPropertyName,Mandatory=$false)]
+        [String]$NotifiedBodySrn
+
+    )
 
 	# mögliche Parameter: entityTypeCode=certificate.certificates
-	$Url = 'https://ec.europa.eu/tools/eudamed/api/certificates/search/?languageIso2Code=de'
+	If ($NotifiedBodySrn) {
+		$Url = "https://ec.europa.eu/tools/eudamed/api/certificates/search/?languageIso2Code=de&notifiedBodySrn=$NotifiedBodySrn"
+	} else {
+		$Url = 'https://ec.europa.eu/tools/eudamed/api/certificates/search/?languageIso2Code=de'
+	}
 
     Get-EudamedPagedData -Url "$Url"
 
