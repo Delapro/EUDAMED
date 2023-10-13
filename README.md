@@ -3045,7 +3045,6 @@ DE-IM-000004952|SHOFU DENTAL GmbH
 DE-MF-000005410|BEGO Implant Systems GmbH & Co. KG| https://www.bego.com/de/aktuelles/bego-news/konformitaetserklaerung-fuer-sonderanfertigungen-nach-medical-device-regulation-mdr/
 DE-MF-000005414|BEGO Bremer Goldschlägerei Wilh. Herbst GmbH & Co.KG|https://www.bego.com/de/aktuelles/bego-news/konformitaetserklaerung-fuer-sonderanfertigungen-nach-medical-device-regulation-mdr/
 DE-MF-000006997|WIELAND Edelmetalle GmbH
-DE-MF-000025211|KOOS Edelmetalle GmbH
 DE-MF-000006241|pritidenta GmbH|https://pritidenta.com/mdr/
 DE-MF-000006592|Dental Direkt GmbH|https://www.dentaldirekt.de/de/mdr-info
 AT-MF-000000252|Amann Girrbach AG
