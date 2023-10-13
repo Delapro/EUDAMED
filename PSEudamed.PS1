@@ -198,12 +198,13 @@ Function Get-EudamedDevicesOfEO {
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [String]$Srn
+        [String]$Srn,
+	[switch]$OnlyTotalElements
     )
     
     Process {
     	$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?iso2Code=en&srn=$srn&deviceStatusCode=refdata.device-model-status.on-the-market&languageIso2Code=de"
-    	Get-EudamedPagedData -Url $Url
+    	Get-EudamedPagedData -Url $Url -OnlyTotalElements:$OnlyTotalElements
     }
 }
 
