@@ -14,10 +14,18 @@ $begoZert
 $begoZertDok=$begoZert.documents  # TODO: Duerr hat mehrere Zertifikate hinterlegt
 # PDF-Datei herunterladen
 Get-EudamedCertificateDownload -Uuid $begoZertDok.uuid -SaveFile -Path $begoZertDok.originalFilename -Verbose
+"" # Leerzeile
 
 # Notified Bodies ausgeben
 $nb = Get-EudamedNotifiedBodies
-$nb
+# Infos ausgeben
+$nb|select uuid, eudamedidentifier, name
+"Notified Bodies: $($nb.Length)"
+"" # Leerzeile
+
+# Alle Zertifikate von einem Notified Body ermitteln, hier TÜV Rheinland
+$certsTR = Get-EudamedCertificates -NotifiedBodySrn 0197
+"Zertifikate von TÜV Rheinland: $($certsTR.Length)"
 
 "" # Leerzeile
 "Eudamed Versioninfos:"
