@@ -161,11 +161,12 @@ Function Get-EudamedEODevicesByManufacturerName {
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory,ParameterSetName='Manufacturer',Position=0)]
-        [String]$ManufacturerName
+        [String]$ManufacturerName,
+	[switch]$OnlyTotalElements
     )
 
     $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?manufacturerName=$($ManufacturerName)&languageIso2Code=de"
-    Get-EudamedPagedData -Url $Url
+    Get-EudamedPagedData -Url $Url -OnlyTotalElements:$OnlyTotalElements
 }
 
 # Achtung die unterschiedlichen ParameterSets liefern unterschiedliche, nicht kompatible Strukturen zurück
