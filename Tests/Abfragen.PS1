@@ -58,8 +58,8 @@ $hersteller=@('DE-MF-000007705', 'DE-IM-000006314', 'DE-MF-000007706', 'DE-MF-00
               'DE-MF-000007202', 'DE-MF-000015891', 'DE-MF-000000022', 'DE-MF-000005874', 'DE-MF-000005448', 'DE-MF-000019692', 'DE-MF-000005029',
               'DE-MF-000005671', 'DE-MF-000010090', 'DE-MF-000022666', 'DE-MF-000005995', 
               'AT-MF-000000252', 'CH-MF-000009933', 'CH-MF-000015795', 'CH-MF-000019683', 'SE-MF-000000009', 'KR-MF-000020635', 'BE-MF-000001608',
-              'IT-MF-000028795', 'JP-MF-000024849', 'NL-MF-000019230', 'GB-MF-000008770', 'CN-MF-000023257', 'CN-MF-000013088', 'PK-MF-000035172',
-              'PK-MF-000024595'
+              'IT-MF-000028795', 'IT-MF-000029407', 'JP-MF-000024849', 'NL-MF-000019230', 'GB-MF-000008770', 'CN-MF-000023257', 'CN-MF-000013088',
+              'PK-MF-000035172', 'PK-MF-000024595'
              )
 # Ausgabe der Namen und Anzahl der hinterlegten Materialien              
 $hersteller|% {$mf=Get-EudamedEODetail -Srn $_;$mfd=$mf|Get-EudamedDevicesOfEO; [PSCustomObject]@{Srn=$_;Manufacturer=$mf.Name;Count=$mfd.Length}}|sort-Object Count -Descending|select Srn, Count, Manufacturer|ft
