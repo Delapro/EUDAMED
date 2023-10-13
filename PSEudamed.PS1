@@ -11,7 +11,8 @@ Function Get-EudamedPagedData {
     Param(
         [Parameter(Mandatory)]
         [String]$Url,
-        [switch]$OnlyTotalElements
+        [switch]$OnlyTotalElements,
+	[switch]$JsonDirect
     )
 
     $page=0
@@ -47,7 +48,11 @@ Function Get-EudamedPagedData {
             $j.totalElements
             $last = $true
         } else {
-            $j.content
+		If ($JsonDirect) {
+			$j
+		} else {
+            		$j.content
+		}
         }
     }
 }
@@ -71,6 +76,17 @@ Function Get-EudamedEO {
 	$Url = 'https://ec.europa.eu/tools/eudamed/api/eos/?languageIso2Code=de'
 
     Get-EudamedPagedData -Url "$Url"
+
+}
+
+Function Get-EudamedNotifiedBodies {
+    [CmdletBinding()]
+    Param()
+
+	# mögliche Parameter: entityTypeCode=certificate.certificates
+	$Url = 'https://ec.europa.eu/tools/eudamed/api/ses/notifiedBodies?languageIso2Code=de'
+
+	Get-EudamedPagedData -Url "$Url" -JsonDirect
 
 }
 
