@@ -156,7 +156,7 @@ Function Get-EudamedPagedDataCountryAndRole {
     Get-EudamedPagedData -Url "$Url&$atc&countryIso2Code=$Country"
 }
 
-# ermittelt die Devices eines Herstellers nach seinem Namen, wenn der Name auf mehrere Hersteller zutrifft, werden Materialien von verschiedenen Herstellern zurückgegebn
+# ermittelt die Devices eines Herstellers nach seinem Namen, wenn der Name auf mehrere Hersteller zutrifft, werden Materialien von verschiedenen Herstellern zurückgegeben
 Function Get-EudamedEODevicesByManufacturerName {
     [CmdletBinding()]
     Param(
@@ -165,7 +165,10 @@ Function Get-EudamedEODevicesByManufacturerName {
 	[switch]$OnlyTotalElements
     )
 
-    $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?manufacturerName=$($ManufacturerName)&languageIso2Code=de"
+    # früher: $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?manufacturerName=$($ManufacturerName)&languageIso2Code=de"
+    # TODO: damit ist eigentlich die Namensgebung der Funktion dahin!!
+    
+    $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?name=$([System.Uri]::EscapeUriString($ManufacturerName))&languageIso2Code=de"
     Get-EudamedPagedData -Url $Url -OnlyTotalElements:$OnlyTotalElements
 }
 
