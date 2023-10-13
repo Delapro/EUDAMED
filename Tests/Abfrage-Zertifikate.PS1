@@ -15,6 +15,10 @@ $begoZertDok=$begoZert.documents  # TODO: Duerr hat mehrere Zertifikate hinterle
 # PDF-Datei herunterladen
 Get-EudamedCertificateDownload -Uuid $begoZertDok.uuid -SaveFile -Path $begoZertDok.originalFilename -Verbose
 
+# Notified Bodies ausgeben
+$nb = Get-EudamedNotifiedBodies
+$nb
+
 "" # Leerzeile
 "Eudamed Versioninfos:"
 Get-EudamedVersion
