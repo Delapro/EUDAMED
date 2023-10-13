@@ -17,7 +17,7 @@ Unterstützung gibt es unter der E-Mail-Adresse SANTE-EUDAMED-SUPPORT@ec.europa.
 Eine Bugtracker-Datenbank oder ähnliches gibt es nach Auskunft am 31.10.2022 nicht.
 
 # Aktuelle Infos
-Aktuelle Informationen die EUDAMED betreffend findet man hier: https://ec.europa.eu/tools/eudamed/#/screen/news. Verschiedene Dokumente zur Durchführung gibt es hier: https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec6. Auf der Seite des UDI-Helpdesks [https://eu-udi.zendesk.com/hc/en-150](https://webgate.ec.europa.eu/udi-helpdesk/en/welcome-to-eu-udi-helpdesk.html) lassen sich auch viele Informationen finden.
+Aktuelle Informationen die EUDAMED betreffend findet man hier: https://ec.europa.eu/tools/eudamed/#/screen/news. Verschiedene Dokumente zur Durchführung gibt es hier: https://health.ec.europa.eu/medical-devices-sector/new-regulations/guidance-mdcg-endorsed-documents-and-other-guidance_en#sec6. Auf der Seite des UDI-Helpdesks https://webgate.ec.europa.eu/udi-helpdesk/en/welcome-to-eu-udi-helpdesk.html lassen sich auch viele Informationen finden.
 
 # Timeline
 Hier findet man die aktuelle Timeline bis wann welches Modul verfügbar sein soll: https://health.ec.europa.eu/system/files/2023-01/md_eudamed_timeline_en.pdf. 2026 könnte es nach heutigem Stand dann mal was werden...
