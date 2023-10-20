@@ -30,6 +30,7 @@ jobs:
         run: |
           . ./PSEudamed.PS1
           ./Tests/Abfragen.PS1
+          ./Tests/Abfrage-Hersteller.PS1
           ./Tests/Abfrage-CNDs.PS1
           ./Tests/Abfrage-Zertifikate.PS1
         shell: pwsh
