@@ -9,7 +9,7 @@ $emdn[13].children[0].children
 # Q010601 umfasst: Legierungen
 # Q010699 umfasst: Dentine, Liner
 # Q01020601 umfasst: Zähne
-# Q01020199 umfasst: ?
+# Q01020199 umfasst: Wachse
 # Q01010103 umfasst: Dental composite
 # P01020101 umfasst: Implantate
 #  ? P010201 Dental Implants and Accessories (BEGO)
@@ -45,8 +45,12 @@ $implants = Get-EudamedDevicesOfCND -CndCode P01020101
 $resin = Get-EudamedDevicesOfCND -CndCode Q010205
 "Harze (Q010205): $($resin.Length)"
 
+# Wachse ermitteln
+$wax = Get-EudamedDevicesOfCND -CndCode Q01020199
+"Wachse (Q01020199): $($wax.Length)"
+
 # Gesamtzahl obiger Devices
-"Gesamtzahl obiger Devices: $($alloy.Length+$teeth.Length+$dent.Length+$composite.Length+$implants.Length+$resin.Length)"
+"Gesamtzahl obiger Devices: $($alloy.Length+$teeth.Length+$dent.Length+$composite.Length+$implants.Length+$resin.Length+$wax.Length)"
 "" # Leerzeile
 
 $header=@('leer',@{N='Count';E={Get-EudamedEODevicesByManufacturerName -ManufacturerName $_ -OnlyTotalElements}}, @{N='ManufacturerName';E={$_}})
@@ -74,6 +78,10 @@ $header=@('leer',@{N='Count';E={Get-EudamedEODevicesByManufacturerName -Manufact
 "Hersteller von Harzen:"
 ($resin).manufacturerName | select -unique | select $header | sort-Object Count -Descending | ft
 "Anzahl: $((($resin).manufacturerName | select -unique).Length)"
+"" # Leerzeile
+"Hersteller von Wachsen:"
+($wax).manufacturerName | select -unique | select $header | sort-Object Count -Descending | ft
+"Anzahl: $((($wax).manufacturerName | select -unique).Length)"
 "" # Leerzeile
 
 # alle CNDs mit Dental ermitteln:
