@@ -22,7 +22,12 @@ Aktuelle Informationen die EUDAMED betreffend findet man hier: https://ec.europa
 # Timeline
 Hier findet man die aktuelle Timeline bis wann welches Modul verfügbar sein soll: https://health.ec.europa.eu/system/files/2023-01/md_eudamed_timeline_en.pdf. 2026 könnte es nach heutigem Stand dann mal was werden...
 
-Zu beachten ist auch nach wie vor die lokale Gesetzgebung, siehe dazu ["AT 28.05.2021 B6" im Bundesanzeiger]( https://www.bundesanzeiger.de/pub/publication/IGrRaNuJBWgwK7Giz8Y/content/IGrRaNuJBWgwK7Giz8Y/BAnz%20AT%2028.05.2021%20B6.pdf?inline).
+Zu beachten ist auch nach wie vor die lokale Gesetzgebung, siehe dazu ["AT 28.05.2021 B6" im Bundesanzeiger]( https://www.bundesanzeiger.de/pub/publication/IGrRaNuJBWgwK7Giz8Y/content/IGrRaNuJBWgwK7Giz8Y/BAnz%20AT%2028.05.2021%20B6.pdf?inline). Noch aktueller dazu: 
+["BAnz AT 27.05.2022 B4" im Bundesanzeiger](https://www.bundesanzeiger.de/pub/publication/qOIieZMq3dnFbUZs734/content/qOIieZMq3dnFbUZs734/BAnz%20AT%2027.05.2022%20B4.pdf?inline).
+
+Hier eine Bfarm-Info mit Stand Aug. 2023:
+https://www.bfarm.de/DE/Medizinprodukte/Ueberblick/Europa-und-EUDAMED/_node.html#:~:text=Bescheinigungen%20(Modul%20Certificates)-,%C3%9Cbergangszeitraum%20bis%20zur%20vollen%20Funktionsf%C3%A4higkeit%20von%20EUDAMED,Buchstabe%20d%20der%20MDR%20bzw.
+
 
 # Spielversion (Playground)
 Eudamed kennt einen sogannten Eudamed-Playground (https://webgate.training.ec.europa.eu/eudamed-play/landing-page#/).
