@@ -45,7 +45,11 @@ Welche Daten dies nun genau umfasst gilts noch rauszufinden...
 Deutsche Fassung zu Eudamed: https://www.bfarm.de/DE/Medizinprodukte/Ueberblick/Europa-und-EUDAMED/_node.html. Die Fassung ist allerdings stark anders ausgeführt wie der obige Link zur englischen Fassung, sollte also mal konkret auf Unterschiede untersucht werden. Vor allem ist nichts mehr vom Hochladen der Datensätze und DIMDI die Rede!
 
 # Ähnliche Entwicklungen im Ausland
-Die Schweiz scheint die Eudamed für sich abzubilden und nennt sich einfach Swissdamed: https://www.swissmedic.ch/swissmedic/de/home/medizinprodukte/medizinprodukte-datenbank/swissdamed-ueberblick.html
+Die Schweiz scheint die Eudamed für sich abzubilden und nennt sich einfach Swissdamed: https://www.swissmedic.ch/swissmedic/de/home/medizinprodukte/medizinprodukte-datenbank/swissdamed-ueberblick.html.
+
+Hier die aktuelle schweizer Actor Liste: https://ogd.swissmedic.ch/mep/CHRNActors.xml, zu finden unter: https://opendata.swiss/de/dataset/mep401-chnr-actors.
+Hier die Seite mit den verschiedenen Links: https://ogd.swissmedic.ch/mep. Eine Beschreibung der Felder findet man unter: https://ogd.swissmedic.ch/mep/Documentation_OGD_Dataset.pdf.
+
 
 # API
 Es gibt auch eine (inoffizielle?) API, welche das direkte Abgreifen von Informationen per JSON-Objekten erlaubt. Nicht direkt aber indirekt findet man teilweise Informationen zur Architektur und Schnittstellen sowie Software hier: https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/2022/06/22/eDelivery+Roadmap+for+2022+and+beyond, bzw. https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eDelivery+AS4.
