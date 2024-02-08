@@ -12,5 +12,5 @@ $hersteller=@('DE-MF-000007705', 'DE-IM-000006314', 'DE-MF-000007706', 'DE-MF-00
               'DE-MF-000008303', 'DE-MF-000005566', 'DE-MF-000005811'
              )
 # Ausgabe der Namen und Anzahl der hinterlegten Materialien              
-$hersteller[0..2]| Get-EudamedEODetail -Verbose |Get-EudamedDevicesOfEO  -Verbose  | Get-EudamedDeviceDetail  -Verbose 
+$hersteller[0..2] | % {Get-EudamedEODetail $_} |Get-EudamedDevicesOfEO | Get-EudamedDeviceDetail  -Verbose 
 "" # Leerzeile
