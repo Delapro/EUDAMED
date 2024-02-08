@@ -22,6 +22,9 @@ Aktuelle Informationen die EUDAMED betreffend findet man hier: https://ec.europa
 # Timeline
 Hier findet man die aktuelle Timeline bis wann welches Modul verfügbar sein soll: https://health.ec.europa.eu/system/files/2023-01/md_eudamed_timeline_en.pdf. 2026 könnte es nach heutigem Stand dann mal was werden...
 
+Hier eine Timeline (vom Okt. 2023) welche Q4 2027 als Pflicht-Starttermin ausgibt:
+https://health.ec.europa.eu/document/download/04ce2012-97df-4dd0-8a39-d4f6993b9e16_en?filename=md_eudamed_roadmap_en.pdf
+
 Zu beachten ist auch nach wie vor die lokale Gesetzgebung, siehe dazu ["AT 28.05.2021 B6" im Bundesanzeiger]( https://www.bundesanzeiger.de/pub/publication/IGrRaNuJBWgwK7Giz8Y/content/IGrRaNuJBWgwK7Giz8Y/BAnz%20AT%2028.05.2021%20B6.pdf?inline). Noch aktueller dazu: 
 ["BAnz AT 27.05.2022 B4" im Bundesanzeiger](https://www.bundesanzeiger.de/pub/publication/qOIieZMq3dnFbUZs734/content/qOIieZMq3dnFbUZs734/BAnz%20AT%2027.05.2022%20B4.pdf?inline).
 
