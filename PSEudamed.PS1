@@ -201,7 +201,7 @@ Function Get-EudamedEODevicesByManufacturerName {
 Function Get-EudamedEODetail {
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory,ParameterSetName='Srn',Position=0,ValueFromPipelineByPropertyName,Mandatory=$false)]
+        [Parameter(Mandatory,ParameterSetName='Srn',Position=0,ValueFromPipelineByPropertyName)]
         [String]$Srn,
         [Parameter(Mandatory,ParameterSetName='Uuid',Position=0)]
         [String]$Uuid
