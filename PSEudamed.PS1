@@ -201,10 +201,10 @@ Function Get-EudamedEODevicesByManufacturerName {
 Function Get-EudamedEODetail {
     [CmdletBinding()]
     Param(
+        [Parameter(Mandatory,ParameterSetName='Srn',Position=0,ValueFromPipelineByPropertyName,Mandatory=$false)]
+        [String]$Srn,
         [Parameter(Mandatory,ParameterSetName='Uuid',Position=0)]
-        [String]$Uuid,
-        [Parameter(Mandatory,ParameterSetName='Srn',Position=0)]
-        [String]$Srn
+        [String]$Uuid
     )
 
     If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
