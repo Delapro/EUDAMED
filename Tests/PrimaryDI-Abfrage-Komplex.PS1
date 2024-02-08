@@ -9,7 +9,7 @@ $hersteller=@('DE-MF-000007705', 'DE-IM-000006314', 'DE-MF-000007706', 'DE-MF-00
               'DE-MF-000019995', 'DE-MF-000009125', 'DE-MF-000004938', 'DE-MF-000019277', 'DE-MF-000006230', 'DE-MF-000006241', 'DE-MF-000006592',
               'DE-MF-000007202', 'DE-MF-000015891', 'DE-MF-000000022', 'DE-MF-000005874', 'DE-MF-000005448', 'DE-MF-000019692', 'DE-MF-000005029',
               'DE-MF-000005671', 'DE-MF-000010090', 'DE-MF-000022666', 'DE-MF-000005995', 'DE-MF-000038372', 'DE-MF-000009412', 'DE-MF-000005557',
-              'DE-MF-000008303', 'DE-MF-000005566', 'DE-MF-000005811',
+              'DE-MF-000008303', 'DE-MF-000005566', 'DE-MF-000005811'
              )
 # Ausgabe der Namen und Anzahl der hinterlegten Materialien              
 $hersteller[0..2]| Get-EudamedEODetail -Verbose |Get-EudamedDevicesOfEO  -Verbose  | Get-EudamedDeviceDetail  -Verbose 
