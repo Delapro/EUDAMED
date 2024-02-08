@@ -12,6 +12,11 @@ $hersteller=@('DE-MF-000007705', 'DE-IM-000006314', 'DE-MF-000007706', 'DE-MF-00
               'DE-MF-000008303', 'DE-MF-000005566', 'DE-MF-000005811'
              )
 
+"Direktabfrage, prüfen ob Cmdlet vorhanden" # Leerzeile
+Get-EudamedDevicesOfEO -srn $Hersteller[-1]
+"" # Leerzeile
+
+"Abfrage aller:" # Leerzeile
 # Ausgabe der Namen und Anzahl der hinterlegten Materialien              
 $hersteller | ForEach-Object -ThrottleLimit 10 -Parallel {Get-EudamedDevicesOfEO -Srn $_} | Get-EudamedDeviceDetail  -Verbose 
 
