@@ -13,6 +13,6 @@ $hersteller=@('DE-MF-000007705', 'DE-IM-000006314', 'DE-MF-000007706', 'DE-MF-00
              )
 
 # Ausgabe der Namen und Anzahl der hinterlegten Materialien              
-$hersteller | ForEach-Object -Parallel -ThrottleLimit 10 {Get-EudamedDevicesOfEO -Srn $_} | Get-EudamedDeviceDetail  -Verbose 
+$hersteller | ForEach-Object -ThrottleLimit 10 -Parallel {Get-EudamedDevicesOfEO -Srn $_} | Get-EudamedDeviceDetail  -Verbose 
 
 "" # Leerzeile
