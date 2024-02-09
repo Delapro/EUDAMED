@@ -19,6 +19,9 @@ Get-EudamedDevicesOfEO -srn $Hersteller[-1]
 "Abfrage aller:" # Leerzeile
 # Ausgabe der Namen und Anzahl der hinterlegten Materialien
 # -Parallel ist noch nicht praktikabel: https://stackoverflow.com/questions/61273189/how-to-pass-a-custom-function-inside-a-foreach-object-parallel
-$hersteller | ForEach-Object {Get-EudamedDevicesOfEO -Srn $_} | Get-EudamedDeviceDetail  -Verbose 
+$devices = $hersteller | ForEach-Object {Get-EudamedDevicesOfEO -Srn $_} 
+
+"DeviceDetails abfragen:" # Leerzeile
+$devices | Get-EudamedDeviceDetail  -Verbose 
 
 "" # Leerzeile
