@@ -59,6 +59,8 @@ Hier die Seite mit den verschiedenen Links: https://ogd.swissmedic.ch/mep. Eine 
 # API
 Es gibt auch eine (inoffizielle?) API, welche das direkte Abgreifen von Informationen per JSON-Objekten erlaubt. Nicht direkt aber indirekt findet man teilweise Informationen zur Architektur und Schnittstellen sowie Software hier: https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/2022/06/22/eDelivery+Roadmap+for+2022+and+beyond, bzw. https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eDelivery+AS4.
 
+Hier findet man eine komplette JAVA-Library die mit EUDAMED und AS4 umgehen kann: https://github.com/phax/phase4/.
+
 > Die nachstehenden Daten wurden am 30.9.2022 und 10.10.2022 abgerufen, es kann also später Abweichungen geben.
 
 ## Ausgabe der Version der EUDAMED
