@@ -235,6 +235,19 @@ Function Get-EudamedDevicesOfEO {
     }
 }
 
+# ermittelt alle Devices oder die Anzahl davon
+Function Get-EudamedDevices {
+    [CmdletBinding()]
+    Param(
+	[switch]$OnlyTotalElements
+    )
+    
+    Process {
+    	$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?iso2Code=en&deviceStatusCode=refdata.device-model-status.on-the-market&languageIso2Code=de"
+    	Get-EudamedPagedData -Url $Url -OnlyTotalElements:$OnlyTotalElements
+    }
+}
+
 Function Get-EudamedDeviceDetail {
     [CmdletBinding()]
     Param(
