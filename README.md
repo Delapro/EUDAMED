@@ -3009,6 +3009,9 @@ https://www.youtube.com/user/JohnerInstitut.
 ## CND, EMDN, GMDN und UMDNS
 Es tauchen in den Daten z.B. cndNomenclatures auf. Hier die offizielle Seite zu der Nomenklatur: https://webgate.ec.europa.eu/dyna2/emdn/, weitere Infos mit einem Überblick über die Zusammenhänge findet man hier: https://www.johner-institut.de/blog/regulatory-affairs/gmdn-und-umdns-codes/. Der grundsätzliche Aufbau der EMDN wird hier beschrieben: https://health.ec.europa.eu/system/files/2021-06/md_q-a_emdn_en_0.pdf.
 
+## Arbeit über EUDAMED
+Hier hat jemand eine Arbeit über EUDAMED geschrieben, der auch die REST-API nutzt und für seine Auswertungen nutzt. Könnte vielleicht für den einen oder anderen Fall interessant sein: https://openaccess.uoc.edu/bitstream/10609/148250/1/jlopezledTFG0623memoria.pdf, Beschreibung ab Seite 55.
+
 ## Beispiele für Zertifikate
 
 ### Erkodent mit TÜV Rheinland
