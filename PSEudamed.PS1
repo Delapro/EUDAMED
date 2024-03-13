@@ -245,10 +245,9 @@ Function Get-EudamedDevices {
     )
     
     Process {
-	# deviceModel, deviceName
 	$search = ""
 	If ($Name) {
-		$search += "&deviceName=$Name"
+		$search += "&tradeName=$Name"
 	}
 	If ($DeviceModel) {
 		$search += "&deviceModel=$DeviceModel"
