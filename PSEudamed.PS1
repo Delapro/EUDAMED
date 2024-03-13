@@ -239,11 +239,22 @@ Function Get-EudamedDevicesOfEO {
 Function Get-EudamedDevices {
     [CmdletBinding()]
     Param(
+	[String]$Name,
+	[String]$DeviceModel,
 	[switch]$OnlyTotalElements
     )
     
     Process {
-    	$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?iso2Code=en&deviceStatusCode=refdata.device-model-status.on-the-market&languageIso2Code=de"
+	# deviceModel, deviceName
+	$search = ""
+	If ($Name) {
+		$search += "&deviceName=$Name"
+	}
+	If ($DeviceModel) {
+		$search += "&deviceModel=$DeviceModel"
+	}
+    	$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?iso2Code=en&deviceStatusCode=refdata.device-model-status.on-the-market&languageIso2Code=de$search"
+Write-Host $url
     	Get-EudamedPagedData -Url $Url -OnlyTotalElements:$OnlyTotalElements
     }
 }
