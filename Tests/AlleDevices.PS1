@@ -9,14 +9,14 @@ $ende = Get-Date
 " " # Leerzeile
 
 $start = Get-Date
-"Devices mit A: $(Get-EudamedDevices -OnlyTotalElements -Name 'A')"
+"Devices mit A: $(Get-EudamedDevices -OnlyTotalElements -Name 'AAA')"
 $ende = Get-Date
 "Dauer: $(($ende-$start).TotalSeconds)"
 
 " " # Leerzeile
 
 $start = Get-Date
-"Devices mit B: $(Get-EudamedDevices -OnlyTotalElements -Name 'B')"
+"Devices mit B: $(Get-EudamedDevices -OnlyTotalElements -Name 'BBB')"
 $ende = Get-Date
 "Dauer: $(($ende-$start).TotalSeconds)"
 
