@@ -2,6 +2,7 @@
 Set-Culture('de-DE')
 
 # https://ec.europa.eu/tools/eudamed/#/screen/search-device
+<#
 
 $start = Get-Date
 "Devices: $(Get-EudamedDevices -OnlyTotalElements)"
@@ -37,9 +38,10 @@ $ende = Get-Date
 "Dauer: $(($ende-$start).TotalSeconds)"
 
 " " # Leerzeile
+#>
 
 $start = Get-Date
-"Devices mit L: $(Get-EudamedDevices -OnlyTotalElements -Name 'L')" # LISTER BANDAGE SCISSORS 15cm, PLASTIC HANDLE [EN]
+"Devices mit ^L: $(Get-EudamedDevices -OnlyTotalElements -Name '^L')" # LISTER BANDAGE SCISSORS 15cm, PLASTIC HANDLE [EN]
 $ende = Get-Date
 "Dauer: $(($ende-$start).TotalSeconds)"
 
