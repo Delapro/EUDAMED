@@ -9,6 +9,13 @@ $ende = Get-Date
 " " # Leerzeile
 
 $start = Get-Date
+"Devices mit A Versuch mit RegEx: $(Get-EudamedDevices -OnlyTotalElements -Name '^A')"
+$ende = Get-Date
+"Dauer: $(($ende-$start).TotalSeconds)"
+
+" " # Leerzeile
+
+$start = Get-Date
 "Devices mit A: $(Get-EudamedDevices -OnlyTotalElements -Name 'A')"
 $ende = Get-Date
 "Dauer: $(($ende-$start).TotalSeconds)"
