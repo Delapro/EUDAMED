@@ -63,6 +63,8 @@ Hier findet man eine komplette JAVA-Library die mit EUDAMED und AS4 umgehen kann
 
 > Die nachstehenden Daten wurden am 30.9.2022 und 10.10.2022 abgerufen, es kann also später Abweichungen geben.
 
+Die ganzen API-Geschichten beruhen auf einer Infrastruktur die unter dem Begriff Domibus läuft. Hier findet man mehr Infos zu Releases (Roadmap) und welche Software dabei zum Einsatz kommt: https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Domibus+releases. Ende 2024 wurde auf Dombibus v5.0 FR (Final Release) umgestellt: https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Domibus+-+v5.0.
+
 ## Ausgabe der Version der EUDAMED
 
 Mittels dieser Abfrage kann man den Versionsstand der EUDAMED abfragen: https://ec.europa.eu/tools/eudamed/api/applicationInfo?languageIso2Code=undefined.
