@@ -1,4 +1,4 @@
-Aktuell kann man Rückrufe hier einsehen: https://www.bfarm.de/SiteGlobals/Forms/Suche/Expertensuche_Formular.html
+Aktuell kann man Rückrufe hier einsehen: https://www.bfarm.de/SiteGlobals/Forms/Suche/Expertensuche_Formular.html?nn=597716&cl2Categories_Format=kundeninfo
 
 Zuerst wählt man unter Format Kundeninformation aus, um danach Dentalprodukte auszuwählen. Direkt:
 https://www.bfarm.de/SiteGlobals/Forms/Suche/Expertensuche_Formular.html?cl2Categories_Format=kundeninfo&cl2Taxonomies_Produktgruppe=%2Fbfarmweb%2Fsiteglobals%2Fcategories%2Fproduktgruppe%2Fdir_03dt
