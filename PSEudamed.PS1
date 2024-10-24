@@ -258,6 +258,7 @@ Write-Host $url
     }
 }
 
+# Issue #2 beachten wegen Unterschiede beim Resultset! https://github.com/Delapro/EUDAMED/issues/2
 Function Get-EudamedDeviceDetail {
     [CmdletBinding()]
     Param(
