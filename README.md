@@ -55,6 +55,11 @@ Die Schweiz scheint die Eudamed für sich abzubilden und nennt sich einfach Swis
 Hier die aktuelle schweizer Actor Liste: https://ogd.swissmedic.ch/mep/CHRNActors.xml, zu finden unter: https://opendata.swiss/de/dataset/mep401-chnr-actors.
 Hier die Seite mit den verschiedenen Links: https://ogd.swissmedic.ch/mep. Eine Beschreibung der Felder findet man unter: https://ogd.swissmedic.ch/mep/Documentation_OGD_Dataset.pdf.
 
+# Schwachpunkte der EUDAMED Datenhaltung
+
+https://github.com/openregulatory/eudamed-audit
+
+Vor allem der Punkt mit der fehlenden Performance wenn man nach einer UDI-DI sucht https://github.com/openregulatory/eudamed-audit#7-insufficient-performance kann voll bestätigt werden und ist nun mittlerweile seit zwei Jahren ein Thema das nicht gefixt wird!
 
 # API
 Es gibt auch eine (inoffizielle?) API, welche das direkte Abgreifen von Informationen per JSON-Objekten erlaubt. Nicht direkt aber indirekt findet man teilweise Informationen zur Architektur und Schnittstellen sowie Software hier: https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/2022/06/22/eDelivery+Roadmap+for+2022+and+beyond, bzw. https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eDelivery+AS4.
@@ -64,6 +69,8 @@ Hier findet man eine komplette JAVA-Library die mit EUDAMED und AS4 umgehen kann
 > Die nachstehenden Daten wurden am 30.9.2022 und 10.10.2022 abgerufen, es kann also später Abweichungen geben.
 
 Die ganzen API-Geschichten beruhen auf einer Infrastruktur die unter dem Begriff Domibus läuft. Hier findet man mehr Infos zu Releases (Roadmap) und welche Software dabei zum Einsatz kommt: https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Domibus+releases. Ende 2024 wurde auf Dombibus v5.0 FR (Final Release) umgestellt: https://ec.europa.eu/digital-building-blocks/sites/display/DIGITAL/Domibus+-+v5.0.
+
+Es gibt auch eine alternative API: https://github.com/openregulatory/eudamed-api. Diese ist vor allem performanter, allerdings ist nicht ganz klar wie aktuell die enthaltenen Daten sind bzw. sein werden.
 
 ## Ausgabe der Version der EUDAMED
 
