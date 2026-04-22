@@ -69,6 +69,8 @@ Die offizielle Public API für die EUDAMED ist nun unter https://developer.datal
 > [!CAUTION]
 Hinweis bzw. TODO: Die unten stehenden APIs müssen noch auf die aktuelle Public umgestellt werden!
 
+Es gibt auch eine Swagger bzw. Open API Datei dazu: https://webgate.ec.europa.eu/eudamed-help/en/files/Swagger%20OpenAPI%20file.yaml. Leider aber alles sehr rudimentär gehalten. Viel Spaß beim Raten...
+
 ## Aufruf der Public API
 ```
 $res=Invoke-WebRequest -UseBasicParsing -Uri 'https://api.datalake.sante.service.ec.europa.eu/eudamed/udi?PRIMARY_DI=E4947662361&format=json&api-version=v1.0'
