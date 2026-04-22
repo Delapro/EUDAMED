@@ -69,6 +69,16 @@ Die offizielle Public API für die EUDAMED ist nun unter https://developer.datal
 > [!CAUTION]
 Hinweis bzw. TODO: Die unten stehenden APIs müssen noch auf die aktuelle Public umgestellt werden!
 
+## Aufruf der Public API
+```
+$res=Invoke-WebRequest -UseBasicParsing -Uri 'https://api.datalake.sante.service.ec.europa.eu/eudamed/udi?PRIMARY_DI=E4947662361&format=json&api-version=v1.0'
+$res.Content
+$j=$res.Content | convertfrom-Json
+$j.value
+```
+
+Der erste Aufruf einer neuen DI kann schon mal ein paar Sekunden dauern! Aber dann scheint der Datensatz gecacht zu werden. Allerdings nicht auf ewig sondern eher nur ein paar Sekunden.
+
 ## frühere API-Verweise
 Es gibt auch eine (inoffizielle?) API, welche das direkte Abgreifen von Informationen per JSON-Objekten erlaubt. Nicht direkt aber indirekt findet man teilweise Informationen zur Architektur und Schnittstellen sowie Software hier: https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/2022/06/22/eDelivery+Roadmap+for+2022+and+beyond, bzw. https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eDelivery+AS4.
 
