@@ -63,7 +63,13 @@ https://github.com/openregulatory/eudamed-audit
 
 Vor allem der Punkt mit der fehlenden Performance wenn man nach einer UDI-DI sucht https://github.com/openregulatory/eudamed-audit#7-insufficient-performance kann voll bestätigt werden und ist nun mittlerweile seit zwei Jahren ein Thema das nicht gefixt wird!
 
-# API
+# offizielle API
+Die offizielle Public API für die EUDAMED ist nun unter https://developer.datalake.sante.service.ec.europa.eu/api-details#api=94b9e658-d721-4b58-8d96-022c490f7a17&operation=411c8f92-26fa-4451-9377-7a13b5d17915 verfügbar.
+
+> [!CAUTION]
+Hinweis bzw. TODO: Die unten stehenden APIs müssen noch auf die aktuelle Public umgestellt werden!
+
+## frühere API-Verweise
 Es gibt auch eine (inoffizielle?) API, welche das direkte Abgreifen von Informationen per JSON-Objekten erlaubt. Nicht direkt aber indirekt findet man teilweise Informationen zur Architektur und Schnittstellen sowie Software hier: https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/2022/06/22/eDelivery+Roadmap+for+2022+and+beyond, bzw. https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eDelivery+AS4.
 
 Hier findet man eine komplette JAVA-Library die mit EUDAMED und AS4 umgehen kann: https://github.com/phax/phase4/.
