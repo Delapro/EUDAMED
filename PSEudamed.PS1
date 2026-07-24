@@ -31,8 +31,9 @@ Function Get-EudamedPagedData {
             $NewUrl="$($Url)?page=$page&pageSize=$size&size=$size"
         }
         Write-Verbose "Aufruf: $NewUrl"
-        $r=Invoke-WebRequest $NewUrl -UseBasicParsing
-        $j=Convertfrom-json $r.content
+        # $r=Invoke-WebRequest $NewUrl -UseBasicParsing
+        # $j=Convertfrom-json $r.content
+        $j = Invoke-RestMethod -Uri $newUrl -ConnectionTimeoutSeconds 30 -OperationTimeoutSeconds 180
         If ($j.number -eq 0) {
             Write-Verbose "TotalPages: $($j.totalPages)"
             Write-Verbose "TotalElements: $($j.totalElements)"
