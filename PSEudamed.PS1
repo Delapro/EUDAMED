@@ -6,6 +6,138 @@ Function Set-Culture([System.Globalization.CultureInfo] $culture)
     [System.Threading.Thread]::CurrentThread.CurrentCulture = $culture
 }
 
+function Invoke-EudamedRestRequest {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [uri] $Uri,
+
+        [ValidateRange(1, 20)]
+        [int] $MaxAttempts = 5,
+
+        [ValidateRange(0, 3600)]
+        [int] $RequestTimeoutSeconds = 180,
+
+        [ValidateRange(0, 3600)]
+        [int] $ReadTimeoutSeconds = 60
+    )
+
+    # HTTP-Statuscodes, bei denen eine Wiederholung sinnvoll sein kann.
+    $retryableStatusCodes = @(
+        408, # Request Timeout
+        425, # Too Early
+        429, # Too Many Requests
+        500, # Internal Server Error
+        502, # Bad Gateway
+        503, # Service Unavailable
+        504  # Gateway Timeout
+    )
+
+    # Wartezeiten nach dem ersten, zweiten, dritten und vierten Fehler.
+    $retryDelays = @(5, 15, 30, 60)
+
+    for ($attempt = 1; $attempt -le $MaxAttempts; $attempt++) {
+        $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+
+        try {
+            Write-Host (
+                'HTTP START attempt={0}/{1} uri="{2}"' -f
+                    $attempt,
+                    $MaxAttempts,
+                    $Uri
+            )
+
+            $result = Invoke-RestMethod `
+                -Uri $Uri `
+                -Method Get `
+                -ConnectionTimeoutSeconds $RequestTimeoutSeconds `
+                -OperationTimeoutSeconds $ReadTimeoutSeconds `
+                -ErrorAction Stop
+
+            $stopwatch.Stop()
+
+            Write-Host (
+                'HTTP OK attempt={0}/{1} durationMs={2} uri="{3}"' -f
+                    $attempt,
+                    $MaxAttempts,
+                    $stopwatch.ElapsedMilliseconds,
+                    $Uri
+            )
+
+            return $result
+        }
+        catch {
+            $stopwatch.Stop()
+
+            $statusCode = $null
+
+            if (
+                $null -ne $_.Exception.Response -and
+                $null -ne $_.Exception.Response.StatusCode
+            ) {
+                $statusCode = [int] $_.Exception.Response.StatusCode
+            }
+
+            # Je nach PowerShell-/NET-Version kann ein Timeout als
+            # TaskCanceledException, HttpRequestException oder über
+            # die Fehlermeldung sichtbar werden.
+            $isTimeout =
+                $_.Exception -is [System.Threading.Tasks.TaskCanceledException] -or
+                $_.Exception.InnerException -is [System.Threading.Tasks.TaskCanceledException] -or
+                $_.Exception.Message -match
+                    '(?i)timeout|timed out|HttpClient\.Timeout|request was canceled'
+
+            $isRetryableHttpError =
+                $null -ne $statusCode -and
+                $statusCode -in $retryableStatusCodes
+
+            $canRetry =
+                ($isTimeout -or $isRetryableHttpError) -and
+                $attempt -lt $MaxAttempts
+
+            Write-Warning (
+                'HTTP ERROR attempt={0}/{1} durationMs={2} ' +
+                'status={3} timeout={4} retry={5} message="{6}" uri="{7}"' -f
+                    $attempt,
+                    $MaxAttempts,
+                    $stopwatch.ElapsedMilliseconds,
+                    $(if ($null -eq $statusCode) { 'none' } else { $statusCode }),
+                    $isTimeout,
+                    $canRetry,
+                    $_.Exception.Message.Replace('"', "'"),
+                    $Uri
+            )
+
+            if (-not $canRetry) {
+                throw
+            }
+
+            $delaySeconds = $retryDelays[
+                [Math]::Min(
+                    $attempt - 1,
+                    $retryDelays.Count - 1
+                )
+            ]
+
+            # Kleine Zufallskomponente, damit parallele Jobs nicht
+            # gleichzeitig erneut auf den Server zugreifen.
+            $delaySeconds += Get-Random -Minimum 0 -Maximum 4
+
+            Write-Host (
+                'HTTP RETRY attempt={0}/{1} waitSeconds={2} uri="{3}"' -f
+                    ($attempt + 1),
+                    $MaxAttempts,
+                    $delaySeconds,
+                    $Uri
+            )
+
+            Start-Sleep -Seconds $delaySeconds
+        }
+    }
+
+    throw "Unerwartetes Ende der Retry-Schleife für $Uri"
+}
+
 Function Get-EudamedPagedData {
     [CmdletBinding()]
     Param(
@@ -33,8 +165,9 @@ Function Get-EudamedPagedData {
         Write-Verbose "Aufruf: $NewUrl"
         # $r=Invoke-WebRequest $NewUrl -UseBasicParsing
         # $j=Convertfrom-json $r.content
-        $j = Invoke-RestMethod -Uri $newUrl -ConnectionTimeoutSeconds 30 -OperationTimeoutSeconds 180
-        If ($j.number -eq 0) {
+        # $j = Invoke-RestMethod -Uri $newUrl -ConnectionTimeoutSeconds 30 -OperationTimeoutSeconds 180
+		$j = Invoke-EudamedRestRequest -Uri $newUrl -MaxAttempts 5 -RequestTimeoutSeconds 180 -ReadTimeoutSeconds 60
+		If ($j.number -eq 0) {
             Write-Verbose "TotalPages: $($j.totalPages)"
             Write-Verbose "TotalElements: $($j.totalElements)"
             $Pages = $j.totalPages
