@@ -85,7 +85,6 @@ $header=@('leer',@{N='Count';E={Get-EudamedEODevicesByManufacturerName -Manufact
 "" # Leerzeile
 
 # alle CNDs mit Dental ermitteln:
-$emdn = Get-EudamedEmdn
 $ms = Get-EudamedEmdnSearch -emdn $emdn -text dental
 "CNDs mit dental im Namen: $($ms.Length)"
 "" # Leerzeile
