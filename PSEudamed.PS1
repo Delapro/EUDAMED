@@ -96,16 +96,18 @@ function Invoke-EudamedRestRequest {
                 $attempt -lt $MaxAttempts
 
             Write-Warning (
+				(
                 'HTTP ERROR attempt={0}/{1} durationMs={2} ' +
-                'status={3} timeout={4} retry={5} message="{6}" uri="{7}"' -f
-                    $attempt,
-                    $MaxAttempts,
-                    $stopwatch.ElapsedMilliseconds,
-                    $(if ($null -eq $statusCode) { 'none' } else { $statusCode }),
-                    $isTimeout,
-                    $canRetry,
-                    $_.Exception.Message.Replace('"', "'"),
-                    $Uri
+                'status={3} timeout={4} retry={5} message="{6}" uri="{7}"'
+				) -f
+                $attempt,
+                $MaxAttempts,
+                $stopwatch.ElapsedMilliseconds,
+                $(if ($null -eq $statusCode) { 'none' } else { $statusCode }),
+                $isTimeout,
+                $canRetry,
+                $_.Exception.Message.Replace('"', "'"),
+                $Uri
             )
 
             if (-not $canRetry) {
@@ -404,15 +406,17 @@ Function Get-EudamedDeviceDetail {
     
     Process {
     	If ($PSCmdlet.ParameterSetName -eq 'Uuid') {    
-		$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/$($Uuid)?languageIso2Code=de"
-	} else {
-		# primaryDI-Set
-		$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?primaryDi=$([System.Web.HttpUtility]::UrlEncode($PrimaryDI))&languageIso2Code=de"
+			$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData/$($Uuid)?languageIso2Code=de"
+		} else {
+			# primaryDI-Set
+			$Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?primaryDi=$([System.Web.HttpUtility]::UrlEncode($PrimaryDI))&languageIso2Code=de"
+		}
+
+		Invoke-EudamedRestRequest -Uri $Url `
+    		-MaxAttempts 5 `
+    		-RequestTimeoutSeconds 180 `
+    		-ReadTimeoutSeconds 60
 	}
-    	Write-Verbose "Url: $Url"
-    	$r=Invoke-WebRequest $Url -UseBasicParsing
-    	ConvertFrom-Json $r.Content
-    }
 }
 
 Function Get-EudamedEmdn {
