@@ -249,20 +249,24 @@ Function Get-EudamedCertificates {
 Function Get-EudamedCertificateDetail {
     [CmdletBinding()]
     Param(
-        [Parameter(ParameterSetName='Uuid',Position=0,ValueFromPipelineByPropertyName,Mandatory)]
+        [Parameter(
+            ParameterSetName='Uuid',
+            Position=0,
+            ValueFromPipelineByPropertyName,
+            Mandatory
+        )]
         [String]$Uuid
     )
 
     Process {
-      If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
-          $Url = "https://ec.europa.eu/tools/eudamed/api/certificates/$Uuid/?languageIso2Code=de"
-      }
-      $r=Invoke-WebRequest "$Url" -UseBasicParsing
-      If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
-	      ConvertFrom-Json $r.Content
-      } else {
-	      # (ConvertFrom-Json $r.Content).Content  # Irgendwie nochmal geschachtelt, können srn Wildcards enthalten?!?!?
-      }
+        $Url = "https://ec.europa.eu/tools/eudamed/api/certificates/$Uuid/?languageIso2Code=de"
+
+        Write-Verbose "Url: $Url"
+
+        Invoke-EudamedRestRequest -Uri $Url `
+            -MaxAttempts 5 `
+            -RequestTimeoutSeconds 180 `
+            -ReadTimeoutSeconds 60
     }
 }
 
