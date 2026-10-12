@@ -81,6 +81,62 @@ $j.value
 
 Der erste Aufruf einer neuen DI kann schon mal ein paar Sekunden dauern! Aber dann scheint der Datensatz gecacht zu werden. Allerdings nicht auf ewig sondern eher nur ein paar Sekunden.
 
+### Gemessene Eigenheiten der Public API (Stand 2026-08, Build 2.27.3)
+
+Ein paar Dinge, die beim Umstellen auf die Public API Zeit sparen — alle
+gemessen, jeweils mit Aufruf zum Nachprüfen:
+
+**Unbekannte Parameter werden abgelehnt (HTTP 400)** — anders als bei der UI-API,
+die sie stillschweigend verwirft:
+
+```
+Invoke-WebRequest -UseBasicParsing -Uri 'https://api.datalake.sante.service.ec.europa.eu/eudamed/udi?format=json&api-version=v1.0&CND_CODE=Q01'
+# {"error":{"code":"BadRequest","message":"Invalid Query Parameter: CND_CODE","status":400}}
+```
+
+**Angenommene Parameter auf `/udi`:** `PRIMARY_DI`, `BASIC_UDI`, `MF_SRN`,
+`TRADE_NAME`, `DEVICE_NAME`, `NOMENCLATURE_CODE`, `REFERENCE`, `RISK_CLASS_ID`,
+`APPLICABLE_LEGISLATION_ID`. Abgelehnt werden u. a. `MF_NAME`, `IMPLANTABLE`,
+`STERILE`, `UUID`, `DEVICE_STATUS_TYPE_ID`.
+
+**Achtung, führendes Leerzeichen:** Die gespeicherten `NOMENCLATURE_CODE`-Werte
+tragen ein führendes Leerzeichen. Ohne das trifft die Abfrage nichts (sieht aus
+wie „gibt es nicht"), mit `%20` kommen die Treffer:
+
+```
+…&NOMENCLATURE_CODE=Q010601      -> 0 Datensätze
+…&NOMENCLATURE_CODE=%20Q010601   -> 1000+ Datensätze
+```
+
+Eine Präfixsuche wie bei `cndCode` der UI-API gibt es hier **nicht** (`%20Q0106`
+liefert 0, obwohl `%20Q010601` darunter liegt).
+
+**`TRADE_NAME` matcht exakt**, nicht als Teilstring — ein Teilname liefert still
+0 Datensätze. **`RISK_CLASS_ID` und `APPLICABLE_LEGISLATION_ID` wollen die
+Kennzahlen**, nicht die refdata-Codes: `RISK_CLASS_ID=-10.0` (Klasse III)
+filtert, `RISK_CLASS_ID=class-iii` wird abgelehnt. Die Kennzahlen stehen
+mehrsprachig im `/reference`-Endpunkt (`{ID, CODE, LANGUAGE, VALUE}`).
+
+**Blättern läuft über einen Cursor:** kein `page`/`offset`/`limit` (alles HTTP
+400) — die Antwort trägt neben `value` ein `nextLink` mit `$after`-Token, 1000
+Datensätze je Seite. `format` kennt neben `json` auch `csv`.
+
+**Was die Public API nicht hat:** Zertifikate (`/certificates` -> 404) und eben
+die Präfix-/Gruppensuche. Dafür liefert sie je Gerät 60 Felder inklusive der
+Produktmerkmale (`IMPLANTABLE`, `STERILE`, `LATEX`, `CMR_SUBSTANCE`, …), die die
+UI-API nur über den Detailabruf je Gerät hergibt — ein Herstellerabzug mit allen
+Merkmalen ist hier **eine** Anfrage statt zwei je Gerät.
+
+Übrigens steuert die Kommission über
+`https://ec.europa.eu/tools/eudamed/api/configurationParameters?scope=PUBLIC&languageIso2Code=en`
+per Feature-Flags, was die öffentliche Seite überhaupt zeigt — dort ist auch
+belegt, dass die Vigilanz-Meldungen öffentlich abgeschaltet sind
+(`ffVigFsn=false`).
+
+Ausführliche Messungen (Filtermatrix der UI-API, Endpunkt-Landkarte, Fallgruben)
+samt Skripten zum Nachmessen:
+https://github.com/AG-Kollotzek/eudamed-api-field-guide
+
 ## frühere API-Verweise
 Es gibt auch eine (inoffizielle?) API, welche das direkte Abgreifen von Informationen per JSON-Objekten erlaubt. Nicht direkt aber indirekt findet man teilweise Informationen zur Architektur und Schnittstellen sowie Software hier: https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/2022/06/22/eDelivery+Roadmap+for+2022+and+beyond, bzw. https://ec.europa.eu/digital-building-blocks/wikis/display/DIGITAL/eDelivery+AS4.
 
