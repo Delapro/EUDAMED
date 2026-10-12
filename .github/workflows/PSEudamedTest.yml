@@ -23,9 +23,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Upgrade to latest powershell on Linux
+        if: false
         run: |
           # docs: https://learn.microsoft.com/de-de/powershell/scripting/install/install-other-linux?view=powershell-7.3#installation-using-a-binary-archive-file
           # Download the powershell '.tar.gz' archive
@@ -45,10 +46,12 @@ jobs:
 
       # Skript ausführen
       - name: PSEudamed.PS1 laden und Abfragen ausführen
+        shell: pwsh
         run: |
+          $PSVersionTable.PSVersion
           . ./PSEudamed.PS1
           ./Tests/Abfragen.PS1
           ./Tests/Abfrage-Hersteller.PS1
           ./Tests/Abfrage-CNDs.PS1
           ./Tests/Abfrage-Zertifikate.PS1
-        shell: pwsh
+
