@@ -63,8 +63,8 @@ https://github.com/openregulatory/eudamed-audit
 
 Vor allem der Punkt mit der fehlenden Performance wenn man nach einer UDI-DI sucht https://github.com/openregulatory/eudamed-audit#7-insufficient-performance kann voll bestätigt werden und ist nun mittlerweile seit zwei Jahren ein Thema das nicht gefixt wird!
 
-# offizielle API
-Die offizielle Public API für die EUDAMED ist nun unter https://developer.datalake.sante.service.ec.europa.eu/api-details#api=94b9e658-d721-4b58-8d96-022c490f7a17&operation=411c8f92-26fa-4451-9377-7a13b5d17915 verfügbar.
+# Offizielle API
+Die offizielle Public API für die EUDAMED ist nun unter https://developer.datalake.sante.service.ec.europa.eu/api-details#api=94b9e658-d721-4b58-8d96-022c490f7a17&operation=411c8f92-26fa-4451-9377-7a13b5d17915 verfügbar. Hier noch ein User Guide dazu: https://webgate.ec.europa.eu/eudamed-play-help/en/files/Public%20API%20-%20user%20guide.pdf.
 
 > [!CAUTION]
 Hinweis bzw. TODO: Die unten stehenden APIs müssen noch auf die aktuelle Public umgestellt werden!
