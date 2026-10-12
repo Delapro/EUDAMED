@@ -40,7 +40,7 @@ function Invoke-EudamedRestRequest {
         $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 
         try {
-            Write-Host (
+            Write-Verbose (
                 'HTTP START attempt={0}/{1} uri="{2}"' -f
                     $attempt,
                     $MaxAttempts,
@@ -56,7 +56,7 @@ function Invoke-EudamedRestRequest {
 
             $stopwatch.Stop()
 
-            Write-Host (
+            Write-Verbose (
                 'HTTP OK attempt={0}/{1} durationMs={2} uri="{3}"' -f
                     $attempt,
                     $MaxAttempts,
@@ -123,7 +123,7 @@ function Invoke-EudamedRestRequest {
             # gleichzeitig erneut auf den Server zugreifen.
             $delaySeconds += Get-Random -Minimum 0 -Maximum 4
 
-            Write-Host (
+            Write-Verbose (
                 'HTTP RETRY attempt={0}/{1} waitSeconds={2} uri="{3}"' -f
                     ($attempt + 1),
                     $MaxAttempts,
