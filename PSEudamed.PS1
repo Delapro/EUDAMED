@@ -347,14 +347,21 @@ Function Get-EudamedEODetail {
         $Url = "https://ec.europa.eu/tools/eudamed/api/actors/$Uuid/publicInformation?languageIso2Code=de"
     } else {
         # ParameterSet Srn
-        $Url = "https://ec.europa.eu/tools/eudamed/api/eos?srn=$($srn)&languageIso2Code=de"
+        $Url = "https://ec.europa.eu/tools/eudamed/api/eos?srn=$($Srn)&languageIso2Code=de"
     }
-    $r=Invoke-WebRequest "$Url" -UseBasicParsing
+
+    Write-Verbose "Url: $Url"
+
+    $j = Invoke-EudamedRestRequest -Uri $Url `
+        -MaxAttempts 5 `
+        -RequestTimeoutSeconds 180 `
+        -ReadTimeoutSeconds 60
+
     If ($PSCmdlet.ParameterSetName -eq 'Uuid') {
-	    ConvertFrom-Json $r.Content
-	} else {
-	    (ConvertFrom-Json $r.Content).Content  # Irgendwie nochmal geschachtelt, können srn Wildcards enthalten?!?!?
-	}
+        $j
+    } else {
+        $j.Content
+    }
 }
 
 Function Get-EudamedDevicesOfEO {
