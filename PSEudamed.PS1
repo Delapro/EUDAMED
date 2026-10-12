@@ -437,8 +437,11 @@ Function Get-EudamedEmdn {
     
     $Url = "https://webgate.ec.europa.eu/dyna2/emdn/api/nomenclature?id=%23"
     Write-Verbose "Url: $Url"
-    $r=Invoke-WebRequest $Url -UseBasicParsing
-    ConvertFrom-Json $r.Content
+
+	Invoke-EudamedRestRequest -Uri $Url `
+    	-MaxAttempts 5 `
+    	-RequestTimeoutSeconds 180 `
+    	-ReadTimeoutSeconds 60
 }
 
 Function Get-EudamedEmdnSearch {
@@ -475,7 +478,8 @@ Function Get-EudamedVersion {
     )
     
     $url = "https://ec.europa.eu/tools/eudamed/api/applicationInfo"
-    $r=Invoke-WebRequest -Uri $url -UseBasicParsing
-    $r.Content
-    
+	Invoke-EudamedRestRequest -Uri $url `
+    	-MaxAttempts 5 `
+    	-RequestTimeoutSeconds 180 `
+    	-ReadTimeoutSeconds 60
 }
