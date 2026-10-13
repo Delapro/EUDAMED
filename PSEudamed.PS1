@@ -320,28 +320,140 @@ Function Get-EudamedPagedDataCountryAndRole {
     Get-EudamedPagedData -Url "$Url&$atc&countryIso2Code=$Country"
 }
 
-# ermittelt die Devices eines Herstellers nach seinem Namen, wenn der Name auf mehrere Hersteller zutrifft, werden Materialien von verschiedenen Herstellern zurückgegeben
-Function Get-EudamedEODevicesByManufacturerName {
-    [CmdletBinding()]
+# Regressionstest: die bisherige breite und potentiell langsame Device-Suche.
+# ACHTUNG: Der API-Parameter 'name' ist kein reiner Herstellerfilter.
+Function Get-EudamedEODevicesByManufacturerNameRegression {
+	[CmdletBinding()]
     Param(
         [Parameter(Mandatory)]
+		[ValidateNotNullOrEmpty()]
         [String]$ManufacturerName,
 
         [switch]$OnlyTotalElements
     )
 
-    # früher: $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?manufacturerName=$($ManufacturerName)&languageIso2Code=de"
-    # TODO: damit ist eigentlich die Namensgebung der Funktion dahin!!
-
-    $encodedName = [System.Uri]::EscapeDataString(
-        $ManufacturerName
-    )
+	$encodedName = [System.Uri]::EscapeDataString($ManufacturerName)
 
     $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?name=$encodedName&languageIso2Code=de"
 
     Get-EudamedPagedData `
         -Url $Url `
         -OnlyTotalElements:$OnlyTotalElements
+}
+
+# Herstellersuche in zwei unabhaengigen HTTP-Phasen:
+#  1. Suche der Manufacturer-Actors per Namensteil, mit Pagination.
+#  2. Erneute Device-Abfrage fuer jede eindeutige Manufacturer-SRN, mit Pagination.
+# Signatur/Rueckgabetyp wie bisher: Anzahl (eine Zahl) oder Device-Objekte.
+# Kein on-the-market-Filter, damit der Vergleich zur Regression fair bleibt.
+Function Get-EudamedEODevicesByManufacturerName {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [String]$ManufacturerName,
+
+        [switch]$OnlyTotalElements
+    )
+
+    $search = $ManufacturerName.Trim()
+    if ([String]::IsNullOrWhiteSpace($search)) {
+        throw 'ManufacturerName darf nicht nur Leerzeichen enthalten.'
+    }
+
+    $encodedName = [System.Uri]::EscapeDataString($search)
+    $actorUrl = 'https://ec.europa.eu/tools/eudamed/api/eos' +
+        "?name=$encodedName" +
+        '&actorTypeCode=refdata.actor-type.manufacturer' +
+        '&languageIso2Code=de'
+
+    # EUDAMED wird erneut abgefragt: KEIN Zugriff auf zuvor geladene Devices.
+    $actors = @(Get-EudamedPagedData -Url $actorUrl)
+    $actorMatches = @($actors | Where-Object {
+        ([string]$_.name).IndexOf($search, [StringComparison]::OrdinalIgnoreCase) -ge 0
+    })
+
+    # Manche API-Suchen verarbeiten Sonderzeichen im vollen Namen
+    # nicht konsistent. In dem Fall mit einem markanten Namensteil
+    # erneut bei EUDAMED suchen und die volle Zeichenkette lokal pruefen.
+    if ($actorMatches.Count -eq 0) {
+        $tokens = @(
+            [regex]::Matches($search, '[\p{L}\p{N}]{3,}') |
+                ForEach-Object { $_.Value } |
+                Sort-Object Length -Descending
+        )
+        if ($tokens.Count -gt 0 -and $tokens[0] -ine $search) {
+            $fallback = [System.Uri]::EscapeDataString($tokens[0])
+            $fallbackUrl = 'https://ec.europa.eu/tools/eudamed/api/eos' +
+                "?name=$fallback" +
+                '&actorTypeCode=refdata.actor-type.manufacturer' +
+                '&languageIso2Code=de'
+            Write-Verbose "Actor-Fallback mit Namensteil '$($tokens[0])'"
+            $actors = @(Get-EudamedPagedData -Url $fallbackUrl)
+            $actorMatches = @($actors | Where-Object {
+                ([string]$_.name).IndexOf($search, [StringComparison]::OrdinalIgnoreCase) -ge 0
+            })
+        }
+    }
+
+    $srns = [System.Collections.Generic.HashSet[string]]::new(
+        [StringComparer]::OrdinalIgnoreCase
+    )
+    $matchingActors = 0
+
+    foreach ($actor in $actorMatches) {
+        # Zweite Kontrolle: ein von der API unerwartet breiter Treffer
+        # soll die nachfolgende SRN-Abfrage nicht verfaelschen.
+        $actorName = [string]$actor.name
+        if ($actorName.IndexOf($search, [StringComparison]::OrdinalIgnoreCase) -lt 0) {
+            continue
+        }
+        $matchingActors++
+
+        $srn = [string]$actor.srn
+        if ([String]::IsNullOrWhiteSpace($srn)) {
+            $srn = [string]$actor.eudamedIdentifier
+        }
+        if ([String]::IsNullOrWhiteSpace($srn)) {
+            throw "Actor '$actorName' hat weder srn noch eudamedIdentifier."
+        }
+        if ($srn -notmatch '^[A-Z]{2}-MF-') {
+            throw "Unerwartete Hersteller-SRN '$srn' fuer Actor '$actorName'."
+        }
+
+        [void]$srns.Add($srn)
+    }
+
+    if ($matchingActors -eq 0) {
+        Write-Verbose "Keine Manufacturer-Actors fuer '$search' gefunden."
+        if ($OnlyTotalElements) { return [long]0 }
+        return
+    }
+
+    Write-Verbose "Manufacturer-Actors=$matchingActors eindeutige SRNs=$($srns.Count)"
+    $total = [long]0
+
+    foreach ($srn in $srns) {
+        $encodedSrn = [System.Uri]::EscapeDataString($srn)
+        $deviceUrl = 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData' +
+            "?srn=$encodedSrn&languageIso2Code=de"
+
+        if ($OnlyTotalElements) {
+            # Je SRN eigener LIVE-Aufruf. Ein Fehler wird bewusst
+            # weitergereicht, niemals in eine falsche Null umgewandelt.
+            $count = [long](Get-EudamedPagedData -Url $deviceUrl -OnlyTotalElements)
+            Write-Verbose "SRN=$srn totalElements=$count"
+            $total += $count
+        }
+        else {
+            # Vollstaendiger erneuter Download aller Seiten jeder SRN.
+            Get-EudamedPagedData -Url $deviceUrl
+        }
+    }
+
+    if ($OnlyTotalElements) {
+        return $total
+    }
 }
 
 # Achtung die unterschiedlichen ParameterSets liefern unterschiedliche, nicht kompatible Strukturen zurück
