@@ -1,4 +1,4 @@
-name: PSEudamedTest
+name: PSEudamedTest-parallel
 
 on:
   workflow_dispatch:
