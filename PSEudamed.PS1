@@ -61,7 +61,7 @@ function Invoke-EudamedRestRequest {
                     $attempt,
                     $MaxAttempts,
                     $stopwatch.ElapsedMilliseconds,
-                    $Uri
+                    $Uri.AbsoluteUri
             )
 
             return $result
@@ -107,7 +107,7 @@ function Invoke-EudamedRestRequest {
                 $isTimeout,
                 $canRetry,
                 $_.Exception.Message.Replace('"', "'"),
-                $Uri
+                $Uri.AbsoluteUri
             )
 
             if (-not $canRetry) {
@@ -130,7 +130,7 @@ function Invoke-EudamedRestRequest {
                     ($attempt + 1),
                     $MaxAttempts,
                     $delaySeconds,
-                    $Uri
+                    $Uri.AbsoluteUri
             )
 
             Start-Sleep -Seconds $delaySeconds
