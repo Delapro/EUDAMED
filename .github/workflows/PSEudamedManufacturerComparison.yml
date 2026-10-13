@@ -1,0 +1,131 @@
+name: EUDAMED Manufacturer API Comparison
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Count = separate Live-Zaehlung; Full = beide Methoden laden alle Devices und vergleichen Primary-DIs"
+        required: true
+        type: choice
+        default: Count
+        options:
+          - Count
+          - Full
+
+permissions:
+  contents: read
+
+jobs:
+  filter-guard:
+    name: Negative Filtertests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ungueltige Name- und SRN-Filter pruefen
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          . ./PSEudamed.PS1
+          $unknownName = '__NONEXISTENT_MANUFACTURER_TEST_20261013__'
+          $byActor = [long](Get-EudamedEODevicesByManufacturerName -ManufacturerName $unknownName -OnlyTotalElements)
+          $bySrn = [long](Get-EudamedPagedData -Url 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?srn=DE-MF-999999999&languageIso2Code=de' -OnlyTotalElements)
+          Write-Host "Negative ActorName=$byActor Negative DeviceSrn=$bySrn"
+          if ($byActor -ne 0 -or $bySrn -ne 0) {
+            throw 'Mindestens einer der Filter wird nicht korrekt angewendet.'
+          }
+
+  compare:
+    name: "${{ matrix.id }} / ${{ inputs.mode }}"
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include:
+          - id: hafner
+            manufacturer: 'C.HAFNER GmbH + Co. KG'
+          - id: wieland
+            manufacturer: 'WIELAND Edelmetalle GmbH'
+          - id: heimerle
+            manufacturer: 'Heimerle + Meule GmbH'
+          - id: bredent
+            manufacturer: 'bredent'
+    env:
+      MANUFACTURER_NAME: ${{ matrix.manufacturer }}
+      CASE_ID: ${{ matrix.id }}
+      TEST_MODE: ${{ inputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Beide Suchmethoden unabhaengig ausfuehren
+        shell: pwsh
+        timeout-minutes: 290
+        run: |
+          ./Tests/Vergleich-Herstellersuche.PS1 `
+            -ManufacturerName $env:MANUFACTURER_NAME `
+            -Mode $env:TEST_MODE `
+            -CaseId $env:CASE_ID `
+            -OutputDir "out/$env:CASE_ID"
+      - name: Testdaten archivieren (auch bei Fehler)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eudamed-compare-${{ matrix.id }}
+          path: out/${{ matrix.id }}/
+          if-no-files-found: warn
+          retention-days: 14
+
+  summary:
+    name: Ergebnisse zusammenfuehren
+    needs: [compare, filter-guard]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: eudamed-compare-*
+          path: results/
+      - name: Gesamtbericht erzeugen
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $null = New-Item -ItemType Directory -Path results -Force
+          $reports = @(
+            Get-ChildItem results -Recurse -File -Filter '*-report.json' |
+              ForEach-Object { Get-Content $_.FullName -Raw | ConvertFrom-Json }
+          )
+          $rows = @($reports | ForEach-Object { $_.Results })
+          if ($rows.Count -gt 0) {
+            $rows | Export-Csv results/Gesamtvergleich.csv -NoTypeInformation -Encoding utf8
+          }
+          $summary = @(
+            '# EUDAMED Hersteller-Suchvergleich',
+            '',
+            'Differenzen zwischen name= und srn= sind nicht automatisch Regressionen.',
+            '',
+            '| Hersteller | Methode | Status | Treffer | Dauer (s) |',
+            '|---|---|---|---:|---:|'
+          )
+          foreach ($row in $rows) {
+            $seconds = [Math]::Round($row.DurationMs / 1000, 1)
+            $safeName = ([string]$row.ManufacturerName).Replace('|', '\|')
+            $summary += "| $safeName | $($row.Method) | $($row.Status) | $($row.Count) | $seconds |"
+          }
+          if ($rows.Count -eq 0) {
+            $summary += ''
+            $summary += 'Keine Reportdaten gefunden (Jobs ggf. abgebrochen).'
+          }
+          $summary | Set-Content results/Gesamtvergleich.md -Encoding utf8
+          $summary | Add-Content $env:GITHUB_STEP_SUMMARY -Encoding utf8
+      - name: Gesamtbericht als Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eudamed-compare-gesamt
+          path: results/
+          if-no-files-found: warn
+      - name: HTTP-Fehlerstatus uebernehmen
+        if: ${{ needs.compare.result != 'success' || needs.filter-guard.result != 'success' }}
+        run: exit 1
