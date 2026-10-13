@@ -1,0 +1,91 @@
+name: PSEudamedTest
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Test ${{ matrix.script }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        script:
+          - Abfragen
+          - Abfrage-Hersteller
+          - Abfrage-CNDs
+          - Abfrage-Zertifikate
+    env:
+      TEST_SCRIPT: ${{ matrix.script }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: PowerShell-Skript ausfuehren
+        shell: pwsh
+        timeout-minutes: 350
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Path out -Force | Out-Null
+          Start-Transcript -Path "out/$env:TEST_SCRIPT.log" -Force | Out-Null
+          try {
+            $PSVersionTable.PSVersion
+            . ./PSEudamed.PS1
+            & "./Tests/$env:TEST_SCRIPT.PS1"
+          }
+          finally {
+            Stop-Transcript | Out-Null
+          }
+
+      - name: Generierte PDFs sichern
+        if: ${{ always() && matrix.script == 'Abfrage-Zertifikate' }}
+        shell: pwsh
+        run: |
+          Get-ChildItem -File -Filter '*.pdf' |
+            Copy-Item -Destination out -Force
+
+      - name: Ergebnisse hochladen
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-output-${{ matrix.script }}
+          path: out/
+          if-no-files-found: warn
+
+  zusammenfassen:
+    name: Ergebnisse zusammenfassen
+    needs: tests
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: test-output-*
+          path: results/
+          merge-multiple: true
+
+      - name: Gesamtausgabe erzeugen
+        shell: bash
+        run: |
+          for script in Abfragen Abfrage-Hersteller Abfrage-CNDs Abfrage-Zertifikate; do
+            echo "===== $script =====" >> results/Gesamt.log
+            if [[ -f "results/$script.log" ]]; then
+              cat "results/$script.log" >> results/Gesamt.log
+            else
+              echo "Kein Log vorhanden (ggf. Job abgebrochen)." >> results/Gesamt.log
+            fi
+            echo >> results/Gesamt.log
+          done
+
+      - name: Gesamtergebnis hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSEudamed-Gesamtergebnis
+          path: results/
+
+      - name: Fehlerstatus uebernehmen
+        if: ${{ needs.tests.result != 'success' }}
+        run: exit 1
