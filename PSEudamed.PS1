@@ -324,16 +324,24 @@ Function Get-EudamedPagedDataCountryAndRole {
 Function Get-EudamedEODevicesByManufacturerName {
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory,ParameterSetName='Manufacturer',Position=0)]
+        [Parameter(Mandatory)]
         [String]$ManufacturerName,
-	[switch]$OnlyTotalElements
+
+        [switch]$OnlyTotalElements
     )
 
     # früher: $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?manufacturerName=$($ManufacturerName)&languageIso2Code=de"
     # TODO: damit ist eigentlich die Namensgebung der Funktion dahin!!
-    
-    $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?name=$([System.Uri]::EscapeUriString($ManufacturerName))&languageIso2Code=de"
-    Get-EudamedPagedData -Url $Url -OnlyTotalElements:$OnlyTotalElements
+
+    $encodedName = [System.Uri]::EscapeDataString(
+        $ManufacturerName
+    )
+
+    $Url = "https://ec.europa.eu/tools/eudamed/api/devices/udiDiData?name=$encodedName&languageIso2Code=de"
+
+    Get-EudamedPagedData `
+        -Url $Url `
+        -OnlyTotalElements:$OnlyTotalElements
 }
 
 # Achtung die unterschiedlichen ParameterSets liefern unterschiedliche, nicht kompatible Strukturen zurück
