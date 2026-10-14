@@ -2,51 +2,77 @@ name: PSEudamedTest-parallel
 
 on:
   workflow_dispatch:
+    inputs:
+      umfang:
+        description: 'Welche Medizinproduktgruppen sollen getestet werden?'
+        required: true
+        type: choice
+        default: beide
+        options:
+          - dental
+          - kfo
+          - beide
+      hersteller_je_job:
+        description: 'Maximale Herstellerabfragen je Job (auto-anpassbar bei GitHub-Matrixlimit)'
+        required: true
+        type: choice
+        default: '8'
+        options:
+          - '4'
+          - '8'
+          - '12'
 
 permissions:
   contents: read
 
 jobs:
-  tests:
+  vorbereiten:
+    name: CND-Auswahl erstellen
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        name: Nur passende terminale EMDN-Gruppen planen
+        shell: pwsh
+        env:
+          TEST_UMFANG: ${{ inputs.umfang }}
+        run: |
+          ./Tests/Build-CNDMatrix.ps1 -Umfang $env:TEST_UMFANG
+
+  standardtests:
     name: Test ${{ matrix.script }}
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 350
     strategy:
       fail-fast: false
       matrix:
         script:
           - Abfragen
           - Abfrage-Hersteller
-          - Abfrage-CNDs
           - Abfrage-Zertifikate
     env:
       TEST_SCRIPT: ${{ matrix.script }}
     steps:
-      - uses: actions/checkout@v7
-
+      - uses: actions/checkout@v4
       - name: PowerShell-Skript ausfuehren
         shell: pwsh
-        timeout-minutes: 350
         run: |
           $ErrorActionPreference = 'Stop'
           New-Item -ItemType Directory -Path out -Force | Out-Null
           Start-Transcript -Path "out/$env:TEST_SCRIPT.log" -Force | Out-Null
           try {
-            $PSVersionTable.PSVersion
             . ./PSEudamed.PS1
             & "./Tests/$env:TEST_SCRIPT.PS1"
           }
-          finally {
-            Stop-Transcript | Out-Null
-          }
-
+          finally { Stop-Transcript | Out-Null }
       - name: Generierte PDFs sichern
         if: ${{ always() && matrix.script == 'Abfrage-Zertifikate' }}
         shell: pwsh
         run: |
           Get-ChildItem -File -Filter '*.pdf' |
             Copy-Item -Destination out -Force
-
       - name: Ergebnisse hochladen
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
@@ -55,37 +81,151 @@ jobs:
           path: out/
           if-no-files-found: warn
 
+  cnd:
+    name: CND ${{ matrix.code }} (${{ matrix.bereich }})
+    needs: vorbereiten
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix: ${{ fromJSON(needs.vorbereiten.outputs.matrix) }}
+    env:
+      CND_CODE: ${{ matrix.code }}
+      CND_BEREICH: ${{ matrix.bereich }}
+      CND_TYP: ${{ matrix.typ }}
+      CND_BEZEICHNUNG: ${{ matrix.bezeichnung }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: CND vollstaendig erneut von EUDAMED laden
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Path out -Force | Out-Null
+          Start-Transcript -Path 'out/cnd.log' -Force | Out-Null
+          try {
+            . ./PSEudamed.PS1
+            & ./Tests/Abfrage-CND-Kategorie.ps1 `
+              -CndCode $env:CND_CODE `
+              -Bereich $env:CND_BEREICH `
+              -Typ $env:CND_TYP `
+              -Bezeichnung $env:CND_BEZEICHNUNG
+          }
+          finally { Stop-Transcript | Out-Null }
+      - name: Pro-CND-Ergebnisse sichern
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: cnd-${{ matrix.code }}
+          path: out/
+          if-no-files-found: warn
+
+  hersteller_planen:
+    name: Hersteller-Jobs anhand der CND-Ergebnisse planen
+    needs: [vorbereiten, cnd]
+    if: ${{ always() && needs.vorbereiten.result == 'success' }}
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Alle verfuegbaren CND-Manifeste laden
+        uses: actions/download-artifact@v4
+        with:
+          pattern: cnd-*
+          path: results/
+      - id: plan
+        name: Kleine und parallelisierbare Hersteller-Batches erstellen
+        shell: pwsh
+        env:
+          BATCH_SIZE: ${{ inputs.hersteller_je_job }}
+        run: |
+          ./Tests/Build-HerstellerMatrix.ps1 -DownloadedPath results -BatchSize ([int]$env:BATCH_SIZE)
+
+  hersteller:
+    name: Hersteller CND ${{ matrix.code }} ab ${{ matrix.start }}
+    needs: hersteller_planen
+    if: ${{ needs.hersteller_planen.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix: ${{ fromJSON(needs.hersteller_planen.outputs.matrix) }}
+    env:
+      CND_CODE: ${{ matrix.code }}
+      BATCH_START: ${{ matrix.start }}
+      BATCH_SIZE: ${{ matrix.batchSize }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Herstellerliste dieser CND laden
+        if: ${{ matrix.code != 'NONE' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: cnd-${{ matrix.code }}
+          path: source/
+      - name: Jede Hersteller-SRN mit NEUEN HTTP-Aufrufen pruefen
+        if: ${{ matrix.code != 'NONE' }}
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Path out -Force | Out-Null
+          Start-Transcript -Path 'out/hersteller.log' -Force | Out-Null
+          try {
+            . ./PSEudamed.PS1
+            & ./Tests/Test-CND-HerstellerBatch.ps1 `
+              -ManifestPath 'source/manifest.json' `
+              -Start ([int]$env:BATCH_START) `
+              -BatchSize ([int]$env:BATCH_SIZE)
+          }
+          finally { Stop-Transcript | Out-Null }
+      - name: Hersteller-Ergebnisse sichern (auch bei Fehlern)
+        if: ${{ always() && matrix.code != 'NONE' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: manufacturer-${{ matrix.code }}-${{ matrix.start }}
+          path: out/
+          if-no-files-found: warn
+
   zusammenfassen:
-    name: Ergebnisse zusammenfassen
-    needs: tests
+    name: Alle Ausgaben und Teststatus zusammenfassen
+    needs: [standardtests, vorbereiten, cnd, hersteller_planen, hersteller]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v4
+      - name: Alle vorhandenen Artifacts laden
+        uses: actions/download-artifact@v4
+        continue-on-error: true
         with:
-          pattern: test-output-*
           path: results/
-          merge-multiple: true
-
-      - name: Gesamtausgabe erzeugen
-        shell: bash
+      - id: report
+        name: Texttabellen, Logs und Markdown-Bericht zusammenfuehren
+        shell: pwsh
+        continue-on-error: true
         run: |
-          for script in Abfragen Abfrage-Hersteller Abfrage-CNDs Abfrage-Zertifikate; do
-            echo "===== $script =====" >> results/Gesamt.log
-            if [[ -f "results/$script.log" ]]; then
-              cat "results/$script.log" >> results/Gesamt.log
-            else
-              echo "Kein Log vorhanden (ggf. Job abgebrochen)." >> results/Gesamt.log
-            fi
-            echo >> results/Gesamt.log
-          done
-
-      - name: Gesamtergebnis hochladen
+          ./Tests/Merge-CND-Ergebnisse.ps1 -ResultsPath results -OutputPath combined
+      - name: Gemeinsame Ausgaben hochladen
+        if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: PSEudamed-Gesamtergebnis
-          path: results/
-
-      - name: Fehlerstatus uebernehmen
-        if: ${{ needs.tests.result != 'success' }}
-        run: exit 1
+          path: |
+            combined/
+            results/
+          if-no-files-found: warn
+      - name: Fehlgeschlagene Tests nicht als Erfolg anzeigen
+        if: ${{ always() }}
+        shell: bash
+        env:
+          STANDARD: ${{ needs.standardtests.result }}
+          VORBEREITEN: ${{ needs.vorbereiten.result }}
+          CND: ${{ needs.cnd.result }}
+          HERSTELLER_PLAN: ${{ needs.hersteller_planen.result }}
+          HERSTELLER: ${{ needs.hersteller.result }}
+          REPORT: ${{ steps.report.outcome }}
+        run: |
+          echo "Standard=$STANDARD Prepare=$VORBEREITEN CND=$CND Plan=$HERSTELLER_PLAN Hersteller=$HERSTELLER Report=$REPORT"
+          for status in "$STANDARD" "$VORBEREITEN" "$CND" "$HERSTELLER_PLAN" "$HERSTELLER" "$REPORT"; do
+            if [[ "$status" != "success" ]]; then exit 1; fi
+          done
