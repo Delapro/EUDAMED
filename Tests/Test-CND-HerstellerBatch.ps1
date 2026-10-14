@@ -33,9 +33,6 @@ for ($i = $Start; $i -lt $last; $i++) {
         if ($null -eq $count -or -not ("$count" -match '^\d+$')) {
             throw "Kein gueltiger numerischer Count fuer Hersteller '$name': $count"
         }
-        if ([long]$count -eq 0) {
-            throw "0 Devices fuer '$name', obwohl der Hersteller im CND $($manifest.code) vorkam."
-        }
     }
     catch {
         $status = 'ERROR'
