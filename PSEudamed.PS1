@@ -91,8 +91,24 @@ function Invoke-EudamedRestRequest {
                 $null -ne $statusCode -and
                 $statusCode -in $retryableStatusCodes
 
+            # Ein Verbindungsabbruch liefert keinen HTTP-Statuscode.
+            # Auch diese Fehler sind bei unseren GET-Abfragen wiederholbar.
+            $isTransportError = $false
+            $innerException = $_.Exception
+            while ($null -ne $innerException) {
+                if (
+                    $innerException -is [System.Net.Sockets.SocketException] -or
+                    $innerException -is [System.IO.IOException]
+                ) {
+                    $isTransportError = $true
+                    break
+                }
+                $innerException = $innerException.InnerException
+            }
+            $isTransportError = ($null -eq $statusCode) -and $isTransportError
+
             $canRetry =
-                ($isTimeout -or $isRetryableHttpError) -and
+                ($isTimeout -or $isRetryableHttpError -or $isTransportError) -and
                 $attempt -lt $MaxAttempts
 
             Write-Warning (
