@@ -32,7 +32,7 @@ jobs:
     outputs:
       matrix: ${{ steps.plan.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: plan
         name: Nur passende terminale EMDN-Gruppen planen
         shell: pwsh
@@ -55,7 +55,7 @@ jobs:
     env:
       TEST_SCRIPT: ${{ matrix.script }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: PowerShell-Skript ausfuehren
         shell: pwsh
         run: |
@@ -75,7 +75,7 @@ jobs:
             Copy-Item -Destination out -Force
       - name: Ergebnisse hochladen
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-output-${{ matrix.script }}
           path: out/
@@ -96,7 +96,7 @@ jobs:
       CND_TYP: ${{ matrix.typ }}
       CND_BEZEICHNUNG: ${{ matrix.bezeichnung }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: CND vollstaendig erneut von EUDAMED laden
         shell: pwsh
         run: |
@@ -114,7 +114,7 @@ jobs:
           finally { Stop-Transcript | Out-Null }
       - name: Pro-CND-Ergebnisse sichern
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cnd-${{ matrix.code }}
           path: out/
@@ -128,9 +128,9 @@ jobs:
     outputs:
       matrix: ${{ steps.plan.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Alle verfuegbaren CND-Manifeste laden
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           pattern: cnd-*
           path: results/
@@ -157,10 +157,10 @@ jobs:
       BATCH_START: ${{ matrix.start }}
       BATCH_SIZE: ${{ matrix.batchSize }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Herstellerliste dieser CND laden
         if: ${{ matrix.code != 'NONE' }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: cnd-${{ matrix.code }}
           path: source/
@@ -181,7 +181,7 @@ jobs:
           finally { Stop-Transcript | Out-Null }
       - name: Hersteller-Ergebnisse sichern (auch bei Fehlern)
         if: ${{ always() && matrix.code != 'NONE' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: manufacturer-${{ matrix.code }}-${{ matrix.start }}
           path: out/
@@ -193,9 +193,9 @@ jobs:
     if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Alle vorhandenen Artifacts laden
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         continue-on-error: true
         with:
           path: results/
@@ -207,7 +207,7 @@ jobs:
           ./Tests/Merge-CND-Ergebnisse.ps1 -ResultsPath results -OutputPath combined
       - name: Gemeinsame Ausgaben hochladen
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: PSEudamed-Gesamtergebnis
           path: |
