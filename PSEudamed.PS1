@@ -191,7 +191,44 @@ Function Get-EudamedPagedData {
             $Pages = $j.totalPages
         }
         Write-Verbose "Page: $($j.number+1)/$Pages"
-        $last=$j.last
+        # EUDAMED kann bei ungueltigen/ueberzaehligen Seiten inkonsistente
+        # Paging-Metadaten liefern. Daher nicht allein auf 'last' vertrauen.
+        if ($null -eq $j.number -or $null -eq $j.totalPages -or $null -eq $j.last) {
+            throw "EUDAMED liefert unvollstaendige Pagination-Metadaten (angefordert: page=$page)."
+        }
+        if ([int]$j.number -ne $page) {
+            throw "EUDAMED Paging-Fehler: page=$page angefordert, page=$($j.number) geliefert."
+        }
+        if (-not $OnlyTotalElements) {
+            $reportedPages = [int]$j.totalPages
+            if ($reportedPages -lt 0) {
+                throw "EUDAMED liefert ungueltige totalPages=$reportedPages."
+            }
+            if ($reportedPages -eq 0) {
+                if ([int]$j.numberOfElements -ne 0) {
+                    throw 'EUDAMED liefert Inhalt, obwohl totalPages=0.'
+                }
+                $last = $true
+            }
+            else {
+                if ($page -ge $reportedPages) {
+                    throw "EUDAMED Paging-Fehler: page=$page liegt ausserhalb totalPages=$reportedPages."
+                }
+                $expectedLast = ($page -eq ($reportedPages - 1))
+                if ([bool]$j.last -ne $expectedLast) {
+                    throw ("EUDAMED Paging inkonsistent: page={0}, totalPages={1}, " +
+                           "last={2}, size={3}, totalElements={4}." -f
+                           $page, $reportedPages, $j.last, $j.size, $j.totalElements)
+                }
+                if (-not $expectedLast -and [int]$j.numberOfElements -eq 0) {
+                    throw "EUDAMED liefert leere Seite $page vor totalPages=$reportedPages."
+                }
+                $last = $expectedLast
+            }
+        }
+        else {
+            $last = $true
+        }
         $page++
 	If (($WaitAfterPages -gt 0) -and ($page%$WaitAfterPages -eq 0)) {
 		Start-Sleep -Seconds 1
