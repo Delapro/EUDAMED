@@ -19,7 +19,7 @@ $last = [Math]::Min($Start + $BatchSize, $names.Count)
 $results = [System.Collections.Generic.List[object]]::new()
 $failures = 0
 
-"Hersteller von $($manifest.bezeichnung) ($($manifest.code)) – Batch ab $Start:"
+"Hersteller von $($manifest.bezeichnung) ($($manifest.code)) – Batch ab ${Start}:"
 ''
 for ($i = $Start; $i -lt $last; $i++) {
     $name = [string]$names[$i]
