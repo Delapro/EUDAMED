@@ -1,0 +1,170 @@
+[
+  {
+    "code": "Q010601",
+    "bereich": "Gemeinsam",
+    "typ": "Material",
+    "bezeichnung": "Dentallegierungen (CoCr, Edelmetall usw.)"
+  },
+  {
+    "code": "Q010699",
+    "bereich": "Gemeinsam",
+    "typ": "Material",
+    "bezeichnung": "Sonstige Materialien fuer dentale Sonderanfertigungen (z. B. Zirkon, Keramik, CAD/CAM-Rohlinge)"
+  },
+  {
+    "code": "Q0102050101",
+    "bereich": "Dental",
+    "typ": "Material",
+    "bezeichnung": "Kunststoffe fuer provisorische Zaehne"
+  },
+  {
+    "code": "Q0102050102",
+    "bereich": "Dental",
+    "typ": "Material",
+    "bezeichnung": "Unterfuetterungskunststoffe"
+  },
+  {
+    "code": "Q0102050199",
+    "bereich": "Gemeinsam",
+    "typ": "Material",
+    "bezeichnung": "Sonstige Dentalkunststoffe (einschl. geeigneter Fertigungsharze)"
+  },
+  {
+    "code": "Q01020502",
+    "bereich": "Dental",
+    "typ": "Fertigteil",
+    "bezeichnung": "Vorgefertigte Dentalkronen"
+  },
+  {
+    "code": "Q01010103",
+    "bereich": "Dental",
+    "typ": "Material",
+    "bezeichnung": "Restaurationskomposite"
+  },
+  {
+    "code": "Q01010104",
+    "bereich": "Gemeinsam",
+    "typ": "Material",
+    "bezeichnung": "Dentale Adhaesive / Bondings"
+  },
+  {
+    "code": "Q01010106",
+    "bereich": "Dental",
+    "typ": "Material",
+    "bezeichnung": "Glasionomer-Restaurationsmaterialien"
+  },
+  {
+    "code": "Q0101010299",
+    "bereich": "Dental",
+    "typ": "Material",
+    "bezeichnung": "Sonstige dentale Befestigungs-/Restaurationszemente"
+  },
+  {
+    "code": "Q01010403",
+    "bereich": "Gemeinsam",
+    "typ": "Material",
+    "bezeichnung": "Dentale Schleif- und Poliermaterialien (nur Medizinprodukte)"
+  },
+  {
+    "code": "Q01020203",
+    "bereich": "Dental",
+    "typ": "Material",
+    "bezeichnung": "Okklusionswachse (nicht allgemeine Modellierwachse)"
+  },
+  {
+    "code": "Q01020101",
+    "bereich": "Dental",
+    "typ": "Material",
+    "bezeichnung": "Dentale Alginat-Abformmaterialien"
+  },
+  {
+    "code": "Q01020102",
+    "bereich": "Dental",
+    "typ": "Material",
+    "bezeichnung": "Dentale Vinylsiloxan-Abformmaterialien"
+  },
+  {
+    "code": "Q01020103",
+    "bereich": "Dental",
+    "typ": "Material",
+    "bezeichnung": "Dentale Polyether-Abformmaterialien"
+  },
+  {
+    "code": "Q01020104",
+    "bereich": "Dental",
+    "typ": "Material",
+    "bezeichnung": "Dentale Silikon-Abformmaterialien"
+  },
+  {
+    "code": "Q01020199",
+    "bereich": "Dental",
+    "typ": "Material",
+    "bezeichnung": "Sonstige dentale Abformmaterialien (KEINE allgemeine Wachskategorie)"
+  },
+  {
+    "code": "Q010280",
+    "bereich": "Dental",
+    "typ": "Zubehoer",
+    "bezeichnung": "Zubehoer fuer die dentale Prothetik"
+  },
+  {
+    "code": "P01020180",
+    "bereich": "Dental",
+    "typ": "Zubehoer",
+    "bezeichnung": "Zubehoer fuer Dentalimplantate (z. B. Abutments)"
+  },
+  {
+    "code": "Q010207",
+    "bereich": "Dental",
+    "typ": "Zubehoer",
+    "bezeichnung": "Dentale Abdruck-/Abformprodukte fuer Prothetik"
+  },
+  {
+    "code": "Q010401",
+    "bereich": "KFO",
+    "typ": "Fertigteil",
+    "bezeichnung": "Kieferorthopaedische Gesichtsbogen"
+  },
+  {
+    "code": "Q010402",
+    "bereich": "KFO",
+    "typ": "Fertigteil",
+    "bezeichnung": "Kieferorthopaedische Baender"
+  },
+  {
+    "code": "Q010403",
+    "bereich": "KFO",
+    "typ": "Fertigteil",
+    "bezeichnung": "Brackets und Buttons"
+  },
+  {
+    "code": "Q010404",
+    "bereich": "KFO",
+    "typ": "Material",
+    "bezeichnung": "KFO-Elastics, Ketten und Federn"
+  },
+  {
+    "code": "Q010405",
+    "bereich": "KFO",
+    "typ": "Material",
+    "bezeichnung": "Kieferorthopaedische Draehte"
+  },
+  {
+    "code": "Q010406",
+    "bereich": "KFO",
+    "typ": "Material",
+    "bezeichnung": "KFO-Ligaturen"
+  },
+  {
+    "code": "Q010407",
+    "bereich": "KFO",
+    "typ": "Material",
+    "bezeichnung": "KFO-Zemente"
+  },
+  {
+    "code": "Q010499",
+    "bereich": "KFO",
+    "typ": "Zubehoer",
+    "bezeichnung": "Sonstige kieferorthopaedische Medizinprodukte"
+  }
+]
