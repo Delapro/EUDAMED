@@ -272,11 +272,14 @@ Function Get-EudamedNotifiedBodies {
     [CmdletBinding()]
     Param()
 
-	# mögliche Parameter: entityTypeCode=certificate.certificates
-	$Url = 'https://ec.europa.eu/tools/eudamed/api/ses/notifiedBodies?languageIso2Code=de'
+    $Url = 'https://ec.europa.eu/tools/eudamed/api/ses/notifiedBodies?languageIso2Code=de'
 
-	Get-EudamedPagedData -Url "$Url" -JsonDirect
-
+    # Dieser Endpunkt liefert direkt ein Array,
+    # keine paginierte Antwort.
+    Invoke-EudamedRestRequest -Uri $Url `
+        -MaxAttempts 5 `
+        -RequestTimeoutSeconds 180 `
+        -ReadTimeoutSeconds 60
 }
 
 Function Get-EudamedCertificates {
