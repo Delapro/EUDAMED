@@ -1,4 +1,5 @@
 # Testet jeden Hersteller einer Kategorie erneut ueber die EUDAMED-API.
+# Count = Anzahl on-the-market UDI-DIs dieses Herstellers im jeweiligen CND.
 # Die zuvor geladenen CND-Devices werden NICHT zur Herstellerzaehlung benutzt.
 [CmdletBinding()]
 param(
@@ -29,7 +30,11 @@ for ($i = $Start; $i -lt $last; $i++) {
     $errorMessage = ''
     try {
         # Jede Abfrage erfolgt neu ueber die oeffentliche API (keine CND-Daten).
-        $count = Get-EudamedEODevicesByManufacturerName -ManufacturerName $name -OnlyTotalElements -ErrorAction Stop
+        $count = Get-EudamedEODevicesByManufacturerName `
+            -ManufacturerName $name `
+            -CndCode ([string]$manifest.code) `
+            -OnlyTotalElements `
+            -ErrorAction Stop        
         if ($null -eq $count -or -not ("$count" -match '^\d+$')) {
             throw "Kein gueltiger numerischer Count fuer Hersteller '$name': $count"
         }
