@@ -385,11 +385,7 @@ Function Get-EudamedEODevicesByManufacturerNameRegression {
 		[ValidateNotNullOrEmpty()]
         [String]$ManufacturerName,
 
-        [switch]$OnlyTotalElements,
-
-        # Optional: Nur Devices dieses Herstellers innerhalb einer EMDN/CND-Gruppe.
-        [ValidatePattern('^[A-Z][0-9]{4,}$')]
-        [string]$CndCode    
+        [switch]$OnlyTotalElements
 	)
 
 	$encodedName = [System.Uri]::EscapeDataString($ManufacturerName)
@@ -413,7 +409,11 @@ Function Get-EudamedEODevicesByManufacturerName {
         [ValidateNotNullOrEmpty()]
         [String]$ManufacturerName,
 
-        [switch]$OnlyTotalElements
+        [switch]$OnlyTotalElements,
+
+        # Optional: Nur Devices dieses Herstellers innerhalb einer EMDN/CND-Gruppe.
+        [ValidatePattern('^[A-Z][0-9]{4,}$')]
+        [string]$CndCode    
     )
 
     $search = $ManufacturerName.Trim()
