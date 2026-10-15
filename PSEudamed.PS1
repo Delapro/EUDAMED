@@ -385,8 +385,12 @@ Function Get-EudamedEODevicesByManufacturerNameRegression {
 		[ValidateNotNullOrEmpty()]
         [String]$ManufacturerName,
 
-        [switch]$OnlyTotalElements
-    )
+        [switch]$OnlyTotalElements,
+
+        # Optional: Nur Devices dieses Herstellers innerhalb einer EMDN/CND-Gruppe.
+        [ValidatePattern('^[A-Z][0-9]{4,}$')]
+        [string]$CndCode    
+	)
 
 	$encodedName = [System.Uri]::EscapeDataString($ManufacturerName)
 
@@ -493,6 +497,13 @@ Function Get-EudamedEODevicesByManufacturerName {
         $encodedSrn = [System.Uri]::EscapeDataString($srn)
         $deviceUrl = 'https://ec.europa.eu/tools/eudamed/api/devices/udiDiData' +
             "?srn=$encodedSrn&languageIso2Code=de"
+
+        if ($PSBoundParameters.ContainsKey('CndCode')) {
+            # Identische Filter wie Get-EudamedDevicesOfCND; die SRN kommt hinzu.
+            $encodedCnd = [System.Uri]::EscapeDataString($CndCode)
+            $deviceUrl += "&iso2Code=en&cndCode=$encodedCnd" +
+                '&deviceStatusCode=refdata.device-model-status.on-the-market'
+        }
 
         if ($OnlyTotalElements) {
             # Je SRN eigener LIVE-Aufruf. Ein Fehler wird bewusst
