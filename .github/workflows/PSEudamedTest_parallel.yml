@@ -7,7 +7,7 @@ on:
         description: 'Welche Medizinproduktgruppen sollen getestet werden?'
         required: true
         type: choice
-        default: beide
+        default: dental
         options:
           - dental
           - kfo
@@ -16,7 +16,7 @@ on:
         description: 'Maximale Herstellerabfragen je Job (auto-anpassbar bei GitHub-Matrixlimit)'
         required: true
         type: choice
-        default: '8'
+        default: '12'
         options:
           - '4'
           - '8'
@@ -150,7 +150,7 @@ jobs:
     timeout-minutes: 350
     strategy:
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 12
       matrix: ${{ fromJSON(needs.hersteller_planen.outputs.matrix) }}
     env:
       CND_CODE: ${{ matrix.code }}
