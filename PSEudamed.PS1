@@ -184,7 +184,45 @@ Function Get-EudamedPagedData {
         # $r=Invoke-WebRequest $NewUrl -UseBasicParsing
         # $j=Convertfrom-json $r.content
         # $j = Invoke-RestMethod -Uri $newUrl -ConnectionTimeoutSeconds 30 -OperationTimeoutSeconds 180
-		$j = Invoke-EudamedRestRequest -Uri $newUrl -MaxAttempts 5 -RequestTimeoutSeconds 180 -ReadTimeoutSeconds 60
+
+		# HTTP 200 bedeutet nicht zwingend korrekte Seitendaten.
+		# Falsche oder fehlende Pagination-Metadaten erneut abfragen.
+		
+		$maxPagingAttempts = 3
+		
+		for ($pagingAttempt = 1; $pagingAttempt -le $maxPagingAttempts; $pagingAttempt++) {
+		
+		    $j = Invoke-EudamedRestRequest `
+		        -Uri $newUrl `
+		        -MaxAttempts 5 `
+		        -RequestTimeoutSeconds 180 `
+		        -ReadTimeoutSeconds 60
+		
+		    $validPage = (
+		        $null -ne $j -and
+		        $null -ne $j.number -and
+		        $null -ne $j.totalPages -and
+		        $null -ne $j.last -and
+		        [string]$j.number -match '^\d+$' -and
+		        [int]$j.number -eq $page
+		    )
+		
+		    if ($validPage) {
+		        break
+		    }
+		
+		    Write-Warning (
+		        "EUDAMED Paging-Versuch ${pagingAttempt}/${maxPagingAttempts}: " +
+		        "Seite $page angefordert, Seite $($j.number) erhalten."
+		    )
+		
+		    if ($pagingAttempt -eq $maxPagingAttempts) {
+		        throw "EUDAMED Paging-Fehler nach $maxPagingAttempts Versuchen: $newUrl"
+		    }
+		
+		    Start-Sleep -Seconds (5 * $pagingAttempt)
+		}
+
 		If ($j.number -eq 0) {
             Write-Verbose "TotalPages: $($j.totalPages)"
             Write-Verbose "TotalElements: $($j.totalElements)"
